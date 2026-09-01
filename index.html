@@ -648,7 +648,41 @@ h2{font-family:'Barlow Condensed',Arial,sans-serif;font-size:26px;font-weight:70
 .gm-pipe-cand.muted{color:var(--ink-faint);font-weight:500;}
 .gm-pipe-days{font:700 9.5px/1 'IBM Plex Mono',monospace;color:var(--ink-soft);margin-top:6px;}
 .gm-pipe-empty{font-size:10px;color:var(--ink-faint);text-align:center;padding:12px 0;}
-@media(max-width:1180px){.gm-body{grid-template-columns:repeat(3,1fr);}}
+.gm-flow-summary{margin-bottom:14px;padding:16px 18px;border-radius:14px;background:linear-gradient(135deg,#F8FBFE,#FFFFFF);border:1px solid #D6E4F0;box-shadow:0 10px 24px rgba(18,55,88,.05);}
+.gm-flow-top{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:start;}
+.gm-flow-title{font-family:'Barlow Condensed',Arial,sans-serif;font-size:24px;font-weight:800;color:var(--brand-blue-2);line-height:1;}
+.gm-flow-copy{margin-top:6px;font-size:11.5px;line-height:1.5;color:var(--ink-soft);}
+.gm-flow-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;}
+.gm-flow-kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 12px;}
+.gm-flow-kpi .label{font:700 8.8px/1.2 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);}
+.gm-flow-kpi .value{font-family:'Barlow Condensed',Arial,sans-serif;font-size:28px;font-weight:800;line-height:1;color:var(--brand-blue-2);margin-top:7px;}
+.gm-flow-kpi .sub{margin-top:5px;font-size:10px;line-height:1.35;color:var(--ink-soft);}
+.gm-flow-kpi.green .value{color:var(--brand-green-2);}
+.gm-flow-kpi.red .value{color:var(--brand-red);}
+.gm-flow-list{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px;}
+.gm-flow-item{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;box-shadow:0 4px 12px rgba(18,55,88,.04);}
+.gm-flow-item b{font:800 18px/1 'Barlow Condensed',Arial,sans-serif;color:var(--brand-blue-2);}
+.gm-flow-item small{font:700 8.6px/1.2 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);}
+.gm-flow-arrow{font:700 9px/1.2 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--ink);}
+.gm-flow-item.positive{border-color:#CBE7D6;background:#F7FCF9;}
+.gm-flow-item.positive b,.gm-flow-item.positive .gm-flow-arrow{color:var(--brand-green-2);}
+.gm-flow-item.negative{border-color:#F1C9CF;background:#FFF8F9;}
+.gm-flow-item.negative b,.gm-flow-item.negative .gm-flow-arrow{color:var(--brand-red);}
+.gm-flow-item.neutral{border-color:#D6E4F0;background:#F7FAFD;}
+.gm-col-flow{display:flex;flex-wrap:wrap;gap:5px;margin:-2px 0 8px;}
+.gm-stage-chip{display:inline-flex;align-items:center;gap:4px;padding:4px 7px;border-radius:999px;font:700 8px/1 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.04em;border:1px solid var(--line);background:#fff;color:var(--ink-soft);}
+.gm-stage-chip.in{background:#F3FBF6;border-color:#B8E0C5;color:var(--brand-green-2);}
+.gm-stage-chip.out{background:#EDF5FC;border-color:#C9DEEF;color:var(--brand-blue-2);}
+.gm-stage-chip.back{background:#FFF5F6;border-color:#F1C9CF;color:var(--brand-red);}
+.gm-pipe-card.moved{border-color:#B8E0C5;box-shadow:0 7px 18px rgba(6,150,83,.08);}
+.gm-pipe-card.regressed{border-color:#F1C9CF;box-shadow:0 7px 18px rgba(197,44,55,.08);}
+.gm-pipe-card.new{border-color:#C9DEEF;box-shadow:0 7px 18px rgba(18,100,168,.08);}
+.gm-move-badge{display:inline-flex;align-items:center;gap:5px;margin-bottom:7px;padding:4px 8px;border-radius:999px;font:700 8.2px/1 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.04em;border:1px solid var(--line);background:#fff;color:var(--ink-soft);}
+.gm-move-badge.positive{background:#F3FBF6;border-color:#B8E0C5;color:var(--brand-green-2);}
+.gm-move-badge.negative{background:#FFF5F6;border-color:#F1C9CF;color:var(--brand-red);}
+.gm-move-badge.new{background:#EDF5FC;border-color:#C9DEEF;color:var(--brand-blue-2);}
+@media(max-width:1180px){.gm-flow-top{grid-template-columns:1fr;}.gm-flow-kpis{grid-template-columns:repeat(3,minmax(0,1fr));}.gm-body{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:760px){.gm-flow-kpis{grid-template-columns:1fr;}.gm-body{grid-template-columns:1fr 1fr;}}
 @media(max-width:760px){.gm-body{grid-template-columns:1fr 1fr;}}
 
 /* Export-only DOM (kept offscreen until capture) */
@@ -1634,6 +1668,7 @@ function portableLoadState(storageKey,field){
         </div>
       <button type="button" class="section-export-btn">⬇ Descargar JPG</button></div>
       <div class="panel">
+        <div class="gm-flow-summary" id="gmStageFlow"></div>
         <div class="gm-pipe-wrap"><div class="gm-pipeline" id="gmPipeline"><div class="gm-pipe-col stage-abierta">
       <div class="gm-pipe-col-head"><span>Apertura</span><span class="gm-pipe-count">0</span></div>
       <div class="gm-pipe-empty">Sin procesos en esta etapa</div>
@@ -2766,6 +2801,17 @@ function gmStage(g){
   return 'Apertura';
 }
 function gmStageIndex(key){ return GM_STAGES.findIndex(s=>s.key===key); }
+function gmStageShort(key){
+  const map={
+    'Apertura':'Apertura',
+    'En entrevistas':'Entrevistas',
+    'Candidato en turno':'Candidato',
+    'Selección confirmada':'Selección',
+    'Carta oferta enviada':'Carta oferta',
+    'Cerrada':'Cerrada'
+  };
+  return map[key] || key;
+}
 // Avance de contratación vs. el corte anterior (GM_DATA_PREV): compara la etapa de cada proceso (por código)
 // entre el corte anterior y el actual. Solo cuentan como universo los procesos que YA estaban abiertos
 // (no "Cerrada") en el corte anterior, porque un proceso ya cerrado no puede volver a "avanzar".
@@ -2778,7 +2824,7 @@ function computeGmProgress(){
     if(!prev) return {codigo:g.codigo, tienda:g.tienda, prevStage:null, currStage, delta:null, isNew:true};
     const prevStage = gmStage(prev);
     const prevIdx = gmStageIndex(prevStage);
-    return {codigo:g.codigo, tienda:g.tienda, prevStage, currStage, prevIdx, currIdx, delta:currIdx-prevIdx};
+    return {codigo:g.codigo, tienda:g.tienda, prevStage, currStage, prevIdx, currIdx, delta:currIdx-prevIdx, isNew:false};
   });
   const openAtStart = rows.filter(r=>r.prevStage && r.prevStage!=='Cerrada');
   const avanzaron = openAtStart.filter(r=>r.delta>0);
@@ -2787,7 +2833,22 @@ function computeGmProgress(){
   const cerrados = avanzaron.filter(r=>r.currStage==='Cerrada');
   const avanzaronSinCerrar = avanzaron.filter(r=>r.currStage!=='Cerrada');
   const pct = openAtStart.length ? (avanzaron.length/openAtStart.length*100) : 0;
-  return {rows, openAtStart, avanzaron, retrocedieron, sinCambio, cerrados, avanzaronSinCerrar, pct};
+  const movimientos = rows.filter(r=>r.prevStage && r.prevStage!==r.currStage);
+  const groupedMap = {};
+  movimientos.forEach(r=>{
+    const k=`${r.prevStage}|${r.currStage}`;
+    if(!groupedMap[k]) groupedMap[k] = {from:r.prevStage,to:r.currStage,count:0,items:[],delta:r.delta};
+    groupedMap[k].count += 1;
+    groupedMap[k].items.push(r);
+  });
+  const grouped = Object.values(groupedMap).sort((a,b)=>{
+    const aType = a.delta>0 ? 0 : 1;
+    const bType = b.delta>0 ? 0 : 1;
+    if(aType!==bType) return aType-bType;
+    if(b.count!==a.count) return b.count-a.count;
+    return gmStageIndex(a.to)-gmStageIndex(b.to);
+  });
+  return {rows, openAtStart, avanzaron, retrocedieron, sinCambio, cerrados, avanzaronSinCerrar, pct, movimientos, grouped, prevByCode};
 }
 function renderGmProgressNote(){
   const el = document.getElementById('gmProgressNote');
@@ -2795,25 +2856,82 @@ function renderGmProgressNote(){
   const p = computeGmProgress();
   if(!p.openAtStart.length){ el.innerHTML = 'Sin corte anterior comparable para calcular avance.'; return; }
   const closedTxt = p.cerrados.length ? `<b style="color:var(--brand-green-2)">${p.cerrados.length} se ${p.cerrados.length===1?'cerró':'cerraron'}</b> (${p.cerrados.map(r=>`${r.tienda} · ${r.codigo}`).join(', ')})` : null;
-  const advTxt = p.avanzaronSinCerrar.length ? `<b style="color:var(--brand-blue)">${p.avanzaronSinCerrar.length} avanzó${p.avanzaronSinCerrar.length===1?'':'aron'} de etapa</b> sin cerrar (${p.avanzaronSinCerrar.map(r=>`${r.tienda} · ${r.codigo}: ${r.prevStage} → ${r.currStage}`).join(', ')})` : null;
-  const backTxt = p.retrocedieron.length ? `<b style="color:var(--brand-red)">${p.retrocedieron.length} retrocedió${p.retrocedieron.length===1?'':'ieron'}</b> (${p.retrocedieron.map(r=>`${r.tienda} · ${r.codigo}: ${r.prevStage} → ${r.currStage}`).join(', ')})` : null;
+  const advTxt = p.avanzaronSinCerrar.length ? `<b style="color:var(--brand-blue)">${p.avanzaronSinCerrar.length} ${p.avanzaronSinCerrar.length===1?'avanzó':'avanzaron'} de etapa</b> sin cerrar (${p.avanzaronSinCerrar.map(r=>`${r.tienda} · ${r.codigo}: ${r.prevStage} → ${r.currStage}`).join(', ')})` : null;
+  const backTxt = p.retrocedieron.length ? `<b style="color:var(--brand-red)">${p.retrocedieron.length} ${p.retrocedieron.length===1?'retrocedió':'retrocedieron'}</b> (${p.retrocedieron.map(r=>`${r.tienda} · ${r.codigo}: ${r.prevStage} → ${r.currStage}`).join(', ')})` : null;
   const parts = [closedTxt, advTxt, backTxt].filter(Boolean).join('; ');
   el.innerHTML = `<b>Cumplimiento de contratación vs. corte anterior:</b> <b style="color:var(--brand-blue-2)">${p.avanzaron.length} de ${p.openAtStart.length}</b> procesos que estaban abiertos avanzaron de etapa — <b style="color:var(--brand-blue-2)">${p.pct.toFixed(1)}%</b> de cumplimiento.<br>${parts || 'Sin movimiento detectado en ningún proceso.'}${p.sinCambio.length?` · <span style="color:var(--ink-faint)">${p.sinCambio.length} sin cambio (${p.sinCambio.map(r=>r.codigo).join(', ')})</span>`:''}`;
+}
+function renderGmStageFlow(){
+  const el = document.getElementById('gmStageFlow');
+  if(!el) return;
+  const p = computeGmProgress();
+  const total = p.movimientos.length;
+  const positiveGroups = p.grouped.filter(g=>g.delta>0);
+  const negativeGroups = p.grouped.filter(g=>g.delta<0);
+  const summaryText = positiveGroups.length
+    ? positiveGroups.map(g=>`${g.count} ${g.count===1?'proceso avanzó':'procesos avanzaron'} de ${gmStageShort(g.from)} a ${gmStageShort(g.to)}`).join(' · ')
+    : 'No se detectaron avances de etapa en la comparación semanal.';
+  const chips = [];
+  positiveGroups.forEach(g=>{
+    chips.push(`<div class="gm-flow-item positive"><span class="gm-flow-arrow">${gmStageShort(g.from)} → ${gmStageShort(g.to)}</span><b>${g.count}</b><small>${g.count===1?'movimiento':'movimientos'}</small></div>`);
+  });
+  negativeGroups.forEach(g=>{
+    chips.push(`<div class="gm-flow-item negative"><span class="gm-flow-arrow">${gmStageShort(g.from)} → ${gmStageShort(g.to)}</span><b>${g.count}</b><small>retroceso</small></div>`);
+  });
+  if(!chips.length){
+    chips.push(`<div class="gm-flow-item neutral"><span class="gm-flow-arrow">Sin cambios</span><b>0</b><small>movimientos</small></div>`);
+  }
+  el.innerHTML = `<div class="gm-flow-top">
+      <div>
+        <div class="gm-flow-title">Movimiento semanal entre etapas</div>
+        <div class="gm-flow-copy">Esta franja evidencia el avance entre cortes para que no sólo se vea a la persona en un lugar distinto, sino el <b>salto real</b> que tuvo dentro del pipeline. ${summaryText}</div>
+      </div>
+      <div class="gm-flow-kpis">
+        <div class="gm-flow-kpi"><div class="label">Movimientos detectados</div><div class="value">${total}</div><div class="sub">Cambios de etapa vs. corte anterior</div></div>
+        <div class="gm-flow-kpi green"><div class="label">Cierres logrados</div><div class="value">${p.cerrados.length}</div><div class="sub">Pasaron a <b>Cerrada</b> en la semana</div></div>
+        <div class="gm-flow-kpi ${p.retrocedieron.length?'red':''}"><div class="label">Avances sin cierre</div><div class="value">${p.avanzaronSinCerrar.length}</div><div class="sub">Más ${p.retrocedieron.length} ${p.retrocedieron.length===1?'retroceso':'retrocesos'} detectados</div></div>
+      </div>
+    </div>
+    <div class="gm-flow-list">${chips.join('')}</div>`;
+}
+function gmStageMovementMeta(row){
+  if(!row) return {badge:'', cardClass:''};
+  if(row.isNew) return {badge:'<div class="gm-move-badge new">Nuevo proceso en seguimiento</div>', cardClass:'new'};
+  if(!row.prevStage || row.prevStage===row.currStage) return {badge:'', cardClass:''};
+  if(row.delta>0) return {badge:`<div class="gm-move-badge positive">Avanzó desde ${gmStageShort(row.prevStage)}</div>`, cardClass:'moved'};
+  if(row.delta<0) return {badge:`<div class="gm-move-badge negative">Regresó desde ${gmStageShort(row.prevStage)}</div>`, cardClass:'regressed'};
+  return {badge:'', cardClass:''};
 }
 function renderGmPipeline(){
   const el = document.getElementById('gmPipeline');
   if(!el) return;
+  const p = computeGmProgress();
+  const rowByCode = {};
+  p.rows.forEach(r=>{ rowByCode[r.codigo] = r; });
   el.innerHTML = GM_STAGES.map(stage=>{
     const items = GM_DATA.filter(g=>gmStage(g)===stage.key);
     const days = g=>gmDaysOpen(g);
-    const cards = items.length ? items.map(g=>`<div class="gm-pipe-card">
+    const incoming = p.avanzaron.filter(r=>r.currStage===stage.key).length;
+    const outgoing = p.avanzaron.filter(r=>r.prevStage===stage.key).length;
+    const backIn = p.retrocedieron.filter(r=>r.currStage===stage.key).length;
+    const flowBits = [];
+    if(incoming) flowBits.push(`<span class="gm-stage-chip in">+${incoming} ${incoming===1?'llegó':'llegaron'}</span>`);
+    if(outgoing) flowBits.push(`<span class="gm-stage-chip out">${outgoing} ${outgoing===1?'avanzó':'avanzaron'}</span>`);
+    if(backIn) flowBits.push(`<span class="gm-stage-chip back">${backIn} retroceso</span>`);
+    const flowHtml = flowBits.length ? `<div class="gm-col-flow">${flowBits.join('')}</div>` : '';
+    const cards = items.length ? items.map(g=>{
+      const move = gmStageMovementMeta(rowByCode[g.codigo]);
+      return `<div class="gm-pipe-card ${move.cardClass}">
+        ${move.badge}
         <div class="gm-pipe-store">${escapeHtml(g.tienda)}</div>
         <div class="gm-pipe-sub">${escapeHtml(g.codigo && g.codigo!=='—' ? g.codigo+' · ' : '')}${escapeHtml(g.domicilio)}</div>
         <div class="gm-pipe-cand ${g.candidato?'':'muted'}">${escapeHtml(g.candidato||'Sin candidato aún')}</div>
         <div class="gm-pipe-days">${g.status==='Cerrada'?`Cerrado en ${days(g)} día${days(g)===1?'':'s'}`:`${days(g)} día${days(g)===1?'':'s'} abierto`}</div>
-      </div>`).join('') : `<div class="gm-pipe-empty">Sin procesos en esta etapa</div>`;
+      </div>`;
+    }).join('') : `<div class="gm-pipe-empty">Sin procesos en esta etapa</div>`;
     return `<div class="gm-pipe-col ${stage.cls}">
       <div class="gm-pipe-col-head"><span>${stage.key}</span><span class="gm-pipe-count">${items.length}</span></div>
+      ${flowHtml}
       ${cards}
     </div>`;
   }).join('');
@@ -2863,6 +2981,7 @@ let gmInitialized = false;
 function renderGmTab(){
   renderGmKpis();
   renderGmProgressNote();
+  renderGmStageFlow();
   renderGmPipeline();
   renderGmBoard();
 }
