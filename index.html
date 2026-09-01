@@ -2276,21 +2276,24 @@ function renderCost(){
 let expandedZones = new Set();
 
 // Vacantes oficiales — inventario aprobado vigente para Zona Interior 1–6.
-// Corte actualizado con el archivo más reciente del 03 Sep; el cierre de 27 Ago se conserva en 8 vacantes oficiales.
-// Inventario actual: 10 vacantes. En el último ajuste, MT1 (Almacen) y CV1 (Vendedores) se suman al inventario
-// oficial tras perder 1 colaborador cada una esta semana; el resto de las vacantes previas se mantiene sin cambio.
+// Corte actualizado con el archivo más reciente del 03 Sep (v21). Inventario oficial recalculado en su
+// totalidad a partir de Objetivo (Plantilla Autorizada) vs. Real del Excel vigente, para que esta lista
+// quede sincronizada con los ajustes de plantilla ya aplicados: GP2 (Repartidor) y CV1 (Vendedores) se
+// retiran del inventario por estar ya cubiertos/objetivo ajustado; HSM (Repartidor) y MT3 (Cajeras) se
+// incorporan por apertura de objetivo / baja real detectada en el corte. Total: 10 vacantes oficiales.
 // La columna Vac. usa exclusivamente esta lista oficial; Plantilla, Real y Excedentes se calculan desde el Excel vigente.
 // Convención visual: (-) = vacante y (+) = excedente.
 const VAC_OVERRIDE = {
   "AP3": [{pos:"Repartidor", n:1, fecha:""}],
+  "HSM": [{pos:"Repartidor", n:1, fecha:""}],
   "MOD": [{pos:"Repartidor", n:1, fecha:""}],
   "SN1": [{pos:"Cajeras", n:1, fecha:""}],
   "SN3": [{pos:"Repartidor", n:1, fecha:""}],
-  "GP2": [{pos:"Cajeras", n:1, fecha:""}, {pos:"Repartidor", n:1, fecha:""}],
+  "GP2": [{pos:"Cajeras", n:1, fecha:""}],
   "MT1": [{pos:"Almacen", n:1, fecha:""}],
   "MT2": [{pos:"Vendedores", n:1, fecha:""}],
-  "ALL": [{pos:"Repartidor", n:1, fecha:""}],
-  "CV1": [{pos:"Vendedores", n:1, fecha:""}]
+  "MT3": [{pos:"Cajeras", n:1, fecha:""}],
+  "ALL": [{pos:"Repartidor", n:1, fecha:""}]
 };
 
 // Seguimiento de cobertura por cada plaza oficial. Se guarda localmente y no altera el inventario.
