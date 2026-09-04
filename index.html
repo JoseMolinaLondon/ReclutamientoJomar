@@ -858,6 +858,47 @@ function portableLoadState(storageKey,field){
 .vac-exec-foot{display:flex;justify-content:space-between;gap:8px;margin-top:9px;padding-top:8px;border-top:1px solid #e2e8ee;font:700 8.5px/1.3 'IBM Plex Mono',monospace;color:#7b8ca0}.vac-exec-foot b{color:var(--brand-red)}
 @media(max-width:1120px){.vac-exec-dashboard{grid-template-columns:1fr}.vac-exec-zones{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:760px){.vac-exec-top{grid-template-columns:1fr}.vac-exec-badge{max-width:210px}.vac-exec-zones{grid-template-columns:1fr 1fr}.vac-exec-summary{grid-template-columns:1fr 1fr}.vac-exec-sum{border-bottom:1px solid #d7e2ec}.vac-exec-progress{padding:8px}.vac-exec-chart{height:190px}}
+
+/* ===== 02C · Ahorro por reducción de excedentes ===== */
+#sec-excess-trend{margin-top:24px;margin-bottom:38px}
+.excess-pulse{border-radius:18px;padding:24px 28px 20px;color:#fff;background:linear-gradient(138deg,#065f3e 0%,#087a4d 55%,#0a9a5c 100%);box-shadow:0 12px 28px rgba(6,95,62,.22);position:relative;overflow:hidden}
+.excess-pulse:after{content:'';position:absolute;right:-110px;top:60px;width:300px;height:300px;border:36px solid rgba(255,255,255,.06);border-radius:50%;pointer-events:none}
+.excess-pulse>*{position:relative;z-index:1}
+.excess-eyebrow{font:800 11px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.excess-number{font:800 56px/.9 'Barlow Condensed',Arial,sans-serif;letter-spacing:-.02em;margin-top:8px}.excess-number small{font-size:26px;opacity:.75;margin:0 8px}
+.excess-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,243,106,.16);border:1px solid rgba(201,243,106,.5);color:#c9f36a;border-radius:20px;padding:5px 12px;font:800 11.5px/1 'IBM Plex Mono',monospace;margin-top:12px}
+.excess-title{font-size:15px;font-weight:800;margin-top:12px}
+.excess-copy{font-size:12px;line-height:1.55;color:rgba(255,255,255,.85);max-width:760px;margin-top:6px}
+.excess-disclaimer{font-size:10.5px;line-height:1.5;color:rgba(255,255,255,.62);max-width:760px;margin-top:8px;border-top:1px dashed rgba(255,255,255,.25);padding-top:8px}
+.excess-chart{width:100%;height:auto;margin-top:18px;display:block;overflow:visible}
+.excess-zonewrap{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:16px}
+.excess-zone{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:9px 10px}
+.excess-zone-label{font:800 8.5px/1 'IBM Plex Mono',monospace;text-transform:uppercase;color:rgba(255,255,255,.68)}
+.excess-zone-vals{display:flex;align-items:baseline;gap:5px;margin-top:5px}
+.excess-zone-vals b{font:800 19px/1 'Barlow Condensed',Arial,sans-serif}
+.excess-zone-delta{font:700 9.5px/1 'IBM Plex Mono',monospace}
+@media(max-width:900px){.excess-zonewrap{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.excess-zonewrap{grid-template-columns:repeat(2,1fr)}}
+
+/* ===== 02D · Ajustes de plantilla incrementales ===== */
+#sec-plantilla-increments{margin-top:24px;margin-bottom:38px}
+.incr-log{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:18px}
+.incr-log-title{font:800 11px/1 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-soft);margin-bottom:10px}
+.incr-row{display:grid;grid-template-columns:150px 1fr 90px 90px 1fr;gap:12px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.incr-row:first-of-type{border-top:none}
+.incr-branch{font:800 12.5px/1.2 'Inter',sans-serif;color:var(--ink)}.incr-branch small{display:block;font:600 9.5px/1 'IBM Plex Mono',monospace;color:var(--ink-faint);margin-top:2px}
+.incr-pos{font:700 11.5px/1.3 'Inter',sans-serif;color:var(--ink-soft)}
+.incr-change{font:800 13px/1 'IBM Plex Mono',monospace;color:var(--brand-green-2);text-align:center}
+.incr-week{font:700 10px/1 'IBM Plex Mono',monospace;color:var(--ink-faint);text-align:center}
+.incr-util{font:700 11.5px/1.3 'Inter',sans-serif;color:var(--ink-soft);text-align:right}.incr-util b{color:var(--ink);font-weight:800}
+.rank-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+.rank-table th{text-align:left;font:800 9.5px/1.2 'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--ink-faint);padding:8px 10px;border-bottom:2px solid var(--ink);}
+.rank-table th.num,.rank-table td.num{text-align:right;}
+.rank-table td{padding:8px 10px;border-bottom:1px solid var(--line);}
+.rank-table tr:last-child td{border-bottom:none;}
+.rank-table .rk-name{font-weight:800;color:var(--ink);}.rank-table .rk-name small{display:block;font:600 9.5px/1 'IBM Plex Mono',monospace;color:var(--ink-faint);margin-top:2px;font-weight:600;}
+.rank-table .rk-flag{display:inline-block;margin-left:6px;background:#DDF5E9;color:var(--brand-green-2);border-radius:6px;padding:2px 6px;font:800 8.5px/1.4 'IBM Plex Mono',monospace;}
+.rank-table .rk-util-bar{display:inline-block;height:6px;border-radius:3px;background:var(--brand-blue);vertical-align:middle;margin-right:8px;}
 </style>
 
 </head>
@@ -1044,6 +1085,30 @@ function portableLoadState(storageKey,field){
       <button type="button" class="section-export-btn">⬇ Descargar JPG</button>
     </div>
     <div id="vacZoneSlide"></div>
+  </section>
+
+
+  <section id="sec-excess-trend">
+    <div class="sec-head">
+      <div class="sec-head-l">
+        <div class="sec-num">02C — AHORRO POR REDUCCIÓN DE EXCEDENTES</div>
+        <h2>Histórico de excedentes vs. avance semanal</h2>
+        <div class="sec-desc">Plazas por encima del objetivo aprobado, calculadas con el objetivo vigente en cada corte (no con el de hoy aplicado hacia atrás). Cuantifica cuántas posiciones de sobra se han depurado semana a semana.</div>
+      </div>
+    </div>
+    <div id="excessTrend"></div>
+  </section>
+
+
+  <section id="sec-plantilla-increments">
+    <div class="sec-head">
+      <div class="sec-head-l">
+        <div class="sec-num">02D — AJUSTES DE PLANTILLA INCREMENTALES</div>
+        <h2>Incrementos de objetivo vs. rentabilidad</h2>
+        <div class="sec-desc">Registro de sucursales a las que se les subió el objetivo de plantilla en los últimos cortes, y ranking de las sucursales con mayor HC real cruzado con su utilidad promedio mensual acumulada — para validar dónde el headcount adicional está justificado.</div>
+      </div>
+    </div>
+    <div id="plantillaIncrements"></div>
   </section>
 
 
@@ -1959,7 +2024,7 @@ function portableLoadState(storageKey,field){
 </div>
 
 <script>
-const DATA = {"weeks":["12 Jun","19 Jun","26 Jun","02 Jul","09 Jul","16 Jul","31 Jul","06 Ago","12 Ago","20 Ago","27 Ago","03 Sep"],"positions":["Gerente","Sup. Tda.","Vendedores","Desarrollador","Cajeras","Almacen","Repartidor"],"zones":{"Zona 1":["AP1","AP2","AP3","AP4","HSM"],"Zona 2":["MOD","ESC","SN1","SN2","SN3","ZU1"],"Zona 3":["MT4","PEN","STA","GA1","ES2","MT5"],"Zona 4":["COL","GP1","GP2","GP3","JU1","CY1"],"Zona 5":["MT1","MT2","MT3"],"Zona 6":["ALL","LI1","CV1","CV2","MN1"]},"branch_to_zone":{"AP1":"Zona 1","AP2":"Zona 1","AP3":"Zona 1","AP4":"Zona 1","HSM":"Zona 1","MOD":"Zona 2","ESC":"Zona 2","SN1":"Zona 2","SN2":"Zona 2","SN3":"Zona 2","ZU1":"Zona 2","MT4":"Zona 3","PEN":"Zona 3","STA":"Zona 3","GA1":"Zona 3","ES2":"Zona 3","MT5":"Zona 3","COL":"Zona 4","GP1":"Zona 4","GP2":"Zona 4","GP3":"Zona 4","JU1":"Zona 4","CY1":"Zona 4","MT1":"Zona 5","MT2":"Zona 5","MT3":"Zona 5","ALL":"Zona 6","LI1":"Zona 6","CV1":"Zona 6","CV2":"Zona 6","MN1":"Zona 6"},"branch_names":{"AP1":"CONCORDIA","AP2":"PUEBLO NUEVO","AP3":"APODACA CENTRO","AP4":"HUINALA","HSM":"HACIENDA SAN MIGUEL","MOD":"MODERNA","ESC":"ESCOBEDO","SN1":"SANTO DOMINGO","SN2":"DIEGO DIAZ DE BERLANGA","SN3":"UNIVERSIDAD","ZU1":"ZUAZUA","MT4":"SOLIDARIDAD","PEN":"PENITENCIARIA","STA":"SANTA CATARINA","GA1":"GARCIA","ES2":"ALIANZA","MT5":"LOMA LINDA","COL":"COLIBRI","GP1":"ISRAEL CAVAZOS","GP2":"RUIZ CORTINES","GP3":"ELOY CAVAZOS","JU1":"VILLA JUAREZ","CY1":"CADEREYTA","MT1":"NUEVO REPUEBLO","MT2":"VENUSTIANO CARRANZA","MT3":"CHAPULTEPEC","ALL":"ALLENDE","LI1":"LINARES","CV1":"CIUDAD VICTORIA","CV2":"H. ILUSTRES","MN1":"MONTEMORELOS"},"utilidad":{"AP1":138870.09142472656,"AP2":205650.68356844474,"AP3":253517.53476829524,"AP4":80311.1188418857,"HSM":209252.3283752752,"MOD":178814.64633940178,"ESC":254627.58013568103,"SN1":-8650.217611083277,"SN2":-8457.856913068059,"SN3":89633.51365279075,"ZU1":230868.41939052404,"MT4":9295.16856058258,"PEN":280941.5480667726,"STA":82482.17062192807,"GA1":95635.17466552678,"ES2":113987.57006440795,"MT5":7666.572720306804,"COL":123354.17647363667,"GP1":107208.16369991068,"GP2":140275.99410485418,"GP3":-5313.909151620301,"JU1":168810.46806009082,"CY1":151818.0201894336,"MT1":107960.56131341489,"MT2":68194.7001759921,"MT3":-13683.91125159194,"ALL":104977.65658632151,"LI1":124534.34054591024,"CV1":89071.77877129496,"CV2":627.9982603209974},"utilidad_julio":{"AP1":202000,"AP2":253000,"AP3":288000,"AP4":121000,"HSM":280000,"MOD":240000,"ESC":349000,"SN1":20000,"SN2":23000,"SN3":131000,"ZU1":237000,"MT4":53000,"PEN":309000,"STA":110000,"GA1":129000,"ES2":145000,"MT5":33000,"COL":134000,"GP1":136000,"GP2":185000,"GP3":36000,"JU1":205000,"CY1":182000,"MT1":149000,"MT2":121000,"MT3":5000,"ALL":131000,"LI1":138000,"CV1":114000,"CV2":18000},"utilidad_acum_prom_mensual":{"AP1":75740.18284945312,"AP2":158301.36713688952,"AP3":219035.0695365905,"AP4":39622.23768377142,"HSM":138504.6567505504,"MOD":117629.29267880357,"ESC":160255.16027136208,"SN1":-37300.435222166554,"SN2":-39915.71382613612,"SN3":48267.02730558149,"ZU1":224736.8387810481,"MT4":-34409.66287883484,"PEN":252883.0961335452,"STA":54964.34124385615,"GA1":62270.34933105356,"ES2":82975.14012881588,"MT5":-17666.854559386393,"COL":112708.35294727336,"GP1":78416.32739982138,"GP2":95551.98820970836,"GP3":-46627.8183032406,"JU1":132620.93612018164,"CY1":121636.0403788672,"MT1":66921.12262682978,"MT2":15389.400351984194,"MT3":-32367.82250318388,"ALL":78955.31317264303,"LI1":111068.68109182046,"CV1":64143.55754258994,"CV2":-16744.003479358005},"aut_b":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,6,1,2,1,3],"AP4":[1,0,4,1,1,1,1],"HSM":[1,0,5,1,2,1,3],"MOD":[1,0,8,1,2,1,3],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,3,1,1,1,1],"SN2":[1,0,3,1,1,1,1],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,6,1,2,1,3],"MT4":[1,0,4,1,1,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,1,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,1],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,2],"GP1":[1,0,6,1,1,1,2],"GP2":[1,0,4,1,2,1,4],"GP3":[1,0,4,1,1,0,1],"JU1":[1,0,7,1,2,1,2],"CY1":[1,0,6,1,1,1,1],"MT1":[1,0,4,1,1,1,1],"MT2":[1,0,4,1,1,1,2],"MT3":[1,0,4,1,1,0,1],"ALL":[1,0,4,1,2,1,1],"LI1":[1,0,5,1,2,1,2],"CV1":[1,0,6,1,2,1,3],"CV2":[1,0,3,1,1,0,1],"MN1":[1,0,4,1,1,1,1]},"weekly_real":{"12 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,6,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,2],"MOD":[1,0,7,0,3,1,2],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,5,1,2,1,2],"PEN":[1,0,8,1,2,2,4],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,2,0,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,null,4,1,1,0,1],"COL":[1,0,7,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[0,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,4,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"19 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,6,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,2],"MOD":[1,0,7,0,3,1,2],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,5,1,2,1,2],"PEN":[1,0,8,1,2,2,4],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,2,0,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,null,4,1,1,0,1],"COL":[1,0,7,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[0,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,4,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"26 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,1],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,6,1,2,2,3],"MT4":[1,0,4,1,2,1,2],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,0,0],"GA1":[1,0,4,1,2,1,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,4,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"02 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[1,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"09 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[2,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,6,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"16 Jul":{"AP1":[1,0,6,1,2,1,1],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[2,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,0],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,4,1,1,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"31 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,0,2],"MOD":[1,1,8,0,2,1,2],"ESC":[1,0,7,0,1,2,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,1],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,1,1,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,2,1,2,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,4,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,3,0,0,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"06 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,0,2],"MOD":[1,1,8,0,2,0,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,1,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,3,1,0,1,1],"ALL":[1,0,4,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"12 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,1,8,1,2,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,4,1,0,1,1],"ALL":[1,0,4,1,2,1,0],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"20 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,6,1,2,2,3],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,0,3,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,0,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,1,1,2],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,3,1,0,1,1],"ALL":[1,0,5,1,1,1,0],"LI1":[1,0,5,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"27 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,6,1,2,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,1,3,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,0,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,6,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,1,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,1,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,4,1,1,1,1],"ALL":[1,0,4,1,2,1,0],"LI1":[1,0,5,1,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"03 Sep":{"AP1":[1, 0, 6, 1, 2, 1, 2],"AP2":[1, 0, 5, 1, 2, 1, 2],"AP3":[1, 0, 5, 1, 2, 2, 2],"AP4":[1, 0, 4, 1, 2, 1, 2],"HSM":[1, 0, 5, 1, 2, 1, 3],"MOD":[1, 0, 8, 1, 3, 1, 2],"ESC":[1, 0, 7, 1, 2, 1, 2],"SN1":[1, 0, 4, 1, 0, 1, 1],"SN2":[1, 0, 4, 1, 1, 1, 2],"SN3":[1, 0, 4, 1, 2, 1, 1],"ZU1":[1, 0, 6, 1, 2, 1, 3],"MT4":[1, 0, 4, 1, 2, 1, 1],"PEN":[1, 1, 8, 1, 2, 2, 4],"STA":[1, 0, 4, 1, 2, 1, 1],"GA1":[1, 1, 4, 1, 1, 1, 1],"ES2":[1, 0, 4, 1, 2, 1, 2],"MT5":[1, 0, 3, 1, 1, 0, 1],"COL":[1, 0, 6, 1, 2, 2, 3],"GP1":[1, 0, 6, 1, 2, 2, 3],"GP2":[1, 0, 4, 1, 1, 1, 4],"GP3":[1, 0, 4, 1, 1, 1, 1],"JU1":[1, 0, 7, 1, 2, 1, 3],"CY1":[1, 0, 6, 1, 2, 1, 1],"MT1":[1, 1, 4, 1, 1, 0, 2],"MT2":[1, 0, 3, 1, 1, 1, 2],"MT3":[1, 0, 4, 1, 0, 1, 1],"ALL":[1, 0, 4, 1, 2, 1, 0],"LI1":[1, 0, 5, 1, 2, 1, 2],"CV1":[1, 0, 6, 2, 2, 1, 3],"CV2":[1, 0, 5, 1, 1, 1, 1],"MN1":[1, 0, 4, 1, 1, 1, 1]}}};
+const DATA = {"weeks":["12 Jun","19 Jun","26 Jun","02 Jul","09 Jul","16 Jul","31 Jul","06 Ago","12 Ago","20 Ago","27 Ago","03 Sep"],"positions":["Gerente","Sup. Tda.","Vendedores","Desarrollador","Cajeras","Almacen","Repartidor"],"zones":{"Zona 1":["AP1","AP2","AP3","AP4","HSM"],"Zona 2":["MOD","ESC","SN1","SN2","SN3","ZU1"],"Zona 3":["MT4","PEN","STA","GA1","ES2","MT5"],"Zona 4":["COL","GP1","GP2","GP3","JU1","CY1"],"Zona 5":["MT1","MT2","MT3"],"Zona 6":["ALL","LI1","CV1","CV2","MN1"]},"branch_to_zone":{"AP1":"Zona 1","AP2":"Zona 1","AP3":"Zona 1","AP4":"Zona 1","HSM":"Zona 1","MOD":"Zona 2","ESC":"Zona 2","SN1":"Zona 2","SN2":"Zona 2","SN3":"Zona 2","ZU1":"Zona 2","MT4":"Zona 3","PEN":"Zona 3","STA":"Zona 3","GA1":"Zona 3","ES2":"Zona 3","MT5":"Zona 3","COL":"Zona 4","GP1":"Zona 4","GP2":"Zona 4","GP3":"Zona 4","JU1":"Zona 4","CY1":"Zona 4","MT1":"Zona 5","MT2":"Zona 5","MT3":"Zona 5","ALL":"Zona 6","LI1":"Zona 6","CV1":"Zona 6","CV2":"Zona 6","MN1":"Zona 6"},"branch_names":{"AP1":"CONCORDIA","AP2":"PUEBLO NUEVO","AP3":"APODACA CENTRO","AP4":"HUINALA","HSM":"HACIENDA SAN MIGUEL","MOD":"MODERNA","ESC":"ESCOBEDO","SN1":"SANTO DOMINGO","SN2":"DIEGO DIAZ DE BERLANGA","SN3":"UNIVERSIDAD","ZU1":"ZUAZUA","MT4":"SOLIDARIDAD","PEN":"PENITENCIARIA","STA":"SANTA CATARINA","GA1":"GARCIA","ES2":"ALIANZA","MT5":"LOMA LINDA","COL":"COLIBRI","GP1":"ISRAEL CAVAZOS","GP2":"RUIZ CORTINES","GP3":"ELOY CAVAZOS","JU1":"VILLA JUAREZ","CY1":"CADEREYTA","MT1":"NUEVO REPUEBLO","MT2":"VENUSTIANO CARRANZA","MT3":"CHAPULTEPEC","ALL":"ALLENDE","LI1":"LINARES","CV1":"CIUDAD VICTORIA","CV2":"H. ILUSTRES","MN1":"MONTEMORELOS"},"utilidad":{"AP1":138870.09142472656,"AP2":205650.68356844474,"AP3":253517.53476829524,"AP4":80311.1188418857,"HSM":209252.3283752752,"MOD":178814.64633940178,"ESC":254627.58013568103,"SN1":-8650.217611083277,"SN2":-8457.856913068059,"SN3":89633.51365279075,"ZU1":230868.41939052404,"MT4":9295.16856058258,"PEN":280941.5480667726,"STA":82482.17062192807,"GA1":95635.17466552678,"ES2":113987.57006440795,"MT5":7666.572720306804,"COL":123354.17647363667,"GP1":107208.16369991068,"GP2":140275.99410485418,"GP3":-5313.909151620301,"JU1":168810.46806009082,"CY1":151818.0201894336,"MT1":107960.56131341489,"MT2":68194.7001759921,"MT3":-13683.91125159194,"ALL":104977.65658632151,"LI1":124534.34054591024,"CV1":89071.77877129496,"CV2":627.9982603209974},"utilidad_julio":{"AP1":202000,"AP2":253000,"AP3":288000,"AP4":121000,"HSM":280000,"MOD":240000,"ESC":349000,"SN1":20000,"SN2":23000,"SN3":131000,"ZU1":237000,"MT4":53000,"PEN":309000,"STA":110000,"GA1":129000,"ES2":145000,"MT5":33000,"COL":134000,"GP1":136000,"GP2":185000,"GP3":36000,"JU1":205000,"CY1":182000,"MT1":149000,"MT2":121000,"MT3":5000,"ALL":131000,"LI1":138000,"CV1":114000,"CV2":18000},"utilidad_acum_prom_mensual":{"AP1":75740.18284945312,"AP2":158301.36713688952,"AP3":219035.0695365905,"AP4":39622.23768377142,"HSM":138504.6567505504,"MOD":117629.29267880357,"ESC":160255.16027136208,"SN1":-37300.435222166554,"SN2":-39915.71382613612,"SN3":48267.02730558149,"ZU1":224736.8387810481,"MT4":-34409.66287883484,"PEN":252883.0961335452,"STA":54964.34124385615,"GA1":62270.34933105356,"ES2":82975.14012881588,"MT5":-17666.854559386393,"COL":112708.35294727336,"GP1":78416.32739982138,"GP2":95551.98820970836,"GP3":-46627.8183032406,"JU1":132620.93612018164,"CY1":121636.0403788672,"MT1":66921.12262682978,"MT2":15389.400351984194,"MT3":-32367.82250318388,"ALL":78955.31317264303,"LI1":111068.68109182046,"CV1":64143.55754258994,"CV2":-16744.003479358005},"aut_b":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,6,1,2,1,3],"AP4":[1,0,4,1,1,1,2],"HSM":[1,0,5,1,2,1,3],"MOD":[1,0,8,1,2,1,3],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,3,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,6,1,2,1,3],"MT4":[1,0,4,1,1,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,1,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,1],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,2],"GP1":[1,0,6,1,1,1,2],"GP2":[1,0,4,1,2,1,4],"GP3":[1,0,4,1,1,0,1],"JU1":[1,0,7,1,2,1,2],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,1],"MT2":[1,0,4,1,1,1,2],"MT3":[1,0,4,1,1,0,1],"ALL":[1,0,4,1,2,1,1],"LI1":[1,0,5,1,2,1,2],"CV1":[1,0,6,1,2,1,3],"CV2":[1,0,3,1,1,1,1],"MN1":[1,0,4,1,1,1,1]},"weekly_real":{"12 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,6,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,2],"MOD":[1,0,7,0,3,1,2],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,5,1,2,1,2],"PEN":[1,0,8,1,2,2,4],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,2,0,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,null,4,1,1,0,1],"COL":[1,0,7,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[0,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,4,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"19 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,6,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,2],"MOD":[1,0,7,0,3,1,2],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,5,1,2,1,2],"PEN":[1,0,8,1,2,2,4],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,2,0,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,null,4,1,1,0,1],"COL":[1,0,7,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[0,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,4,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"26 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,1],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,6,1,2,2,3],"MT4":[1,0,4,1,2,1,2],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,0,0],"GA1":[1,0,4,1,2,1,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,4,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"02 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[1,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"09 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[2,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,6,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"16 Jul":{"AP1":[1,0,6,1,2,1,1],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[2,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,0],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,4,1,1,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"31 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,0,2],"MOD":[1,1,8,0,2,1,2],"ESC":[1,0,7,0,1,2,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,1],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,1,1,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,2,1,2,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,4,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,3,0,0,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"06 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,0,2],"MOD":[1,1,8,0,2,0,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,1,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,3,1,0,1,1],"ALL":[1,0,4,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"12 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,1,8,1,2,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,4,1,0,1,1],"ALL":[1,0,4,1,2,1,0],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"20 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,6,1,2,2,3],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,0,3,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,0,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,1,1,2],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,3,1,0,1,1],"ALL":[1,0,5,1,1,1,0],"LI1":[1,0,5,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"27 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,6,1,2,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,1,3,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,0,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,6,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,1,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,1,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,4,1,1,1,1],"ALL":[1,0,4,1,2,1,0],"LI1":[1,0,5,1,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"03 Sep":{"AP1":[1, 0, 6, 1, 2, 1, 2],"AP2":[1, 0, 5, 0, 2, 1, 2],"AP3":[1, 0, 5, 1, 2, 2, 2],"AP4":[1, 0, 4, 0, 2, 1, 2],"HSM":[1, 0, 5, 1, 2, 1, 3],"MOD":[1, 0, 8, 1, 3, 1, 2],"ESC":[1, 0, 7, 1, 2, 1, 2],"SN1":[1, 0, 4, 1, 1, 1, 1],"SN2":[1, 0, 4, 1, 1, 1, 2],"SN3":[1, 0, 4, 1, 2, 1, 1],"ZU1":[1, 0, 6, 1, 2, 1, 3],"MT4":[1, 0, 4, 1, 2, 1, 0],"PEN":[1, 1, 8, 1, 2, 1, 4],"STA":[1, 0, 4, 1, 2, 1, 1],"GA1":[1, 1, 4, 1, 1, 1, 1],"ES2":[1, 0, 4, 1, 2, 1, 2],"MT5":[1, 0, 3, 1, 1, 0, 1],"COL":[1, 0, 6, 1, 2, 2, 3],"GP1":[1, 0, 6, 0, 2, 2, 2],"GP2":[1, 0, 3, 1, 1, 1, 3],"GP3":[1, 0, 4, 1, 1, 1, 1],"JU1":[1, 0, 7, 1, 2, 1, 3],"CY1":[1, 0, 6, 1, 2, 1, 1],"MT1":[1, 1, 4, 1, 1, 0, 2],"MT2":[1, 0, 3, 1, 1, 1, 2],"MT3":[1, 0, 4, 1, 1, 1, 1],"ALL":[1, 0, 4, 1, 2, 1, 1],"LI1":[1, 0, 5, 1, 2, 1, 2],"CV1":[1, 0, 6, 2, 2, 1, 3],"CV2":[1, 0, 5, 1, 1, 1, 1],"MN1":[1, 0, 4, 1, 1, 1, 1]}}};
 </script>
 <script>
 
@@ -2311,7 +2376,7 @@ function renderMovementBars(){
       <div style="font:700 13px/1 'IBM Plex Mono',monospace;color:var(--brand-red);">${plBaja(totals.bajas)}</div>
       <div class="mv-net ${totalNet>0?'pos':totalNet<0?'neg':'zero'}">${signTxt(totalNet)}</div>
     </div>
-    <div class="official-note" style="margin-top:12px;">Corte ${WEEKLY_MOVEMENT_LABEL}: <b>${plAlta(totals.altas)}</b> y <b>${plBaja(totals.bajas)}</b> en la red (neto <b style="color:${signColor(totalNet)}">${signTxt(totalNet)}</b>). El comparativo directo de HC detecta <b>${totals.altas-totals.intraAltas} altas / ${totals.bajas-totals.intraBajas} bajas</b>; el registro intra-semana agrega <b style="color:var(--brand-green-2)">${totals.intraAltas} alta${totals.intraAltas===1?'':'s'} y ${totals.intraBajas} baja${totals.intraBajas===1?'':'s'}</b> que el neto no puede observar.<br><b>Movimiento de la semana:</b> MT1 perdió 1 Almacenista y CV1 perdió 1 Vendedor; sin altas detectadas en el comparativo directo de HC, por lo que ambas posiciones pasan a formar parte del inventario oficial de vacantes.<br><b>Conciliación de vacantes oficiales:</b> 8 al cierre de 27 Ago → <b style="color:var(--brand-red)">10 actuales</b>. Neto: <b style="color:var(--brand-red)">-2 vacantes</b> (se abrieron más plazas de las que se cubrieron).<br><b>Ritmo de contratación:</b> ${PREV_WEEK_ALTAS} altas en ${PREV_WEEK_ALTAS_LABEL} → <b style="color:var(--brand-blue)">${totals.altas} alta${totals.altas===1?'':'s'}</b> en ${WEEKLY_MOVEMENT_LABEL} (<b style="color:${signColor(totals.altas-PREV_WEEK_ALTAS)}">${signTxt(totals.altas-PREV_WEEK_ALTAS)}</b>).</div>
+    <div class="official-note" style="margin-top:12px;">Corte ${WEEKLY_MOVEMENT_LABEL}: <b>${plAlta(totals.altas)}</b> y <b>${plBaja(totals.bajas)}</b> en la red (neto <b style="color:${signColor(totalNet)}">${signTxt(totalNet)}</b>). El comparativo directo de HC detecta <b>${totals.altas-totals.intraAltas} altas / ${totals.bajas-totals.intraBajas} bajas</b>; el registro intra-semana agrega <b style="color:var(--brand-green-2)">${totals.intraAltas} alta${totals.intraAltas===1?'':'s'} y ${totals.intraBajas} baja${totals.intraBajas===1?'':'s'}</b> que el neto no puede observar.<br><b>Movimiento de la semana:</b> bajas en AP2, AP3 y AP4 (Zona 1), MT4 y PEN (Zona 3), GP1 (Desarrollador y Repartidor) y GP2 (Zona 4), MT1 (Zona 5); altas en HSM (Zona 1), SN1 (Zona 2), MT2 (Zona 5) y ALL (Zona 6). GA1 (Zona 3) y MT3 (Zona 5) también se cubrieron esta semana, pero ya estaban cubiertas al cierre de 27 Ago, por lo que el comparativo directo de inicio/fin no las detecta (movimiento intra-semana). El Repartidor de GP1 bajó de 3 a 2 colaboradores, pero el objetivo también bajó a 2 en este corte, por lo que no genera vacante nueva.<br><b>Conciliación de vacantes oficiales:</b> 8 al cierre de 27 Ago → <b style="color:var(--brand-red)">14 actuales</b>. Neto: <b style="color:var(--brand-red)">-6 vacantes</b> desde 27 Ago, aunque esta semana en particular se cubrieron 3 sin abrir ninguna nueva (17 → 14).<br><b>Ritmo de contratación:</b> ${PREV_WEEK_ALTAS} altas en ${PREV_WEEK_ALTAS_LABEL} → <b style="color:var(--brand-blue)">${totals.altas} alta${totals.altas===1?'':'s'}</b> en ${WEEKLY_MOVEMENT_LABEL} (<b style="color:${signColor(totals.altas-PREV_WEEK_ALTAS)}">${signTxt(totals.altas-PREV_WEEK_ALTAS)}</b>).</div>
     <div class="mv-tools">
       <div class="mv-tools-head"><div><div class="mv-tools-title">Trazabilidad intra-semana · casos que el neto no detecta</div><div class="mv-tools-copy">Úsalo cuando exista una baja y una reposición antes del siguiente corte. El movimiento se suma al historial bruto de altas/bajas y la alta también se refleja como contratación semanal.</div></div><div class="mv-tool-actions"><button type="button" class="mv-tool-btn" id="mvToggleEditor">＋ Registrar movimiento</button><button type="button" class="mv-tool-btn secondary" id="mvSavePortable">Guardar corte en HTML</button></div></div>
       <div class="mv-editor" id="mvEditor"><div class="mv-editor-grid">
@@ -2373,21 +2438,23 @@ function renderCost(){
 let expandedZones = new Set();
 
 // Vacantes oficiales — inventario aprobado vigente para Zona Interior 1–6.
-// Corte actualizado con el archivo más reciente del 03 Sep (v22). Inventario oficial recalculado en su
-// totalidad a partir de Objetivo (Plantilla Autorizada) vs. Real del Excel vigente: HSM (Repartidor) se
-// retira por estar ya cubierto; AP3 (Vendedores) se incorpora por baja real detectada en el corte.
+// Corte actualizado con el archivo más reciente del 03 Sep (v25). Semana positiva: se cubren 3 vacantes sin
+// abrirse ninguna nueva — GA1 (Almacen), MT3 (Cajeras) y SN1 (Cajeras). Total baja de 17 a 14.
+// Inventario oficial recalculado en su totalidad a partir de Objetivo (Plantilla Autorizada) vs. Real del Excel vigente.
 // La columna Vac. usa exclusivamente esta lista oficial; Plantilla, Real y Excedentes se calculan desde el Excel vigente.
 // Convención visual: (-) = vacante y (+) = excedente.
 const VAC_OVERRIDE = {
+  "AP2": [{pos:"Desarrollador", n:1, fecha:""}],
   "AP3": [{pos:"Repartidor", n:1, fecha:""}, {pos:"Vendedores", n:1, fecha:""}],
+  "AP4": [{pos:"Desarrollador", n:1, fecha:""}],
   "MOD": [{pos:"Repartidor", n:1, fecha:""}],
-  "SN1": [{pos:"Cajeras", n:1, fecha:""}],
   "SN3": [{pos:"Repartidor", n:1, fecha:""}],
-  "GP2": [{pos:"Cajeras", n:1, fecha:""}],
+  "MT4": [{pos:"Repartidor", n:1, fecha:""}],
+  "PEN": [{pos:"Almacen", n:1, fecha:""}],
+  "GP1": [{pos:"Desarrollador", n:1, fecha:""}],
+  "GP2": [{pos:"Vendedores", n:1, fecha:""}, {pos:"Cajeras", n:1, fecha:""}, {pos:"Repartidor", n:1, fecha:""}],
   "MT1": [{pos:"Almacen", n:1, fecha:""}],
-  "MT2": [{pos:"Vendedores", n:1, fecha:""}],
-  "MT3": [{pos:"Cajeras", n:1, fecha:""}],
-  "ALL": [{pos:"Repartidor", n:1, fecha:""}]
+  "MT2": [{pos:"Vendedores", n:1, fecha:""}]
 };
 
 // Seguimiento de cobertura por cada plaza oficial. Se guarda localmente y no altera el inventario.
@@ -2479,8 +2546,12 @@ function matchActualIngressToPlans(actualRows){
 // Ingresos / coberturas confirmadas de la semana. Se mantienen separados del inventario de vacantes
 // para evitar interpretar un ingreso como una vacante adicional. Corte actual: 27 Ago → 03 Sep.
 const WEEKLY_INGRESS_LABEL = '27 → 03 Sep';
-// Sin altas detectadas en el comparativo directo de HC de este corte (solo se registraron 2 bajas: MT1 y CV1).
-const WEEKLY_INGRESS = [];
+// 3 coberturas confirmadas en el corte 03 Sep (v25): SN1 (Cajeras), GA1 (Almacen) y MT3 (Cajeras).
+const WEEKLY_INGRESS = [
+  {zona:'Zona 2', code:'SN1', puesto:'Cajeras', n:1},
+  {zona:'Zona 3', code:'GA1', puesto:'Almacen', n:1},
+  {zona:'Zona 5', code:'MT3', puesto:'Cajeras', n:1}
+];
 function allWeeklyIngressRows(){ return WEEKLY_INGRESS.concat(movementLogAltaRows()); }
 function weeklyIngressRowsForCodes(codes){
   const set = new Set(codes||[]);
@@ -2649,20 +2720,52 @@ const OFFICIAL_HISTORY = [
   {label:"12 Ago", total:12},
   {label:"20 Ago", total:13},
   {label:"27 Ago", total:8},
-  {label:"03 Sep", total:10}
+  {label:"03 Sep", total:14}
 ];
 // OFFICIAL_PREV_ZONE = corte anterior al vigente (ahora 27 Ago, para comparar contra 03 Sep). El corte 27 Ago
 // queda cerrado tal cual con 8 en OFFICIAL_HISTORY / OFFICIAL_HISTORY_BY_ZONE — no se retocó su cifra histórica.
 const OFFICIAL_PREV_ZONE = {"Zona 1":1,"Zona 2":3,"Zona 3":0,"Zona 4":2,"Zona 5":1,"Zona 6":1};
-const OFFICIAL_HISTORY_BY_ZONE = {"31 Jul":{"Zona 1":5,"Zona 2":7,"Zona 3":3,"Zona 4":6,"Zona 5":6,"Zona 6":2},"06 Ago":{"Zona 1":5,"Zona 2":4,"Zona 3":1,"Zona 4":4,"Zona 5":4,"Zona 6":1},"12 Ago":{"Zona 1":2,"Zona 2":2,"Zona 3":0,"Zona 4":3,"Zona 5":3,"Zona 6":2},"20 Ago":{"Zona 1":1,"Zona 2":5,"Zona 3":0,"Zona 4":1,"Zona 5":4,"Zona 6":2},"27 Ago":{"Zona 1":1,"Zona 2":3,"Zona 3":0,"Zona 4":2,"Zona 5":1,"Zona 6":1},"03 Sep":{"Zona 1":2,"Zona 2":3,"Zona 3":0,"Zona 4":1,"Zona 5":3,"Zona 6":1}};
+const OFFICIAL_HISTORY_BY_ZONE = {"31 Jul":{"Zona 1":5,"Zona 2":7,"Zona 3":3,"Zona 4":6,"Zona 5":6,"Zona 6":2},"06 Ago":{"Zona 1":5,"Zona 2":4,"Zona 3":1,"Zona 4":4,"Zona 5":4,"Zona 6":1},"12 Ago":{"Zona 1":2,"Zona 2":2,"Zona 3":0,"Zona 4":3,"Zona 5":3,"Zona 6":2},"20 Ago":{"Zona 1":1,"Zona 2":5,"Zona 3":0,"Zona 4":1,"Zona 5":4,"Zona 6":2},"27 Ago":{"Zona 1":1,"Zona 2":3,"Zona 3":0,"Zona 4":2,"Zona 5":1,"Zona 6":1},"03 Sep":{"Zona 1":4,"Zona 2":2,"Zona 3":2,"Zona 4":4,"Zona 5":2,"Zona 6":0}};
 
-// Movimiento real de personal de la semana — comparación directa de Plantilla Real 27 Ago vs. 03 Sep.
-// Zona 5: MT1 -1 Almacenista = 1 baja.
-// Zona 6: CV1 -1 Vendedor = 1 baja.
-// Sin altas detectadas en el comparativo de HC esta semana. Comparativo de HC: 0 altas, 2 bajas, neto -2.
+// Excedentes por semana: plazas por encima del objetivo aprobado, calculadas con el objetivo VIGENTE en cada
+// corte del Excel (no con el objetivo de hoy aplicado hacia atrás). Fuente: hojas 31 JUL–03 Sep, v27.
+const EXCESS_HISTORY = [
+  {label:"31 Jul", total:39},
+  {label:"06 Ago", total:37},
+  {label:"12 Ago", total:35},
+  {label:"20 Ago", total:35},
+  {label:"27 Ago", total:26},
+  {label:"03 Sep", total:20}
+];
+const EXCESS_HISTORY_BY_ZONE = {"31 Jul":{"Zona 1":3,"Zona 2":6,"Zona 3":5,"Zona 4":7,"Zona 5":3,"Zona 6":15},"06 Ago":{"Zona 1":3,"Zona 2":5,"Zona 3":4,"Zona 4":8,"Zona 5":3,"Zona 6":14},"12 Ago":{"Zona 1":3,"Zona 2":5,"Zona 3":4,"Zona 4":7,"Zona 5":3,"Zona 6":13},"20 Ago":{"Zona 1":3,"Zona 2":4,"Zona 3":4,"Zona 4":7,"Zona 5":3,"Zona 6":14},"27 Ago":{"Zona 1":3,"Zona 2":4,"Zona 3":5,"Zona 4":7,"Zona 5":3,"Zona 6":4},"03 Sep":{"Zona 1":2,"Zona 2":2,"Zona 3":5,"Zona 4":5,"Zona 5":3,"Zona 6":3}};
+
+// Ajustes incrementales de objetivo de plantilla aplicados en los últimos cortes (Zona Interior 1–6).
+// Cada registro: sucursal, puesto, objetivo anterior → nuevo, y el corte en que se detectó el cambio.
+const PLANTILLA_INCREMENTS = [
+  {code:"HSM", pos:"Repartidor", from:2, to:3, week:"03 Sep (v20)"},
+  {code:"MT3", pos:"Cajeras", from:0, to:1, week:"03 Sep (v20)"},
+  {code:"AP4", pos:"Repartidor", from:1, to:2, week:"03 Sep (v26)"},
+  {code:"SN2", pos:"Repartidor", from:1, to:2, week:"03 Sep (v26)"},
+  {code:"SN2", pos:"Vendedores", from:3, to:4, week:"03 Sep (v27)"},
+  {code:"CV2", pos:"Almacen", from:0, to:1, week:"03 Sep (v27)"},
+  {code:"CY1", pos:"Cajeras", from:1, to:2, week:"03 Sep (v27)"}
+];
+
+// Movimiento real de personal de la semana — comparación directa de Plantilla Real 27 Ago vs. 03 Sep (v26).
+// Zona 1: AP2 -1 Desarrollador, AP3 -1 Vendedor, AP4 -1 Desarrollador (bajas); HSM +1 Repartidor (alta).
+// Zona 2: SN1 +1 Cajera (alta, cubre su vacante).
+// Zona 3: MT4 -1 Repartidor, PEN -1 Almacenista (bajas). GA1 se cubrió (Almacen) y ya estaba cubierta al
+// cierre de 27 Ago, por lo que el comparativo directo de inicio/fin no la detecta (movimiento intra-semana).
+// Zona 4: GP1 -1 Desarrollador y -1 Repartidor, GP2 -1 Vendedor (bajas). El Repartidor de GP1 baja de 3 a 2,
+// pero el objetivo también baja a 2 en este corte, por lo que no genera vacante nueva. El Repartidor de GP2
+// se cubrió y se volvió a perder en el mismo periodo, por lo que el comparativo directo no lo detecta.
+// Zona 5: MT1 -1 Almacenista (baja); MT2 +1 Cajera (alta). MT3 se cubrió (Cajeras) y ya estaba cubierta al
+// cierre de 27 Ago, por lo que tampoco aparece en el comparativo directo.
+// Zona 6: ALL +1 Repartidor (alta, cubre la vacante que tenía abierta).
+// Comparativo de HC: 4 altas, 9 bajas, neto -5.
 const WEEKLY_MOVEMENT_LABEL = "27 Ago → 03 Sep";
 // Movimiento detectable al comparar HC entre cortes. No captura rotaciones que se compensan dentro de la misma semana.
-const WEEKLY_MOVEMENT = {"Zona 1":{altas:0,bajas:0},"Zona 2":{altas:0,bajas:0},"Zona 3":{altas:0,bajas:0},"Zona 4":{altas:0,bajas:0},"Zona 5":{altas:0,bajas:1},"Zona 6":{altas:0,bajas:1}};
+const WEEKLY_MOVEMENT = {"Zona 1":{altas:1,bajas:3},"Zona 2":{altas:1,bajas:0},"Zona 3":{altas:0,bajas:2},"Zona 4":{altas:0,bajas:3},"Zona 5":{altas:1,bajas:1},"Zona 6":{altas:1,bajas:0}};
 const MOVEMENT_LOG_STORE_KEY='jomar_transformar_intraweek_movements_v1';
 let MOVEMENT_LOG=portableLoadState(MOVEMENT_LOG_STORE_KEY,'movementLog');
 if(!Array.isArray(MOVEMENT_LOG)) MOVEMENT_LOG=[];
@@ -2705,11 +2808,11 @@ function addMovementLogFromForm(){
   const note=(document.getElementById('mvNote')?.value||'').trim();
   MOVEMENT_LOG.push({id:`mv_${Date.now()}_${Math.random().toString(36).slice(2,7)}`,type,zona,code,puesto,date,n,note});
   saveMovementLog();
-  renderMovementBars(); renderKpis(); renderCommitments(); renderPositionSummary(); renderTable(); renderCoveragePulse(); renderVacZoneSlide(); renderCoverageActions();
+  renderMovementBars(); renderKpis(); renderCommitments(); renderPositionSummary(); renderTable(); renderCoveragePulse(); renderVacZoneSlide(); renderExcessTrend(); renderPlantillaIncrements(); renderCoverageActions();
 }
 function removeMovementLog(id){
   MOVEMENT_LOG=MOVEMENT_LOG.filter(x=>x.id!==id); saveMovementLog();
-  renderMovementBars(); renderKpis(); renderCommitments(); renderPositionSummary(); renderTable(); renderCoveragePulse(); renderVacZoneSlide(); renderCoverageActions();
+  renderMovementBars(); renderKpis(); renderCommitments(); renderPositionSummary(); renderTable(); renderCoveragePulse(); renderVacZoneSlide(); renderExcessTrend(); renderPlantillaIncrements(); renderCoverageActions();
 }
 
 // Altas de la semana anterior (27 Ago, corte 20→27 Ago): 1+2+1+1+3+1 = 9, tomadas del WEEKLY_MOVEMENT que tenía ese
@@ -3133,6 +3236,83 @@ function renderVacZoneSlide(){
     <div class="vac-exec-list"><div class="vac-exec-list-head"><div class="vac-exec-list-title">Vacantes oficiales abiertas</div><div class="vac-exec-list-total">${total}</div></div><div class="vac-exec-zones">${zonesHtml||'<div class="vac-slide-empty">Sin vacantes oficiales abiertas.</div>'}</div><div class="vac-exec-foot"><span>Corte ${weeks[weeks.length-1]} · Zona Interior 1–6</span><span><b>${total}</b> plazas vigentes</span></div></div>
   </div>`;
 }
+
+function renderExcessTrend(){
+  const el=document.getElementById('excessTrend');
+  if(!el) return;
+  const series=EXCESS_HISTORY;
+  const peak=series.reduce((m,x)=>x.total>m.total?x:m,series[0]);
+  const current=series[series.length-1].total;
+  const prev=series[series.length-2].total;
+  const closed=Math.max(0,peak.total-current);
+  const pct=peak.total?(closed/peak.total*100):0;
+  const weeklyNet=prev-current;
+  const weeklyTxt=weeklyNet>0?`${weeklyNet} excedentes depurados`:weeklyNet<0?`${Math.abs(weeklyNet)} excedentes nuevos`:'sin cambio';
+
+  const W=760,H=175,padL=36,padR=16,padT=26,padB=28;
+  const maxV=Math.max(10,...series.map(x=>x.total));
+  const xStep=series.length>1?(W-padL-padR)/(series.length-1):0;
+  const y=v=>padT+(maxV-v)/maxV*(H-padT-padB);
+  const pts=series.map((d,i)=>({d,x:padL+i*xStep,y:y(d.total)}));
+  const poly=pts.map(p=>`${p.x},${p.y}`).join(' ');
+  const areaPts=`${pts[0].x},${H-padB} ${poly} ${pts[pts.length-1].x},${H-padB}`;
+  const dots=pts.map((p,i)=>{const isLast=i===pts.length-1;return `<circle cx="${p.x}" cy="${p.y}" r="${isLast?7:5}" fill="${isLast?'#c9f36a':'#fff'}" stroke="${isLast?'#065f3e':'rgba(6,95,62,.55)'}" stroke-width="2"/><text x="${p.x}" y="${p.y-14}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12.5" font-weight="800" fill="${isLast?'#c9f36a':'#fff'}">${p.d.total}</text><text x="${p.x}" y="${H-6}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="rgba(255,255,255,.62)">${p.d.label}</text>`;}).join('');
+  const chart=`<svg class="excess-chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Evolución de excedentes"><defs><linearGradient id="excAreaGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff" stop-opacity=".26"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><polygon points="${areaPts}" fill="url(#excAreaGrad)"/><polyline points="${poly}" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>${dots}</svg>`;
+
+  const zoneCards=zoneNames.map(z=>{
+    const first=(EXCESS_HISTORY_BY_ZONE[series[0].label]||{})[z]||0;
+    const last=(EXCESS_HISTORY_BY_ZONE[series[series.length-1].label]||{})[z]||0;
+    const delta=last-first;
+    const deltaTxt=delta===0?'sin cambio':(delta<0?`${delta}`:`+${delta}`);
+    return `<div class="excess-zone"><div class="excess-zone-label">${escapeHtml(z)}</div><div class="excess-zone-vals"><b>${last}</b><span class="excess-zone-delta" style="color:${delta<0?'#c9f36a':delta>0?'#ffb3bd':'rgba(255,255,255,.6)'}">${deltaTxt}</span></div></div>`;
+  }).join('');
+
+  el.innerHTML = `<div class="excess-pulse">
+    <div class="excess-eyebrow">Excedentes · reducción acumulada de plazas de sobra</div>
+    <div class="excess-number">${peak.total}<small>→</small>${current}</div>
+    <div class="excess-badge">▼ ${pct.toFixed(1)}% desde el pico</div>
+    <div class="excess-title">${pct.toFixed(1)}% de avance acumulado frente al pico de excedentes</div>
+    <div class="excess-copy">El pico fue de <b>${peak.total}</b> plazas de excedente en <b>${peak.label}</b>, calculado con el objetivo vigente en ese corte. El corte actual (${series[series.length-1].label}) registra <b>${current}</b>, es decir <b>${closed} plazas de excedente depuradas</b>. Último corte: ${weeklyTxt} (${signTxt(weeklyNet)}) vs. ${series[series.length-2].label}.</div>
+    ${chart}
+    <div class="excess-zonewrap">${zoneCards}</div>
+    <div class="excess-disclaimer"><b>Nota:</b> esta cifra mide plazas de headcount, no ahorro monetario — el archivo fuente no trae sueldo por posición para todas las plantillas, así que no se estima un monto en pesos para evitar una cifra inventada. Si compartes un tabulador de sueldos por puesto, se puede calcular el ahorro económico real.</div>
+  </div>`;
+}
+
+function renderPlantillaIncrements(){
+  const el=document.getElementById('plantillaIncrements');
+  if(!el) return;
+  const util = DATA.utilidad_acum_prom_mensual||{};
+  const fmtMoney = v=> v==null?'—':'$'+Math.round(v).toLocaleString('es-MX');
+  const incrByCode = {};
+  PLANTILLA_INCREMENTS.forEach(r=>{ (incrByCode[r.code]=incrByCode[r.code]||[]).push(r); });
+
+  const logRows = PLANTILLA_INCREMENTS.map(r=>{
+    const u = util[r.code];
+    return `<div class="incr-row"><div class="incr-branch">${escapeHtml(branchName[r.code]||r.code)}<small>${escapeHtml(r.code)} · ${escapeHtml(branchZone[r.code]||'')}</small></div><div class="incr-pos">${escapeHtml(fullPositionName(r.pos))}</div><div class="incr-change">${r.from} → ${r.to}</div><div class="incr-week">${escapeHtml(r.week)}</div><div class="incr-util">Utilidad prom. mensual: <b>${fmtMoney(u)}</b></div></div>`;
+  }).join('');
+
+  const codes = Object.keys(branchZone);
+  const rt = DATA.weekly_real[weeks[weeks.length-1]]||{};
+  const ranked = codes.map(code=>{
+    const real=(rt[code]||[]).reduce((s,v)=>s+(Number(v)||0),0);
+    const aut=(DATA.aut_b[code]||[]).reduce((s,v)=>s+(Number(v)||0),0);
+    return {code, zona:branchZone[code], real, aut, util: util[code]};
+  }).filter(x=>x.real>0).sort((a,b)=>b.real-a.real).slice(0,12);
+  const maxUtil = Math.max(1,...ranked.map(x=>x.util||0));
+
+  const rankRows = ranked.map(x=>{
+    const flagged = incrByCode[x.code];
+    const barW = x.util? Math.max(4,(x.util/maxUtil*70)):0;
+    return `<tr><td class="rk-name">${escapeHtml(branchName[x.code]||x.code)}${flagged?`<span class="rk-flag">↑ objetivo</span>`:''}<small>${escapeHtml(x.code)} · ${escapeHtml(x.zona)}</small></td><td class="num">${x.real}</td><td class="num">${x.aut}</td><td class="num"><span class="rk-util-bar" style="width:${barW}px"></span>${fmtMoney(x.util)}</td></tr>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="incr-log"><div class="incr-log-title">Registro de incrementos de objetivo · Zona Interior 1–6</div>${logRows || '<div class="vac-slide-empty">Sin incrementos registrados.</div>'}</div>
+    <table class="rank-table"><thead><tr><th>Sucursal · zona</th><th class="num">HC real</th><th class="num">Objetivo</th><th class="num">Utilidad prom. mensual acum.</th></tr></thead><tbody>${rankRows}</tbody></table>
+  `;
+}
+
 
 const OPEN_REQUESTED_ZONE_EDITORS = new Set();
 function zoneOfficialBreakdown(zona){
@@ -3611,6 +3791,8 @@ document.addEventListener('input', e=>{
 function renderAll(){
   renderCoveragePulse();
   renderVacZoneSlide();
+  renderExcessTrend();
+  renderPlantillaIncrements();
   renderCommitments();
   renderTrend();
   renderCost();
