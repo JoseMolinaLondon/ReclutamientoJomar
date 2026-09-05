@@ -899,6 +899,144 @@ function portableLoadState(storageKey,field){
 .rank-table .rk-name{font-weight:800;color:var(--ink);}.rank-table .rk-name small{display:block;font:600 9.5px/1 'IBM Plex Mono',monospace;color:var(--ink-faint);margin-top:2px;font-weight:600;}
 .rank-table .rk-flag{display:inline-block;margin-left:6px;background:#DDF5E9;color:var(--brand-green-2);border-radius:6px;padding:2px 6px;font:800 8.5px/1.4 'IBM Plex Mono',monospace;}
 .rank-table .rk-util-bar{display:inline-block;height:6px;border-radius:3px;background:var(--brand-blue);vertical-align:middle;margin-right:8px;}
+
+/* ===== 02E · Evolución de plantilla aprobada ===== */
+#sec-hc-evolution{margin-top:24px;margin-bottom:38px}
+.hc-verdict{border-radius:16px;padding:22px 26px;color:#fff;background:linear-gradient(138deg,#8a2b12 0%,#a8391a 55%,#c4531f 100%);box-shadow:0 12px 28px rgba(138,43,18,.22);position:relative;overflow:hidden}
+.hc-verdict.good{background:linear-gradient(138deg,#065f3e 0%,#087a4d 55%,#0a9a5c 100%);box-shadow:0 12px 28px rgba(6,95,62,.22)}
+.hc-verdict:after{content:'';position:absolute;right:-110px;top:50px;width:290px;height:290px;border:34px solid rgba(255,255,255,.06);border-radius:50%;pointer-events:none}
+.hc-verdict>*{position:relative;z-index:1}
+.hc-eyebrow{font:800 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.hc-headline{font:800 30px/1.1 'Barlow Condensed',Arial,sans-serif;margin-top:8px;letter-spacing:.005em}
+.hc-copy{font-size:12px;line-height:1.55;color:rgba(255,255,255,.86);max-width:820px;margin-top:8px}
+.hc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+.hc-stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 12px}
+.hc-stat-label{font:700 8.8px/1.3 'IBM Plex Mono',monospace;color:rgba(255,255,255,.68);text-transform:uppercase}
+.hc-stat-val{font:800 24px/1.05 'Barlow Condensed',Arial,sans-serif;margin-top:4px}
+.hc-stat-sub{font:600 8.8px/1.3 'IBM Plex Mono',monospace;color:rgba(255,255,255,.58);margin-top:3px}
+.hc-chart{width:100%;height:auto;margin-top:18px;display:block;overflow:visible}
+.hc-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font:700 10px/1 'IBM Plex Mono',monospace;color:rgba(255,255,255,.8)}
+.hc-legend i{display:inline-block;width:16px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.hc-note{font-size:10.5px;line-height:1.5;color:rgba(255,255,255,.66);margin-top:14px;border-top:1px dashed rgba(255,255,255,.25);padding-top:10px}
+@media(max-width:820px){.hc-stats{grid-template-columns:1fr 1fr}}
+
+/* ===== Compromiso de venta (02D) ===== */
+.incr-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.75fr);gap:16px;align-items:start}
+.incr-log{padding:14px 16px !important;margin-bottom:0 !important}
+.incr-row{grid-template-columns:minmax(0,1fr) 96px 62px 108px !important;gap:8px !important;padding:6px 0 !important}
+.incr-branch{font-size:11.5px !important}.incr-branch small{font-size:8.5px !important}
+.incr-pos{font-size:10.5px !important}
+.incr-change{font-size:12px !important}
+.incr-week{font-size:9px !important}
+.incr-commit{display:flex;align-items:center;gap:5px;justify-content:flex-end}
+.incr-commit input{width:70px;padding:4px 6px;border:1px solid var(--line-strong);border-radius:6px;font:800 11.5px/1.2 'IBM Plex Mono',monospace;color:var(--ink);text-align:right;background:var(--panel-2)}
+.incr-commit input:focus{outline:none;border-color:var(--brand-blue);background:#fff}
+.incr-commit-unit{font:700 9.5px/1 'IBM Plex Mono',monospace;color:var(--ink-faint)}
+.incr-head{display:grid;grid-template-columns:minmax(0,1fr) 96px 62px 108px;gap:8px;padding-bottom:7px;margin-bottom:4px;border-bottom:1.5px solid var(--ink);font:800 8.5px/1.2 'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--ink-faint)}
+.incr-head span:nth-child(2),.incr-head span:nth-child(3){text-align:center}
+.incr-head span:last-child{text-align:right}
+.incr-commit-total{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);font:700 10px/1.45 'IBM Plex Mono',monospace;color:var(--ink-soft)}
+.incr-commit-total b{color:var(--brand-blue-2);font-size:12px}
+
+/* Panel ejecutivo 02D */
+.incr-exec{background:linear-gradient(160deg,#0b3f70,#0a5590);color:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 10px 26px rgba(11,63,112,.2)}
+.incr-exec-title{font:800 9.5px/1.2 'IBM Plex Mono',monospace;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:10px}
+.incr-exec-kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.incr-exec-kpi{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:9px;padding:8px 10px}
+.incr-exec-kpi-l{font:700 8px/1.25 'IBM Plex Mono',monospace;color:rgba(255,255,255,.65);text-transform:uppercase}
+.incr-exec-kpi-v{font:800 21px/1.05 'Barlow Condensed',Arial,sans-serif;margin-top:3px}
+.incr-exec-kpi-s{font:600 8px/1.25 'IBM Plex Mono',monospace;color:rgba(255,255,255,.55);margin-top:2px}
+.incr-exec-zone{border-top:1px solid rgba(255,255,255,.15);padding:8px 0 6px}
+.incr-exec-zone:first-of-type{border-top:none}
+.incr-exec-zone-h{display:flex;align-items:center;justify-content:space-between;gap:8px;font:800 9px/1 'IBM Plex Mono',monospace;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:5px}
+.incr-exec-zone-h b{background:rgba(255,255,255,.16);border-radius:20px;padding:2px 7px;font-size:8.5px}
+.incr-exec-line{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:10.5px;line-height:1.45;padding:2px 0;color:rgba(255,255,255,.9)}
+.incr-exec-line span:first-child{min-width:0}
+.incr-exec-line em{font-style:normal;color:rgba(255,255,255,.58);font:600 8.5px/1 'IBM Plex Mono',monospace;margin-left:4px}
+.incr-exec-line b{font:800 10px/1 'IBM Plex Mono',monospace;white-space:nowrap}
+.incr-exec-gap{margin-top:11px;padding-top:9px;border-top:1px dashed rgba(255,255,255,.28);font:700 9.5px/1.45 'IBM Plex Mono',monospace;color:rgba(255,255,255,.75)}
+@media(max-width:1040px){.incr-grid{grid-template-columns:1fr}}
+
+/* ===== Acciones sobre excedentes (07) ===== */
+.exc-act-wrap{margin-top:18px;border-top:2px solid var(--line-strong);padding-top:16px}
+.exc-act-title{font:800 11px/1 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-soft);margin-bottom:4px}
+.exc-act-sub{font-size:11.5px;line-height:1.5;color:var(--ink-faint);margin-bottom:12px}
+.exc-act-summary{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.exc-act-pill{border-radius:20px;padding:5px 11px;font:800 10px/1.5 'IBM Plex Mono',monospace;border:1px solid}
+.exc-act-pill.pend{background:#FBE3E6;color:var(--brand-red);border-color:#f3ccd2}
+.exc-act-pill.mov{background:#E0EFFA;color:var(--brand-blue-2);border-color:#c6e0f3}
+.exc-act-pill.baja{background:#FCE9DB;color:var(--orange);border-color:#f5d6bf}
+.exc-act-pill.val{background:#FFF1D8;color:#9a6b06;border-color:#f2ddb2}
+/* Mapa de excedente por zona */
+.exc-zonemap{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:14px}
+.exc-zonecard{border:1px solid var(--line);border-radius:10px;padding:9px 10px;background:var(--panel-2);cursor:pointer;transition:border-color .15s,box-shadow .15s;text-align:left}
+.exc-zonecard:hover{border-color:var(--brand-blue)}
+.exc-zonecard.active{border-color:var(--brand-blue);box-shadow:0 0 0 2px rgba(18,100,168,.16);background:#fff}
+.exc-zonecard-l{font:800 8.5px/1 'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--ink-faint)}
+.exc-zonecard-v{font:800 22px/1.05 'Barlow Condensed',Arial,sans-serif;color:var(--brand-blue-2);margin-top:3px}
+.exc-zonecard-bar{height:5px;border-radius:3px;background:var(--panel-3);margin-top:6px;overflow:hidden}
+.exc-zonecard-bar i{display:block;height:100%;border-radius:3px;background:var(--brand-blue)}
+.exc-zonecard-s{font:700 8px/1.3 'IBM Plex Mono',monospace;color:var(--ink-faint);margin-top:5px}
+.exc-zonecard-s .dn{color:var(--brand-green-2)}
+.exc-filterbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:12px}
+.exc-chip{border:1px solid var(--line-strong);background:var(--panel-2);border-radius:20px;padding:5px 11px;font:700 10px/1.4 'IBM Plex Mono',monospace;color:var(--ink-soft);cursor:pointer}
+.exc-chip:hover{border-color:var(--brand-blue)}
+.exc-chip.active{background:var(--brand-blue);border-color:var(--brand-blue);color:#fff}
+.exc-groupline{display:flex;align-items:center;gap:8px;margin:14px 0 6px;font:800 9.5px/1 'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--brand-blue-2)}
+.exc-groupline:before{content:'';flex:none;width:3px;height:14px;border-radius:2px;background:var(--brand-blue)}
+.exc-groupline b{background:#E0EFFA;border:1px solid #c6e0f3;border-radius:20px;padding:2px 8px;font-size:8.5px}
+.exc-act-row{display:grid;grid-template-columns:minmax(0,1fr) 118px 168px 128px;gap:9px;align-items:center;padding:7px 0;border-top:1px solid var(--line)}
+.exc-act-branch{font:800 11.5px/1.2 'Inter',sans-serif;color:var(--ink)}.exc-act-branch small{display:block;font:600 8.5px/1 'IBM Plex Mono',monospace;color:var(--ink-faint);margin-top:2px}
+.exc-act-pos{font:800 9.5px/1 'IBM Plex Mono',monospace;color:var(--brand-blue-2);background:#E0EFFA;border:1px solid #c6e0f3;border-radius:6px;padding:5px 6px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.exc-act-row select,.exc-act-row input[type=date]{width:100%;padding:5px 7px;border:1px solid var(--line-strong);border-radius:6px;font:600 11px/1.2 'Inter',sans-serif;color:var(--ink);background:var(--panel-2)}
+.exc-act-row select:focus,.exc-act-row input[type=date]:focus{outline:none;border-color:var(--brand-blue);background:#fff}
+.exc-act-row.is-mov select{border-color:#7fb4de;background:#f2f8fd}
+.exc-act-row.is-baja select{border-color:#e0a173;background:#fdf4ed}
+.exc-act-row.is-val select{border-color:#dcb75f;background:#fffaef}
+/* Consolidado copiable */
+.exc-copybox{margin-top:18px;border:1px solid var(--line);border-radius:12px;background:var(--panel-2);padding:14px 16px}
+.exc-copyhead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.exc-copytitle{font:800 10px/1.2 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-soft)}
+.exc-copybtn{border:1px solid var(--brand-blue);background:var(--brand-blue);color:#fff;border-radius:8px;padding:6px 13px;font:800 10px/1.3 'IBM Plex Mono',monospace;cursor:pointer}
+.exc-copybtn:hover{background:var(--brand-blue-2);border-color:var(--brand-blue-2)}
+.exc-copybtn.ok{background:var(--brand-green-2);border-color:var(--brand-green-2)}
+.exc-copypre{margin:0;white-space:pre-wrap;word-break:break-word;font:600 10.5px/1.6 'IBM Plex Mono',monospace;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;max-height:340px;overflow:auto}
+
+/* ===== Vista ejecutiva consolidada de excedentes ===== */
+.exc-exec{margin:0 0 16px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#fff,#F8FBFE);overflow:hidden}
+.exc-exec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding:15px 16px 12px;border-bottom:1px solid var(--line);background:#fff}
+.exc-exec-title{font:800 18px/1 'Barlow Condensed',Arial,sans-serif;color:var(--brand-blue-2)}
+.exc-exec-sub{font-size:10.5px;line-height:1.4;color:var(--ink-faint);margin-top:4px}
+.exc-exec-badge{font:800 9px/1.2 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.05em;padding:6px 9px;border-radius:999px;background:#E8F2FA;color:var(--brand-blue-2);border:1px solid #CBE0EF;white-space:nowrap}
+.exc-exec-kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;padding:12px}
+.exc-exec-kpi{border:1px solid var(--line);border-radius:10px;padding:10px 11px;background:#fff;min-width:0}
+.exc-exec-kpi .k{font:800 8.5px/1.2 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint)}
+.exc-exec-kpi .v{font:800 25px/1 'Barlow Condensed',Arial,sans-serif;color:var(--navy);margin-top:5px}
+.exc-exec-kpi .s{font-size:9.5px;line-height:1.25;color:var(--ink-soft);margin-top:4px}
+.exc-exec-kpi.blue .v{color:var(--brand-blue-2)}.exc-exec-kpi.green .v{color:var(--brand-green-2)}
+.exc-exec-kpi.red .v{color:var(--brand-red)}.exc-exec-kpi.amber .v{color:#9a6b06}
+.exc-exec-table-wrap{overflow:auto;border-top:1px solid var(--line)}
+.exc-exec-table{width:100%;border-collapse:collapse;min-width:760px}
+.exc-exec-table th{font:800 8.5px/1.2 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint);padding:8px 10px;background:#F8FAFD;border-bottom:1px solid var(--line);text-align:right}
+.exc-exec-table th:first-child{text-align:left}
+.exc-exec-table td{padding:8px 10px;border-bottom:1px solid #EDF2F6;font-size:10.5px;text-align:right}
+.exc-exec-table td:first-child{text-align:left;font-weight:800;color:var(--ink)}
+.exc-exec-table tr:last-child td{border-bottom:0;background:#F7FAFD;font-weight:800}
+.exc-exec-zone-sub{display:block;font:600 8px/1.2 'IBM Plex Mono',monospace;color:var(--ink-faint);margin-top:2px}
+.exc-num-blue{color:var(--brand-blue-2);font-weight:800}.exc-num-green{color:var(--brand-green-2);font-weight:800}
+.exc-num-red{color:var(--brand-red);font-weight:800}.exc-num-amber{color:#9a6b06;font-weight:800}
+.exc-exec-status{display:inline-flex;padding:4px 7px;border-radius:999px;font:800 8px/1 'IBM Plex Mono',monospace}
+.exc-exec-status.ok{background:#ECFAF1;color:var(--brand-green-2);border:1px solid #B8E0C5}
+.exc-exec-status.warn{background:#FFF1D8;color:#9a6b06;border:1px solid #f2ddb2}
+.exc-exec-status.bad{background:#FBE3E6;color:var(--brand-red);border:1px solid #f3ccd2}
+.exc-exec-note{padding:10px 13px;border-top:1px solid var(--line);font-size:10px;line-height:1.4;color:var(--ink-soft);background:#FBFCFE}
+.exc-exec-note b{color:var(--brand-blue-2)}
+@media(max-width:1100px){.exc-exec-kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:650px){.exc-exec-kpis{grid-template-columns:repeat(2,1fr)}}
+
+@media(max-width:1040px){.exc-zonemap{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.exc-act-row{grid-template-columns:1fr 1fr}.incr-row{grid-template-columns:1fr 1fr !important}.incr-head{display:none}.exc-zonemap{grid-template-columns:1fr 1fr}}
+
 </style>
 
 </head>
@@ -1104,11 +1242,24 @@ function portableLoadState(storageKey,field){
     <div class="sec-head">
       <div class="sec-head-l">
         <div class="sec-num">02D — AJUSTES DE PLANTILLA INCREMENTALES</div>
-        <h2>Incrementos de objetivo vs. rentabilidad</h2>
-        <div class="sec-desc">Registro de sucursales a las que se les subió el objetivo de plantilla en los últimos cortes, y ranking de las sucursales con mayor HC real cruzado con su utilidad promedio mensual acumulada — para validar dónde el headcount adicional está justificado.</div>
+        <h2>Incrementos de objetivo y compromiso de venta</h2>
+        <div class="sec-desc">Cada sucursal que recibió personal adicional debe reflejarlo en su venta. Captura aquí la meta de venta mensual adicional comprometida por tienda, en miles de pesos. La referencia sugerida usa $200,000 de venta por cada HC aprobado de más.</div>
       </div>
     </div>
     <div id="plantillaIncrements"></div>
+  </section>
+
+
+  <section id="sec-hc-evolution">
+    <div class="sec-head">
+      <div class="sec-head-l">
+        <div class="sec-num">02E — VALIDACIÓN DE PLANTILLA TOTAL</div>
+        <h2>¿Bajó realmente la plantilla desde julio?</h2>
+        <div class="sec-desc">Contraste entre la reducción de excedentes y el headcount total. Si el excedente baja pero la plantilla aprobada sube, no hubo reducción de costo — solo se reclasificó la posición. Esta vista responde esa pregunta con el HC aprobado y real de cada corte desde el 31 de julio.</div>
+      </div>
+      <button type="button" class="section-export-btn">⬇ Descargar JPG</button>
+    </div>
+    <div id="hcEvolution"></div>
   </section>
 
 
@@ -1680,6 +1831,7 @@ function portableLoadState(storageKey,field){
       <div></div>
       <div class="cost-val" style="color:var(--brand-blue-2);">+26 excedentes<small>$416,000/mes estimado</small></div>
     </div></div>
+      <div id="excessActions"></div>
     </div>
   </section>
 
@@ -2741,6 +2893,52 @@ const EXCESS_HISTORY_BY_ZONE = {"31 Jul":{"Zona 1":3,"Zona 2":6,"Zona 3":5,"Zona
 
 // Ajustes incrementales de objetivo de plantilla aplicados en los últimos cortes (Zona Interior 1–6).
 // Cada registro: sucursal, puesto, objetivo anterior → nuevo, y el corte en que se detectó el cambio.
+// Plantilla total de la Zona Interior 1–6 por corte, desde el 31 de julio. "aut" = HC aprobado (objetivo
+// vigente en ese corte), "real" = HC realmente en nómina. Las series "cmp" excluyen MN1 (Montemorelos), que
+// abrió durante el periodo y suma 9 plazas nuevas, para poder comparar tiendas iguales contra iguales.
+// Fuente: suma de todas las posiciones de las 31 sucursales en cada hoja semanal del Excel v27.
+const HC_HISTORY = [
+  {label:"31 Jul", aut:337, real:347, autCmp:337, realCmp:338},
+  {label:"06 Ago", aut:337, real:355, autCmp:337, realCmp:347},
+  {label:"12 Ago", aut:336, real:355, autCmp:336, realCmp:347},
+  {label:"20 Ago", aut:337, real:357, autCmp:337, realCmp:348},
+  {label:"27 Ago", aut:345, real:361, autCmp:336, realCmp:352},
+  {label:"03 Sep", aut:350, real:356, autCmp:341, realCmp:347}
+];
+// Detalle de los movimientos de HC aprobado entre 31 Jul y 03 Sep (solo sucursales que cambiaron).
+const HC_AUT_CHANGES = [
+  {code:"AP4", from:9,  to:10, delta:1},
+  {code:"HSM", from:12, to:13, delta:1},
+  {code:"SN2", from:8,  to:10, delta:2},
+  {code:"CY1", from:11, to:12, delta:1},
+  {code:"LI1", from:13, to:12, delta:-1},
+  {code:"CV1", from:15, to:14, delta:-1},
+  {code:"CV2", from:7,  to:8,  delta:1},
+  {code:"MN1", from:0,  to:9,  delta:9, nueva:true}
+];
+// Regla de conversión provista por el negocio: cada unidad de HC adicional debe reflejarse en venta.
+const HC_SALES_PER_HEAD = 200000;
+
+// Compromiso de venta adicional capturado por sucursal (en miles de pesos). Se guarda localmente.
+const SALES_COMMIT_STORE_KEY = 'jomar_transformar_sales_commitments_v1';
+let SALES_COMMITMENTS = portableLoadState(SALES_COMMIT_STORE_KEY,'salesCommitments');
+if(!SALES_COMMITMENTS || typeof SALES_COMMITMENTS!=='object') SALES_COMMITMENTS={};
+function saveSalesCommitments(){try{localStorage.setItem(SALES_COMMIT_STORE_KEY,JSON.stringify(SALES_COMMITMENTS));}catch(e){}}
+
+// Acción y fecha compromiso para cada plaza excedente. Se guarda localmente y no altera el conteo de excedentes.
+const EXCESS_ACTION_STORE_KEY = 'jomar_transformar_excess_actions_v1';
+let EXCESS_ACTIONS = portableLoadState(EXCESS_ACTION_STORE_KEY,'excessActions');
+if(!EXCESS_ACTIONS || typeof EXCESS_ACTIONS!=='object') EXCESS_ACTIONS={};
+function saveExcessActions(){try{localStorage.setItem(EXCESS_ACTION_STORE_KEY,JSON.stringify(EXCESS_ACTIONS));}catch(e){}}
+const EXCESS_ACTION_OPTIONS = [
+  {v:'', label:'— Sin definir —', cls:''},
+  {v:'traslado', label:'Cambio de sucursal', cls:'is-mov'},
+  {v:'baja', label:'Baja de la posición', cls:'is-baja'},
+  {v:'validacion', label:'En validación con líder', cls:'is-val'}
+];
+
+// Ajustes incrementales de objetivo de plantilla aplicados en los últimos cortes (Zona Interior 1–6).
+// Cada registro: sucursal, puesto, objetivo anterior → nuevo, y el corte en que se detectó el cambio.
 const PLANTILLA_INCREMENTS = [
   {code:"HSM", pos:"Repartidor", from:2, to:3, week:"03 Sep (v20)"},
   {code:"MT3", pos:"Cajeras", from:0, to:1, week:"03 Sep (v20)"},
@@ -2808,11 +3006,11 @@ function addMovementLogFromForm(){
   const note=(document.getElementById('mvNote')?.value||'').trim();
   MOVEMENT_LOG.push({id:`mv_${Date.now()}_${Math.random().toString(36).slice(2,7)}`,type,zona,code,puesto,date,n,note});
   saveMovementLog();
-  renderMovementBars(); renderKpis(); renderCommitments(); renderPositionSummary(); renderTable(); renderCoveragePulse(); renderVacZoneSlide(); renderExcessTrend(); renderPlantillaIncrements(); renderCoverageActions();
+  renderMovementBars(); renderKpis(); renderCommitments(); renderPositionSummary(); renderTable(); renderCoveragePulse(); renderVacZoneSlide(); renderExcessTrend(); renderPlantillaIncrements(); renderHcEvolution(); renderExcessActions(); renderCoverageActions();
 }
 function removeMovementLog(id){
   MOVEMENT_LOG=MOVEMENT_LOG.filter(x=>x.id!==id); saveMovementLog();
-  renderMovementBars(); renderKpis(); renderCommitments(); renderPositionSummary(); renderTable(); renderCoveragePulse(); renderVacZoneSlide(); renderExcessTrend(); renderPlantillaIncrements(); renderCoverageActions();
+  renderMovementBars(); renderKpis(); renderCommitments(); renderPositionSummary(); renderTable(); renderCoveragePulse(); renderVacZoneSlide(); renderExcessTrend(); renderPlantillaIncrements(); renderHcEvolution(); renderExcessActions(); renderCoverageActions();
 }
 
 // Altas de la semana anterior (27 Ago, corte 20→27 Ago): 1+2+1+1+3+1 = 9, tomadas del WEEKLY_MOVEMENT que tenía ese
@@ -3279,38 +3477,363 @@ function renderExcessTrend(){
   </div>`;
 }
 
+function commitKeyFor(r){ return `${r.code}|${r.pos}|${r.from}-${r.to}`; }
+function incrementStats(){
+  let addedTotal=0, committedTotal=0, captured=0;
+  PLANTILLA_INCREMENTS.forEach(r=>{
+    addedTotal += Math.max(0,(r.to||0)-(r.from||0));
+    const v = Number(SALES_COMMITMENTS[commitKeyFor(r)])||0;
+    committedTotal += v;
+    if(v>0) captured++;
+  });
+  const referenceK = Math.round(addedTotal*HC_SALES_PER_HEAD/1000);
+  return {addedTotal, committedTotal, captured, referenceK, pct: referenceK? committedTotal/referenceK*100 : 0};
+}
+
 function renderPlantillaIncrements(){
   const el=document.getElementById('plantillaIncrements');
   if(!el) return;
-  const util = DATA.utilidad_acum_prom_mensual||{};
-  const fmtMoney = v=> v==null?'—':'$'+Math.round(v).toLocaleString('es-MX');
-  const incrByCode = {};
-  PLANTILLA_INCREMENTS.forEach(r=>{ (incrByCode[r.code]=incrByCode[r.code]||[]).push(r); });
+  const fmtK = v => '$'+Number(v||0).toLocaleString('es-MX')+' K';
 
   const logRows = PLANTILLA_INCREMENTS.map(r=>{
-    const u = util[r.code];
-    return `<div class="incr-row"><div class="incr-branch">${escapeHtml(branchName[r.code]||r.code)}<small>${escapeHtml(r.code)} · ${escapeHtml(branchZone[r.code]||'')}</small></div><div class="incr-pos">${escapeHtml(fullPositionName(r.pos))}</div><div class="incr-change">${r.from} → ${r.to}</div><div class="incr-week">${escapeHtml(r.week)}</div><div class="incr-util">Utilidad prom. mensual: <b>${fmtMoney(u)}</b></div></div>`;
+    const key = commitKeyFor(r);
+    const val = SALES_COMMITMENTS[key];
+    const added = Math.max(0,(r.to||0)-(r.from||0));
+    const suggested = Math.round(added*HC_SALES_PER_HEAD/1000);
+    return `<div class="incr-row">
+      <div class="incr-branch">${escapeHtml(branchName[r.code]||r.code)}<small>${escapeHtml(r.code)} · ${escapeHtml(branchZone[r.code]||'')} · ${escapeHtml(fullPositionName(r.pos))}</small></div>
+      <div class="incr-week">${escapeHtml(r.week)}</div>
+      <div class="incr-change">${r.from} → ${r.to}</div>
+      <div class="incr-commit"><input type="number" min="0" step="1" inputmode="numeric" placeholder="${suggested}" value="${val==null?'':escapeHtml(String(val))}" data-commit-key="${escapeHtml(key)}" title="Meta de venta mensual adicional en miles. Referencia: ${suggested} K"><span class="incr-commit-unit">K</span></div>
+    </div>`;
   }).join('');
 
-  const codes = Object.keys(branchZone);
-  const rt = DATA.weekly_real[weeks[weeks.length-1]]||{};
-  const ranked = codes.map(code=>{
-    const real=(rt[code]||[]).reduce((s,v)=>s+(Number(v)||0),0);
-    const aut=(DATA.aut_b[code]||[]).reduce((s,v)=>s+(Number(v)||0),0);
-    return {code, zona:branchZone[code], real, aut, util: util[code]};
-  }).filter(x=>x.real>0).sort((a,b)=>b.real-a.real).slice(0,12);
-  const maxUtil = Math.max(1,...ranked.map(x=>x.util||0));
+  const st = incrementStats();
 
-  const rankRows = ranked.map(x=>{
-    const flagged = incrByCode[x.code];
-    const barW = x.util? Math.max(4,(x.util/maxUtil*70)):0;
-    return `<tr><td class="rk-name">${escapeHtml(branchName[x.code]||x.code)}${flagged?`<span class="rk-flag">↑ objetivo</span>`:''}<small>${escapeHtml(x.code)} · ${escapeHtml(x.zona)}</small></td><td class="num">${x.real}</td><td class="num">${x.aut}</td><td class="num"><span class="rk-util-bar" style="width:${barW}px"></span>${fmtMoney(x.util)}</td></tr>`;
+  // Resumen ejecutivo agrupado por zona
+  const byZone={};
+  PLANTILLA_INCREMENTS.forEach(r=>{
+    const z=branchZone[r.code]||'—';
+    (byZone[z]=byZone[z]||[]).push(r);
+  });
+  const zoneBlocks = zoneNames.filter(z=>byZone[z]).map(z=>{
+    const items=byZone[z];
+    const plazas=items.reduce((a,r)=>a+Math.max(0,(r.to||0)-(r.from||0)),0);
+    const lines=items.map(r=>{
+      const added=Math.max(0,(r.to||0)-(r.from||0));
+      const v=Number(SALES_COMMITMENTS[commitKeyFor(r)])||0;
+      return `<div class="incr-exec-line"><span>${escapeHtml(branchName[r.code]||r.code)}<em>${escapeHtml(r.code)} · ${escapeHtml(fullPositionName(r.pos))}</em></span><b>+${added} HC · ${v>0?fmtK(v):'<span style="color:#ffb3bd">sin meta</span>'}</b></div>`;
+    }).join('');
+    return `<div class="incr-exec-zone"><div class="incr-exec-zone-h">${escapeHtml(z)}<b>+${plazas} HC</b></div>${lines}</div>`;
   }).join('');
 
-  el.innerHTML = `
-    <div class="incr-log"><div class="incr-log-title">Registro de incrementos de objetivo · Zona Interior 1–6</div>${logRows || '<div class="vac-slide-empty">Sin incrementos registrados.</div>'}</div>
-    <table class="rank-table"><thead><tr><th>Sucursal · zona</th><th class="num">HC real</th><th class="num">Objetivo</th><th class="num">Utilidad prom. mensual acum.</th></tr></thead><tbody>${rankRows}</tbody></table>
-  `;
+  const gap = st.referenceK - st.committedTotal;
+
+  el.innerHTML = `<div class="incr-grid">
+    <div class="incr-log">
+      <div class="incr-log-title">Registro de incrementos de objetivo · Zona Interior 1–6</div>
+      <div class="incr-head"><span>Sucursal · zona · puesto</span><span>Corte</span><span>Obj.</span><span>Meta venta</span></div>
+      ${logRows || '<div class="vac-slide-empty">Sin incrementos registrados.</div>'}
+      <div class="incr-commit-total">${st.addedTotal} plazas aprobadas de más · referencia a $${HC_SALES_PER_HEAD.toLocaleString('es-MX')} por HC: <b>${fmtK(st.referenceK)}</b> de venta mensual adicional · capturado <b>${fmtK(st.committedTotal)}</b> (${st.captured}/${PLANTILLA_INCREMENTS.length} tiendas)</div>
+    </div>
+    <div class="incr-exec">
+      <div class="incr-exec-title">Resumen ejecutivo · incremento vs. compromiso</div>
+      <div class="incr-exec-kpis">
+        <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Plazas incrementadas</div><div class="incr-exec-kpi-v">+${st.addedTotal}</div><div class="incr-exec-kpi-s">en ${Object.keys(byZone).length} zonas</div></div>
+        <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Venta exigible</div><div class="incr-exec-kpi-v">${fmtK(st.referenceK)}</div><div class="incr-exec-kpi-s">$${HC_SALES_PER_HEAD.toLocaleString('es-MX')} × HC / mes</div></div>
+        <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Meta capturada</div><div class="incr-exec-kpi-v" style="color:${st.committedTotal>0?'#c9f36a':'#ffb3bd'}">${fmtK(st.committedTotal)}</div><div class="incr-exec-kpi-s">${st.captured} de ${PLANTILLA_INCREMENTS.length} tiendas</div></div>
+        <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Cobertura</div><div class="incr-exec-kpi-v" style="color:${st.pct>=100?'#c9f36a':st.pct>0?'#ffe08a':'#ffb3bd'}">${st.pct.toFixed(0)}%</div><div class="incr-exec-kpi-s">de la venta exigible</div></div>
+      </div>
+      ${zoneBlocks}
+      <div class="incr-exec-gap">${gap>0?`Faltan <b style="color:#ffb3bd">${fmtK(gap)}</b> de venta mensual por comprometer para cubrir las ${st.addedTotal} plazas aprobadas de más.`:`Compromiso completo: la venta capturada cubre las ${st.addedTotal} plazas aprobadas de más.`}</div>
+    </div>
+  </div>`;
+
+  el.querySelectorAll('input[data-commit-key]').forEach(inp=>{
+    inp.addEventListener('change', ()=>{
+      const k = inp.getAttribute('data-commit-key');
+      const raw = inp.value.trim();
+      if(raw===''){ delete SALES_COMMITMENTS[k]; }
+      else { SALES_COMMITMENTS[k] = Math.max(0, Math.round(Number(raw)||0)); }
+      saveSalesCommitments();
+      renderPlantillaIncrements();
+      renderExcessActions();
+    });
+  });
+}
+
+function renderHcEvolution(){
+  const el=document.getElementById('hcEvolution');
+  if(!el) return;
+  const s=HC_HISTORY, first=s[0], last=s[s.length-1];
+  const dAut=last.aut-first.aut, dReal=last.real-first.real;
+  const dAutCmp=last.autCmp-first.autCmp, dRealCmp=last.realCmp-first.realCmp;
+  const bajo = dAut<0;
+  const fmtSign = v=> (v>0?'+':'')+v;
+
+  const W=760,H=210,padL=44,padR=18,padT=26,padB=32;
+  const vals=s.flatMap(x=>[x.aut,x.real]);
+  const maxV=Math.max(...vals), minV=Math.min(...vals);
+  const lo=Math.floor((minV-6)/5)*5, hi=Math.ceil((maxV+6)/5)*5;
+  const xStep=(W-padL-padR)/(s.length-1);
+  const y=v=>padT+(hi-v)/(hi-lo)*(H-padT-padB);
+  const xs=i=>padL+i*xStep;
+  const mkLine=(key,color,dash)=>{
+    const pts=s.map((d,i)=>`${xs(i)},${y(d[key])}`).join(' ');
+    return `<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"${dash?` stroke-dasharray="${dash}"`:''}/>`;
+  };
+  const mkDots=(key,color)=>s.map((d,i)=>`<circle cx="${xs(i)}" cy="${y(d[key])}" r="5" fill="${color}" stroke="rgba(0,0,0,.25)" stroke-width="1.5"/><text x="${xs(i)}" y="${y(d[key])-12}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="800" fill="${color}">${d[key]}</text>`).join('');
+  const grid=[0,.25,.5,.75,1].map(t=>{const yy=padT+t*(H-padT-padB);const v=Math.round(hi-t*(hi-lo));return `<line x1="${padL}" y1="${yy}" x2="${W-padR}" y2="${yy}" stroke="rgba(255,255,255,.14)" stroke-dasharray="3 5"/><text x="${padL-8}" y="${yy+3}" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="rgba(255,255,255,.5)">${v}</text>`;}).join('');
+  const xlabels=s.map((d,i)=>`<text x="${xs(i)}" y="${H-8}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="rgba(255,255,255,.62)">${d.label}</text>`).join('');
+  const chart=`<svg class="hc-chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Evolución de plantilla aprobada y real">${grid}${mkLine('real','rgba(255,255,255,.55)','5 4')}${mkLine('aut','#fff')}${mkDots('real','rgba(255,255,255,.8)')}${mkDots('aut','#ffd9c2')}${xlabels}</svg>`;
+
+  const nuevas = HC_AUT_CHANGES.filter(x=>x.nueva);
+  const subieron = HC_AUT_CHANGES.filter(x=>!x.nueva && x.delta>0);
+  const bajaron = HC_AUT_CHANGES.filter(x=>!x.nueva && x.delta<0);
+  const listTxt = arr => arr.map(x=>`${branchName[x.code]||x.code} (${x.code}) ${fmtSign(x.delta)}`).join(' · ');
+
+  el.innerHTML = `<div class="hc-verdict${bajo?' good':''}">
+    <div class="hc-eyebrow">Plantilla aprobada · validación contra la reducción de excedentes</div>
+    <div class="hc-headline">${bajo?'La plantilla aprobada sí disminuyó':'La plantilla aprobada NO disminuyó: subió '+fmtSign(dAut)+' plazas'}</div>
+    <div class="hc-copy">Entre <b>${first.label}</b> y <b>${last.label}</b>, el HC aprobado pasó de <b>${first.aut}</b> a <b>${last.aut}</b> (<b>${fmtSign(dAut)}</b>) y el HC real de <b>${first.real}</b> a <b>${last.real}</b> (<b>${fmtSign(dReal)}</b>). En el mismo periodo el excedente bajó de 39 a 20 plazas — pero esa caída <b>no vino de reducir personal</b>, vino de <b>aprobar más posiciones</b>. Descontando MN1 (Montemorelos, apertura nueva que suma 9 plazas), la comparación tienda contra tienda sigue siendo al alza: aprobado <b>${fmtSign(dAutCmp)}</b> y real <b>${fmtSign(dRealCmp)}</b>.</div>
+    <div class="hc-stats">
+      <div class="hc-stat"><div class="hc-stat-label">HC aprobado ${last.label}</div><div class="hc-stat-val">${last.aut}</div><div class="hc-stat-sub">${fmtSign(dAut)} vs. ${first.label}</div></div>
+      <div class="hc-stat"><div class="hc-stat-label">HC real ${last.label}</div><div class="hc-stat-val">${last.real}</div><div class="hc-stat-sub">${fmtSign(dReal)} vs. ${first.label}</div></div>
+      <div class="hc-stat"><div class="hc-stat-label">Aprobado sin MN1</div><div class="hc-stat-val">${last.autCmp}</div><div class="hc-stat-sub">${fmtSign(dAutCmp)} tienda vs. tienda</div></div>
+      <div class="hc-stat"><div class="hc-stat-label">Venta adicional implícita</div><div class="hc-stat-val">$${((dAut*HC_SALES_PER_HEAD)/1000000).toFixed(1)}M</div><div class="hc-stat-sub">${dAut} HC × $${HC_SALES_PER_HEAD.toLocaleString('es-MX')} al mes</div></div>
+    </div>
+    ${chart}
+    <div class="hc-legend"><span><i style="background:#fff"></i>HC aprobado (objetivo)</span><span><i style="background:rgba(255,255,255,.6)"></i>HC real (nómina)</span></div>
+    <div class="hc-note"><b>Qué se movió:</b> subieron objetivo ${subieron.length?listTxt(subieron):'—'}; bajaron objetivo ${bajaron.length?listTxt(bajaron):'—'}; apertura nueva ${nuevas.length?listTxt(nuevas):'—'}.<br><b>Conclusión:</b> el objetivo de reducir plantilla total <b>aún no se cumple</b>. Para que la baja de excedentes represente ahorro real, la plaza debe eliminarse del objetivo, no absorberse dentro de él. Cada plaza aprobada de más equivale a <b>$${HC_SALES_PER_HEAD.toLocaleString('es-MX')}</b> de venta mensual que la sucursal debe generar (ver el compromiso capturado en la vista 02D).</div>
+  </div>`;
+}
+
+function excessActionRows(){
+  const last=weeks[weeks.length-1];
+  const rows=[];
+  zoneNames.forEach(z=>codesForZone(z).forEach(code=>{
+    excessRoleTotals([code],last).forEach(x=>{
+      for(let i=1;i<=x.n;i++) rows.push({code, zona:z, pos:x.pos, slot:i, multi:x.n>1});
+    });
+  }));
+  return rows;
+}
+const EXCESS_ACTION_LABEL={traslado:'Cambio de sucursal',baja:'Baja de la posición',validacion:'En validación con líder'};
+let EXCESS_ZONE_FILTER='Todas';
+
+function buildExcessConsolidado(){
+  const rows=excessActionRows();
+  const st=incrementStats();
+  const fmtK=v=>'$'+Number(v||0).toLocaleString('es-MX')+' K';
+  const hcLast=HC_HISTORY[HC_HISTORY.length-1], hcFirst=HC_HISTORY[0];
+  const sign=v=>(v>0?'+':'')+v;
+  const L=[];
+  L.push('PLAN DE EXCEDENTES Y COMPROMISO DE VENTA · Corte '+weeks[weeks.length-1]+' · Zona Interior 1-6');
+  L.push('');
+  L.push('1) PLANTILLA TOTAL');
+  L.push('   HC aprobado: '+hcFirst.aut+' ('+hcFirst.label+') -> '+hcLast.aut+' ('+hcLast.label+')  '+sign(hcLast.aut-hcFirst.aut)+' plazas');
+  L.push('   HC real:     '+hcFirst.real+' -> '+hcLast.real+'  '+sign(hcLast.real-hcFirst.real)+' plazas');
+  L.push('   Sin MN1 (apertura nueva): aprobado '+sign(hcLast.autCmp-hcFirst.autCmp)+' / real '+sign(hcLast.realCmp-hcFirst.realCmp));
+  L.push('');
+  L.push('2) INCREMENTOS DE OBJETIVO Y META DE VENTA');
+  L.push('   Plazas incrementadas: +'+st.addedTotal+'  |  Venta exigible: '+fmtK(st.referenceK)+'/mes  |  Capturado: '+fmtK(st.committedTotal)+' ('+st.pct.toFixed(0)+'%)');
+  const byZoneI={};
+  PLANTILLA_INCREMENTS.forEach(r=>{const z=branchZone[r.code]||'-';(byZoneI[z]=byZoneI[z]||[]).push(r);});
+  zoneNames.filter(z=>byZoneI[z]).forEach(z=>{
+    const items=byZoneI[z];
+    const plazas=items.reduce((a,r)=>a+Math.max(0,(r.to||0)-(r.from||0)),0);
+    L.push('   '+z+' (+'+plazas+' HC)');
+    items.forEach(r=>{
+      const v=Number(SALES_COMMITMENTS[commitKeyFor(r)])||0;
+      const added=Math.max(0,(r.to||0)-(r.from||0));
+      L.push('      - '+(branchName[r.code]||r.code)+' ('+r.code+') '+fullPositionName(r.pos)+': '+r.from+'->'+r.to+'  +'+added+' HC  meta '+(v>0?fmtK(v):'SIN CAPTURAR'));
+    });
+  });
+  L.push('');
+  L.push('3) EXCEDENTES Y ACCION DEFINIDA ('+rows.length+' plazas)');
+  const counts={pend:0,traslado:0,baja:0,validacion:0};
+  rows.forEach(r=>{const a=EXCESS_ACTIONS[r.code+'|'+r.pos+'|'+r.slot];const v=a&&a.action?a.action:'';if(counts[v]!==undefined&&v)counts[v]++;else counts.pend++;});
+  L.push('   Sin definir: '+counts.pend+'  |  Cambio de sucursal: '+counts.traslado+'  |  Baja: '+counts.baja+'  |  En validacion: '+counts.validacion);
+  zoneNames.forEach(z=>{
+    const zr=rows.filter(r=>r.zona===z);
+    if(!zr.length) return;
+    L.push('   '+z+' ('+zr.length+' excedentes)');
+    zr.forEach(r=>{
+      const a=EXCESS_ACTIONS[r.code+'|'+r.pos+'|'+r.slot]||{};
+      const act=a.action?EXCESS_ACTION_LABEL[a.action]:'SIN DEFINIR';
+      const fecha=a.date?(' | compromiso '+a.date):'';
+      L.push('      - '+(branchName[r.code]||r.code)+' ('+r.code+') '+fullPositionName(r.pos)+(r.multi?' #'+r.slot:'')+': '+act+fecha);
+    });
+  });
+  return L.join('\n');
+}
+
+
+function buildExcessExecutiveView(rows){
+  const getAction=(r)=>EXCESS_ACTIONS[`${r.code}|${r.pos}|${r.slot}`]?.action||'';
+  const counts={total:rows.length,traslado:0,baja:0,validacion:0,pend:0};
+  rows.forEach(r=>{const a=getAction(r); if(a&&counts[a]!==undefined) counts[a]++; else counts.pend++;});
+  const defined=counts.total-counts.pend;
+  const resolved=counts.traslado+counts.baja;
+  const exposure=counts.pend+counts.validacion;
+  const savings=counts.baja*16000;
+  const redeploy=counts.traslado*16000;
+  const pct=counts.total?Math.round(defined/counts.total*100):0;
+
+  const zoneRows=zoneNames.map(z=>{
+    const zr=rows.filter(r=>r.zona===z);
+    if(!zr.length) return null;
+    const c={total:zr.length,traslado:0,baja:0,validacion:0,pend:0};
+    zr.forEach(r=>{const a=getAction(r); if(a&&c[a]!==undefined)c[a]++;else c.pend++;});
+    const pctz=c.total?Math.round((c.total-c.pend)/c.total*100):0;
+    const status=pctz===100?'ok':(pctz>=50?'warn':'bad');
+    return `<tr>
+      <td>${escapeHtml(z)}<span class="exc-exec-zone-sub">${c.total} excedente${c.total===1?'':'s'}</span></td>
+      <td class="exc-num-blue">${c.traslado}</td>
+      <td class="exc-num-red">${c.baja}</td>
+      <td class="exc-num-amber">${c.validacion}</td>
+      <td>${c.pend}</td>
+      <td><span class="exc-exec-status ${status}">${pctz}% definido</span></td>
+    </tr>`;
+  }).filter(Boolean).join('');
+
+  return `<div class="exc-exec">
+    <div class="exc-exec-head">
+      <div><div class="exc-exec-title">Vista ejecutiva · Plan de acción de excedentes</div>
+      <div class="exc-exec-sub">Consolidado por tipo de acción y zona. La información se alimenta de las acciones capturadas en cada plaza.</div></div>
+      <div class="exc-exec-badge">Corte ${escapeHtml(weeks[weeks.length-1])}</div>
+    </div>
+    <div class="exc-exec-kpis">
+      <div class="exc-exec-kpi blue"><div class="k">Excedentes</div><div class="v">${counts.total}</div><div class="s">plazas sobre objetivo</div></div>
+      <div class="exc-exec-kpi green"><div class="k">Ruta definida</div><div class="v">${defined}</div><div class="s">${pct}% con acción</div></div>
+      <div class="exc-exec-kpi blue"><div class="k">Cambio sucursal</div><div class="v">${counts.traslado}</div><div class="s">$${redeploy.toLocaleString('es-MX')} K eq. HC</div></div>
+      <div class="exc-exec-kpi red"><div class="k">Baja posición</div><div class="v">${counts.baja}</div><div class="s">$${savings.toLocaleString('es-MX')} K/mes a eliminar</div></div>
+      <div class="exc-exec-kpi amber"><div class="k">En validación</div><div class="v">${counts.validacion}</div><div class="s">requieren decisión</div></div>
+      <div class="exc-exec-kpi red"><div class="k">Sin definir</div><div class="v">${counts.pend}</div><div class="s">$${(exposure*16000).toLocaleString('es-MX')}/mes expuestos</div></div>
+    </div>
+    <div class="exc-exec-table-wrap">
+      <table class="exc-exec-table">
+        <thead><tr><th>Zona</th><th>Traslado</th><th>Baja</th><th>Validación</th><th>Sin definir</th><th>Avance</th></tr></thead>
+        <tbody>${zoneRows}</tbody>
+        <tfoot><tr><td>TOTAL</td><td class="exc-num-blue">${counts.traslado}</td><td class="exc-num-red">${counts.baja}</td><td class="exc-num-amber">${counts.validacion}</td><td>${counts.pend}</td><td>${pct}% definido</td></tr></tfoot>
+      </table>
+    </div>
+    <div class="exc-exec-note"><b>Lectura ejecutiva:</b> ${resolved} excedente${resolved===1?' tiene':'s tienen'} una ruta resolutiva (traslado o baja); ${counts.validacion} ${counts.validacion===1?'requiere':'requieren'} validación y ${counts.pend} permanecen sin definir. El costo de referencia utilizado es $16,000 MXN/mes por plaza excedente.</div>
+  </div>`;
+}
+
+function renderExcessActions(){
+  const el=document.getElementById('excessActions');
+  if(!el) return;
+  const rows=excessActionRows();
+  if(!rows.length){ el.innerHTML=''; return; }
+
+  const executiveView=buildExcessExecutiveView(rows);
+  const counts={pend:0,traslado:0,baja:0,validacion:0};
+  rows.forEach(r=>{
+    const a=EXCESS_ACTIONS[`${r.code}|${r.pos}|${r.slot}`];
+    const v=a&&a.action?a.action:'';
+    if(v&&counts[v]!==undefined) counts[v]++; else counts.pend++;
+  });
+
+  // Mapa de excedente por zona (ordenado de mayor a menor)
+  const zoneAgg=zoneNames.map(z=>{
+    const zr=rows.filter(r=>r.zona===z);
+    const done=zr.filter(r=>{const a=EXCESS_ACTIONS[`${r.code}|${r.pos}|${r.slot}`];return a&&a.action;}).length;
+    return {z, n:zr.length, done};
+  }).filter(x=>x.n>0).sort((a,b)=>b.n-a.n);
+  const maxZ=Math.max(1,...zoneAgg.map(x=>x.n));
+  const zoneMap=zoneAgg.map(x=>`<button type="button" class="exc-zonecard${EXCESS_ZONE_FILTER===x.z?' active':''}" data-zone-card="${escapeHtml(x.z)}">
+    <div class="exc-zonecard-l">${escapeHtml(x.z)}</div>
+    <div class="exc-zonecard-v">${x.n}</div>
+    <div class="exc-zonecard-bar"><i style="width:${(x.n/maxZ*100).toFixed(0)}%"></i></div>
+    <div class="exc-zonecard-s"><span class="${x.done===x.n?'dn':''}">${x.done}/${x.n} con acción</span></div>
+  </button>`).join('');
+
+  const chips=['Todas',...zoneAgg.map(x=>x.z)].map(z=>{
+    const n=z==='Todas'?rows.length:rows.filter(r=>r.zona===z).length;
+    return `<button type="button" class="exc-chip${EXCESS_ZONE_FILTER===z?' active':''}" data-zone-chip="${escapeHtml(z)}">${escapeHtml(z)} (${n})</button>`;
+  }).join('');
+
+  const visible=EXCESS_ZONE_FILTER==='Todas'?rows:rows.filter(r=>r.zona===EXCESS_ZONE_FILTER);
+  const groups=zoneNames.filter(z=>visible.some(r=>r.zona===z)).map(z=>{
+    const zr=visible.filter(r=>r.zona===z);
+    const body=zr.map(r=>{
+      const key=`${r.code}|${r.pos}|${r.slot}`;
+      const a=EXCESS_ACTIONS[key]||{};
+      const cur=a.action||'';
+      const cls=(EXCESS_ACTION_OPTIONS.find(o=>o.v===cur)||{}).cls||'';
+      const opts=EXCESS_ACTION_OPTIONS.map(o=>`<option value="${o.v}"${o.v===cur?' selected':''}>${escapeHtml(o.label)}</option>`).join('');
+      return `<div class="exc-act-row ${cls}">
+        <div class="exc-act-branch">${escapeHtml(branchName[r.code]||r.code)}<small>${escapeHtml(r.code)}</small></div>
+        <div class="exc-act-pos">${escapeHtml(fullPositionName(r.pos))}${r.multi?` #${r.slot}`:''}</div>
+        <div><select data-exc-key="${escapeHtml(key)}" data-exc-field="action">${opts}</select></div>
+        <div><input type="date" data-exc-key="${escapeHtml(key)}" data-exc-field="date" value="${escapeHtml(a.date||'')}" title="Fecha compromiso"></div>
+      </div>`;
+    }).join('');
+    return `<div class="exc-groupline">${escapeHtml(z)}<b>${zr.length} excedente${zr.length===1?'':'s'}</b></div>${body}`;
+  }).join('');
+
+  el.innerHTML=`<div class="exc-act-wrap">
+    <div class="exc-act-title">Plan de acción por plaza excedente</div>
+    <div class="exc-act-sub">Define qué pasará con cada persona por encima del objetivo y para cuándo. Una plaza excedente solo deja de costar cuando se traslada a una sucursal con vacante o se da de baja; mientras siga "en validación", el costo permanece.</div>
+    ${executiveView}
+    <div class="exc-zonemap">${zoneMap}</div>
+    <div class="exc-act-summary">
+      <span class="exc-act-pill pend">${counts.pend} sin definir</span>
+      <span class="exc-act-pill mov">${counts.traslado} cambio de sucursal</span>
+      <span class="exc-act-pill baja">${counts.baja} baja de posición</span>
+      <span class="exc-act-pill val">${counts.validacion} en validación</span>
+    </div>
+    <div class="exc-filterbar">${chips}</div>
+    ${groups}
+    <div class="exc-copybox">
+      <div class="exc-copyhead">
+        <div class="exc-copytitle">Consolidado para presentación</div>
+        <button type="button" class="exc-copybtn" id="excCopyBtn">⧉ Copiar todo</button>
+      </div>
+      <pre class="exc-copypre" id="excCopyPre">${escapeHtml(buildExcessConsolidado())}</pre>
+    </div>
+  </div>`;
+
+  el.querySelectorAll('[data-exc-key]').forEach(ctrl=>{
+    ctrl.addEventListener('change',()=>{
+      const k=ctrl.getAttribute('data-exc-key');
+      const f=ctrl.getAttribute('data-exc-field');
+      const cur=EXCESS_ACTIONS[k]||{};
+      const val=ctrl.value;
+      if(val==='') delete cur[f]; else cur[f]=val;
+      if(Object.keys(cur).length) EXCESS_ACTIONS[k]=cur; else delete EXCESS_ACTIONS[k];
+      saveExcessActions();
+      renderExcessActions();
+    });
+  });
+  el.querySelectorAll('[data-zone-card],[data-zone-chip]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const z=btn.getAttribute('data-zone-card')||btn.getAttribute('data-zone-chip');
+      EXCESS_ZONE_FILTER=(EXCESS_ZONE_FILTER===z && btn.hasAttribute('data-zone-card'))?'Todas':z;
+      renderExcessActions();
+    });
+  });
+  const copyBtn=el.querySelector('#excCopyBtn');
+  if(copyBtn) copyBtn.addEventListener('click',()=>{
+    const txt=buildExcessConsolidado();
+    const done=()=>{copyBtn.textContent='✓ Copiado';copyBtn.classList.add('ok');setTimeout(()=>{copyBtn.textContent='⧉ Copiar todo';copyBtn.classList.remove('ok');},1800);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt,done));
+    } else fallbackCopy(txt,done);
+  });
+}
+function fallbackCopy(txt,cb){
+  try{
+    const ta=document.createElement('textarea');
+    ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    cb&&cb();
+  }catch(e){
+    const pre=document.getElementById('excCopyPre');
+    if(pre){const r=document.createRange();r.selectNodeContents(pre);const sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);}
+  }
 }
 
 
@@ -3793,6 +4316,8 @@ function renderAll(){
   renderVacZoneSlide();
   renderExcessTrend();
   renderPlantillaIncrements();
+  renderHcEvolution();
+  renderExcessActions();
   renderCommitments();
   renderTrend();
   renderCost();
