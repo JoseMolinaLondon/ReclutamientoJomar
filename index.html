@@ -933,21 +933,26 @@ function portableLoadState(storageKey,field){
 
 /* ===== Compromiso de venta (02D) ===== */
 .incr-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.75fr);gap:16px;align-items:start}
-.incr-log{padding:14px 16px !important;margin-bottom:0 !important}
-.incr-row{grid-template-columns:minmax(0,1fr) 96px 62px 108px !important;gap:8px !important;padding:6px 0 !important}
-.incr-branch{font-size:11.5px !important}.incr-branch small{font-size:8.5px !important}
+.incr-log{padding:12px 14px !important;margin-bottom:0 !important}
+.incr-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,1.7fr) 108px !important;gap:8px !important;padding:5px 0 !important;align-items:center;border-top:1px solid var(--line)}
+.incr-row:first-of-type{border-top:none}
+.incr-branch{font-size:11px !important;line-height:1.15 !important}.incr-branch small{font-size:8px !important}
 .incr-pos{font-size:10.5px !important}
 .incr-change{font-size:12px !important}
 .incr-week{font-size:9px !important}
 .incr-commit{display:flex;align-items:center;gap:5px;justify-content:flex-end}
-.incr-commit input{width:70px;padding:4px 6px;border:1px solid var(--line-strong);border-radius:6px;font:800 11.5px/1.2 'IBM Plex Mono',monospace;color:var(--ink);text-align:right;background:var(--panel-2)}
+.incr-commit input{width:70px;padding:3px 6px;border:1px solid var(--line-strong);border-radius:6px;font:800 11px/1.2 'IBM Plex Mono',monospace;color:var(--ink);text-align:right;background:var(--panel-2)}
 .incr-commit input:focus{outline:none;border-color:var(--brand-blue);background:#fff}
 .incr-commit-unit{font:700 9.5px/1 'IBM Plex Mono',monospace;color:var(--ink-faint)}
-.incr-head{display:grid;grid-template-columns:minmax(0,1fr) 96px 62px 108px;gap:8px;padding-bottom:7px;margin-bottom:4px;border-bottom:1.5px solid var(--ink);font:800 8.5px/1.2 'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--ink-faint)}
-.incr-head span:nth-child(2),.incr-head span:nth-child(3){text-align:center}
+.incr-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,1.7fr) 108px;gap:8px;padding-bottom:5px;margin-bottom:2px;border-bottom:1.5px solid var(--ink);font:800 8.5px/1.2 'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--ink-faint)}
 .incr-head span:last-child{text-align:right}
-.incr-commit-total{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);font:700 10px/1.45 'IBM Plex Mono',monospace;color:var(--ink-soft)}
+.incr-commit-total{margin-top:6px;padding-top:6px;border-top:1px solid var(--line);font:700 10px/1.4 'IBM Plex Mono',monospace;color:var(--ink-soft)}
 .incr-commit-total b{color:var(--brand-blue-2);font-size:12px}
+.incr-zone-h{font:800 9px/1 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.04em;color:var(--brand-blue-2);margin:6px 0 1px;padding-top:6px;border-top:1px dashed var(--line-strong)}
+.incr-zone-group:first-child .incr-zone-h{margin-top:0;padding-top:0;border-top:none}
+.incr-poslist{display:flex;flex-wrap:wrap;gap:4px}
+.incr-pos-tag{display:inline-flex;align-items:baseline;gap:4px;background:var(--panel-3);border:1px solid var(--line-strong);border-radius:6px;padding:2px 7px;font:800 9.5px/1.3 'IBM Plex Mono',monospace;color:var(--brand-green-2);white-space:nowrap}
+.incr-pos-tag small{font:600 7.5px/1 'IBM Plex Mono',monospace;color:var(--ink-faint);text-transform:none}
 
 /* Panel ejecutivo 02D */
 .incr-exec{background:linear-gradient(160deg,#0b3f70,#0a5590);color:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 10px 26px rgba(11,63,112,.2)}
@@ -3598,17 +3603,26 @@ function renderExcessTrend(){
   </div>`;
 }
 
-function commitKeyFor(r){ return `${r.code}|${r.pos}|${r.from}-${r.to}`; }
-function incrementStats(){
-  let addedTotal=0, committedTotal=0, captured=0;
+function commitKeyFor(code){ return code; }
+function incrementsByBranch(){
+  const map = {}, order = [];
   PLANTILLA_INCREMENTS.forEach(r=>{
-    addedTotal += Math.max(0,(r.to||0)-(r.from||0));
-    const v = Number(SALES_COMMITMENTS[commitKeyFor(r)])||0;
+    if(!map[r.code]){ map[r.code] = {code:r.code, zone:branchZone[r.code]||'—', items:[]}; order.push(r.code); }
+    map[r.code].items.push(r);
+  });
+  return order.map(code=>map[code]);
+}
+function incrementStats(){
+  const branches = incrementsByBranch();
+  let addedTotal=0, committedTotal=0, captured=0;
+  PLANTILLA_INCREMENTS.forEach(r=>{ addedTotal += Math.max(0,(r.to||0)-(r.from||0)); });
+  branches.forEach(b=>{
+    const v = Number(SALES_COMMITMENTS[commitKeyFor(b.code)])||0;
     committedTotal += v;
     if(v>0) captured++;
   });
   const referenceK = Math.round(addedTotal*HC_SALES_PER_HEAD/1000);
-  return {addedTotal, committedTotal, captured, referenceK, pct: referenceK? committedTotal/referenceK*100 : 0};
+  return {addedTotal, committedTotal, captured, referenceK, pct: referenceK? committedTotal/referenceK*100 : 0, totalBranches: branches.length};
 }
 
 function renderPlantillaIncrements(){
@@ -3616,34 +3630,36 @@ function renderPlantillaIncrements(){
   if(!el) return;
   const fmtK = v => '$'+Number(v||0).toLocaleString('es-MX')+' K';
 
-  const logRows = PLANTILLA_INCREMENTS.map(r=>{
-    const key = commitKeyFor(r);
-    const val = SALES_COMMITMENTS[key];
-    const added = Math.max(0,(r.to||0)-(r.from||0));
-    const suggested = Math.round(added*HC_SALES_PER_HEAD/1000);
-    return `<div class="incr-row">
-      <div class="incr-branch">${escapeHtml(branchName[r.code]||r.code)}<small>${escapeHtml(r.code)} · ${escapeHtml(branchZone[r.code]||'')} · ${escapeHtml(fullPositionName(r.pos))}</small></div>
-      <div class="incr-week">${escapeHtml(r.week)}</div>
-      <div class="incr-change">${r.from} → ${r.to}</div>
-      <div class="incr-commit"><input type="number" min="0" step="1" inputmode="numeric" placeholder="${suggested}" value="${val==null?'':escapeHtml(String(val))}" data-commit-key="${escapeHtml(key)}" title="Meta de venta mensual adicional en miles. Referencia: ${suggested} K"><span class="incr-commit-unit">K</span></div>
-    </div>`;
+  const branches = incrementsByBranch();
+  const byZone = {};
+  branches.forEach(b=>{ (byZone[b.zone]=byZone[b.zone]||[]).push(b); });
+
+  const zoneLogGroups = zoneNames.filter(z=>byZone[z]).map(z=>{
+    const rows = byZone[z].map(b=>{
+      const addedTotal = b.items.reduce((a,r)=>a+Math.max(0,(r.to||0)-(r.from||0)),0);
+      const suggested = Math.round(addedTotal*HC_SALES_PER_HEAD/1000);
+      const val = SALES_COMMITMENTS[commitKeyFor(b.code)];
+      const posTags = b.items.map(r=>`<span class="incr-pos-tag">${escapeHtml(fullPositionName(r.pos))} ${r.from}→${r.to}<small>${escapeHtml(r.week)}</small></span>`).join('');
+      return `<div class="incr-row">
+        <div class="incr-branch">${escapeHtml(branchName[b.code]||b.code)}<small>${escapeHtml(b.code)} · ${escapeHtml(z)}</small></div>
+        <div class="incr-poslist">${posTags}</div>
+        <div class="incr-commit"><input type="number" min="0" step="1" inputmode="numeric" placeholder="${suggested}" value="${val==null?'':escapeHtml(String(val))}" data-commit-key="${escapeHtml(b.code)}" title="Meta de venta mensual adicional en miles para toda la tienda. Referencia: ${suggested} K"><span class="incr-commit-unit">K</span></div>
+      </div>`;
+    }).join('');
+    return `<div class="incr-zone-group"><div class="incr-zone-h">${escapeHtml(z)} · ${byZone[z].length} sucursal${byZone[z].length===1?'':'es'}</div>${rows}</div>`;
   }).join('');
 
   const st = incrementStats();
 
-  // Resumen ejecutivo agrupado por zona
-  const byZone={};
-  PLANTILLA_INCREMENTS.forEach(r=>{
-    const z=branchZone[r.code]||'—';
-    (byZone[z]=byZone[z]||[]).push(r);
-  });
+  // Resumen ejecutivo agrupado por zona (una línea por sucursal, puestos combinados)
   const zoneBlocks = zoneNames.filter(z=>byZone[z]).map(z=>{
-    const items=byZone[z];
-    const plazas=items.reduce((a,r)=>a+Math.max(0,(r.to||0)-(r.from||0)),0);
-    const lines=items.map(r=>{
-      const added=Math.max(0,(r.to||0)-(r.from||0));
-      const v=Number(SALES_COMMITMENTS[commitKeyFor(r)])||0;
-      return `<div class="incr-exec-line"><span>${escapeHtml(branchName[r.code]||r.code)}<em>${escapeHtml(r.code)} · ${escapeHtml(fullPositionName(r.pos))}</em></span><b>+${added} HC · ${v>0?fmtK(v):'<span style="color:#ffb3bd">sin meta</span>'}</b></div>`;
+    const items = byZone[z];
+    const plazas = items.reduce((a,b)=>a+b.items.reduce((s,r)=>s+Math.max(0,(r.to||0)-(r.from||0)),0),0);
+    const lines = items.map(b=>{
+      const added = b.items.reduce((s,r)=>s+Math.max(0,(r.to||0)-(r.from||0)),0);
+      const v = Number(SALES_COMMITMENTS[commitKeyFor(b.code)])||0;
+      const posTxt = b.items.map(r=>`${fullPositionName(r.pos)} ${r.from}→${r.to}`).join(' · ');
+      return `<div class="incr-exec-line"><span>${escapeHtml(branchName[b.code]||b.code)}<em>${escapeHtml(b.code)} · ${escapeHtml(posTxt)}</em></span><b>+${added} HC · ${v>0?fmtK(v):'<span style="color:#ffb3bd">sin meta</span>'}</b></div>`;
     }).join('');
     return `<div class="incr-exec-zone"><div class="incr-exec-zone-h">${escapeHtml(z)}<b>+${plazas} HC</b></div>${lines}</div>`;
   }).join('');
@@ -3653,16 +3669,16 @@ function renderPlantillaIncrements(){
   el.innerHTML = `<div class="incr-grid">
     <div class="incr-log">
       <div class="incr-log-title">Registro de incrementos de objetivo · Zona Interior 1–6</div>
-      <div class="incr-head"><span>Sucursal · zona · puesto</span><span>Corte</span><span>Obj.</span><span>Meta venta</span></div>
-      ${logRows || '<div class="vac-slide-empty">Sin incrementos registrados.</div>'}
-      <div class="incr-commit-total">${st.addedTotal} plazas aprobadas de más · referencia a $${HC_SALES_PER_HEAD.toLocaleString('es-MX')} por HC: <b>${fmtK(st.referenceK)}</b> de venta mensual adicional · capturado <b>${fmtK(st.committedTotal)}</b> (${st.captured}/${PLANTILLA_INCREMENTS.length} tiendas)</div>
+      <div class="incr-head"><span>Sucursal · zona</span><span>Puestos incrementados</span><span>Meta venta</span></div>
+      ${zoneLogGroups || '<div class="vac-slide-empty">Sin incrementos registrados.</div>'}
+      <div class="incr-commit-total">${st.addedTotal} plazas aprobadas de más · referencia a $${HC_SALES_PER_HEAD.toLocaleString('es-MX')} por HC: <b>${fmtK(st.referenceK)}</b> de venta mensual adicional · capturado <b>${fmtK(st.committedTotal)}</b> (${st.captured}/${st.totalBranches} tiendas)</div>
     </div>
     <div class="incr-exec">
       <div class="incr-exec-title">Resumen ejecutivo · incremento vs. compromiso</div>
       <div class="incr-exec-kpis">
         <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Plazas incrementadas</div><div class="incr-exec-kpi-v">+${st.addedTotal}</div><div class="incr-exec-kpi-s">en ${Object.keys(byZone).length} zonas</div></div>
         <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Venta exigible</div><div class="incr-exec-kpi-v">${fmtK(st.referenceK)}</div><div class="incr-exec-kpi-s">$${HC_SALES_PER_HEAD.toLocaleString('es-MX')} × HC / mes</div></div>
-        <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Meta capturada</div><div class="incr-exec-kpi-v" style="color:${st.committedTotal>0?'#c9f36a':'#ffb3bd'}">${fmtK(st.committedTotal)}</div><div class="incr-exec-kpi-s">${st.captured} de ${PLANTILLA_INCREMENTS.length} tiendas</div></div>
+        <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Meta capturada</div><div class="incr-exec-kpi-v" style="color:${st.committedTotal>0?'#c9f36a':'#ffb3bd'}">${fmtK(st.committedTotal)}</div><div class="incr-exec-kpi-s">${st.captured} de ${st.totalBranches} tiendas</div></div>
         <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Cobertura</div><div class="incr-exec-kpi-v" style="color:${st.pct>=100?'#c9f36a':st.pct>0?'#ffe08a':'#ffb3bd'}">${st.pct.toFixed(0)}%</div><div class="incr-exec-kpi-s">de la venta exigible</div></div>
       </div>
       ${zoneBlocks}
@@ -3772,7 +3788,7 @@ function buildExcessConsolidado(){
     const plazas=items.reduce((a,r)=>a+Math.max(0,(r.to||0)-(r.from||0)),0);
     L.push('   '+z+' (+'+plazas+' HC)');
     items.forEach(r=>{
-      const v=Number(SALES_COMMITMENTS[commitKeyFor(r)])||0;
+      const v=Number(SALES_COMMITMENTS[commitKeyFor(r.code)])||0;
       const added=Math.max(0,(r.to||0)-(r.from||0));
       L.push('      - '+(branchName[r.code]||r.code)+' ('+r.code+') '+fullPositionName(r.pos)+': '+r.from+'->'+r.to+'  +'+added+' HC  meta '+(v>0?fmtK(v):'SIN CAPTURAR'));
     });
