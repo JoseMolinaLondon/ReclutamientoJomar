@@ -1116,16 +1116,16 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
         <button class="quick-nav-btn" data-jump-view="vacantes" data-jump-target="sec-trend"><b>02 · Tendencia</b><span>Evolución histórica de vacantes oficiales.</span></button>
         <button class="quick-nav-btn" data-jump-view="vacantes" data-jump-target="commitmentsSection"><b>03 · Vacantes por zona</b><span>HC, oficiales y solicitadas en una vista horizontal.</span></button>
         <button class="quick-nav-btn" data-jump-view="vacantes" data-jump-target="sec-detail"><b>06 · Detalle por sucursal</b><span>Plantilla, vacantes, excedentes y reclutamiento semanal.</span></button>
-        <button class="quick-nav-btn" data-jump-view="vacantes" data-jump-target="coverageActionsSection"><b>06B · Acciones de cobertura</b><span>Candidato, fecha y vía de cobertura por vacante.</span></button>
         <button class="quick-nav-btn" data-jump-view="vacantes" data-jump-target="sec-excess"><b>07 · Excedentes</b><span>Sucursales, cantidades y puestos excedentes.</span></button>
+        <button class="quick-nav-btn" data-jump-view="vacantes" data-jump-target="sec-network"><b>08 · Vista general de la red</b><span>Frontera, Laredo y todas las zonas, no sólo 1-6.</span></button>
       </div>
     </div>
     <div class="quick-index-group">
       <div class="quick-index-label">Vacantes administrativas</div>
       <div class="quick-index-grid">
-        <button class="quick-nav-btn admin" data-jump-view="gerencias" data-jump-target="sec-admin"><b>08 · Puestos administrativos</b><span>Resumen de reemplazos de Gerencia de Sucursal.</span></button>
-        <button class="quick-nav-btn admin" data-jump-view="gerencias" data-jump-target="sec-pipeline"><b>09 · Pipeline</b><span>Etapa actual de cada proceso de reclutamiento.</span></button>
-        <button class="quick-nav-btn admin" data-jump-view="gerencias" data-jump-target="sec-process"><b>10 · Detalle por proceso</b><span>Estatus, responsables, entrevistas y candidatos.</span></button>
+        <button class="quick-nav-btn admin" data-jump-view="gerencias" data-jump-target="sec-admin"><b>09 · Puestos administrativos</b><span>Resumen de reemplazos de Gerencia de Sucursal.</span></button>
+        <button class="quick-nav-btn admin" data-jump-view="gerencias" data-jump-target="sec-pipeline"><b>10 · Pipeline</b><span>Etapa actual de cada proceso de reclutamiento.</span></button>
+        <button class="quick-nav-btn admin" data-jump-view="gerencias" data-jump-target="sec-process"><b>11 · Detalle por proceso</b><span>Estatus, responsables, entrevistas y candidatos.</span></button>
       </div>
     </div>
   </nav>
@@ -1300,6 +1300,7 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
         <div class="sec-desc">Lectura horizontal de las seis zonas: <b>HC aprobado, HC real, vacantes oficiales, solicitadas y excedentes</b> en una misma línea. El desglose muestra sucursal y puesto sin ocupar espacio innecesario. Las solicitadas continúan editables y guardadas localmente.</div>
       </div>
       <div class="save-note"><span class="save-dot"></span> Solicitadas · guardado local automático</div>
+    <button type="button" class="section-export-btn" id="exportVacExcelBtn" style="margin-left:8px;">⬇ Descargar Excel</button>
     <button type="button" class="section-export-btn">⬇ Descargar JPG</button></div>
     <div class="commit-summary compact" id="commitSummary">
     <div class="cs-card"><div class="cs-label">HC aprobado</div><div class="cs-value">336</div><div class="cs-sub">Objetivo de plantilla · Zonas 1–6</div></div>
@@ -1735,21 +1736,7 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
     </div>
   </section>
 
-  <section id="coverageActionsSection">
-    <div class="sec-head">
-      <div class="sec-head-l">
-        <div class="sec-num">06B — ACCIONES DE COBERTURA</div>
-        <h2>Ingreso esperado + cobertura efectiva · candidato y vía de cobertura</h2>
-        <div class="sec-desc">Vista integral de <b style="color:var(--brand-red)">vacantes oficiales</b>, <b style="color:var(--requested)">solicitudes activas</b> e <b style="color:var(--brand-green-2)">ingresos concretados de la semana</b>. Una plaza que se cubre ya no desaparece del seguimiento: se conserva en verde y se vincula automáticamente con su programación cuando coincide <b>sucursal + puesto</b>. Para necesidades pendientes puedes definir <b>reclutamiento</b> o <b style="color:var(--brand-green-2)">movimiento interno</b>, candidato y fecha esperada.</div>
-      </div>
-      <div class="save-note"><span class="save-dot"></span> Guardado automático · usa “Guardar HTML con datos” para compartir</div>
-    <button type="button" class="section-export-btn">⬇ Descargar JPG</button></div>
-    <div class="panel">
-      <div class="coverage-action-kpis" id="coverageActionKpis"><div class="coverage-action-kpi"><div class="cak-label">Vacantes oficiales abiertas</div><div class="cak-val">10</div><div class="cak-sub">inventario oficial aún pendiente</div></div><div class="coverage-action-kpi amber"><div class="cak-label">Solicitudes activas</div><div class="cak-val" style="color:var(--requested)">14</div><div class="cak-sub">necesidades solicitadas · no oficiales</div></div><div class="coverage-action-kpi green"><div class="cak-label">Ingresos efectivos semana</div><div class="cak-val" style="color:var(--brand-green-2)">0</div><div class="cak-sub">altas reales registradas en el corte</div></div><div class="coverage-action-kpi blue"><div class="cak-label">Reclutamientos efectivos</div><div class="cak-val" style="color:var(--brand-blue-2)">0</div><div class="cak-sub">ingresos confirmados por reclutamiento</div></div><div class="coverage-action-kpi amber"><div class="cak-label">Programados con fecha</div><div class="cak-val">4</div><div class="cak-sub">necesidades activas con compromiso</div></div><div class="coverage-action-kpi green"><div class="cak-label">Programado → ingresó</div><div class="cak-val" style="color:var(--brand-green-2)">0</div><div class="cak-sub">coincidencia recuperada por sucursal + puesto</div></div></div>
-      <div class="coverage-action-board" id="coverageActionBoard"><article class="coverage-zone"><div class="coverage-zone-head"><div class="coverage-zone-title">Zona 1<small>0 ingresos concretados · 1 oficiales abiertas · 0 solicitadas</small></div><div class="coverage-zone-count" style="color:var(--brand-red)">1 registro</div></div><div class="coverage-table-wrap"><table class="coverage-table"><thead><tr><th>Sucursal destino</th><th>Puesto exacto</th><th>Vía de cobertura</th><th>Excedente / origen</th><th>Candidato</th><th>Fecha programada</th><th>Resultado / estado</th></tr></thead><tbody><tr data-coverage-row="AP3|Repartidor|1"><td><div class="coverage-vacancy">APODACA CENTRO<small>AP3 · Zona 1 · plaza 1</small><span class="coverage-kind official">Vacante oficial</span></div></td><td><span class="coverage-role ">Repartidores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="AP3|Repartidor|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="AP3|Repartidor|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="AP3|Repartidor|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="AP3|Repartidor|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr></tbody></table></div></article><article class="coverage-zone"><div class="coverage-zone-head"><div class="coverage-zone-title">Zona 2<small>0 ingresos concretados · 3 oficiales abiertas · 3 solicitadas</small></div><div class="coverage-zone-count" style="color:var(--brand-red)">6 registros</div></div><div class="coverage-table-wrap"><table class="coverage-table"><thead><tr><th>Sucursal destino</th><th>Puesto exacto</th><th>Vía de cobertura</th><th>Excedente / origen</th><th>Candidato</th><th>Fecha programada</th><th>Resultado / estado</th></tr></thead><tbody><tr data-coverage-row="MOD|Repartidor|1"><td><div class="coverage-vacancy">MODERNA<small>MOD · Zona 2 · plaza 1</small><span class="coverage-kind official">Vacante oficial</span></div></td><td><span class="coverage-role ">Repartidores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="MOD|Repartidor|1"><option value="">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal" selected="selected">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source internal" data-coverage-field="source" data-coverage-key="MOD|Repartidor|1"><option value="">Seleccionar sucursal origen…</option><option value="SN2" selected="selected">SN2 · DIEGO DIAZ DE BERLANGA · Repartidores +1</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="MOD|Repartidor|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="MOD|Repartidor|1" value="2026-09-01"></td><td><span class="coverage-result planned">● Programado</span></td></tr><tr data-coverage-row="SN1|Cajeras|1"><td><div class="coverage-vacancy">SANTO DOMINGO<small>SN1 · Zona 2 · plaza 1</small><span class="coverage-kind official">Vacante oficial</span></div></td><td><span class="coverage-role ">Cajeras</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="SN1|Cajeras|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="SN1|Cajeras|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="SN1|Cajeras|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="SN1|Cajeras|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr><tr data-coverage-row="SN3|Repartidor|1"><td><div class="coverage-vacancy">UNIVERSIDAD<small>SN3 · Zona 2 · plaza 1</small><span class="coverage-kind official">Vacante oficial</span></div></td><td><span class="coverage-role ">Repartidores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="SN3|Repartidor|1"><option value="">Sin definir</option><option value="recruitment" selected="selected">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="SN3|Repartidor|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="SN3|Repartidor|1" value="Raúl Uriel" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="SN3|Repartidor|1" value="2026-08-31"></td><td><span class="coverage-result planned">● Programado</span></td></tr><tr data-coverage-row="REQ|MOD|Vendedores|1"><td><div class="coverage-vacancy">MODERNA<small>MOD · Zona 2 · plaza 1</small><span class="coverage-kind requested">Solicitud activa</span></div></td><td><span class="coverage-role requested">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="REQ|MOD|Vendedores|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="REQ|MOD|Vendedores|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="REQ|MOD|Vendedores|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="REQ|MOD|Vendedores|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr><tr data-coverage-row="REQ|ESC|Vendedores|1"><td><div class="coverage-vacancy">ESCOBEDO<small>ESC · Zona 2 · plaza 1</small><span class="coverage-kind requested">Solicitud activa</span></div></td><td><span class="coverage-role requested">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="REQ|ESC|Vendedores|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="REQ|ESC|Vendedores|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="REQ|ESC|Vendedores|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="REQ|ESC|Vendedores|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr><tr data-coverage-row="REQ|SN1|Vendedores|1"><td><div class="coverage-vacancy">SANTO DOMINGO<small>SN1 · Zona 2 · plaza 1</small><span class="coverage-kind requested">Solicitud activa</span></div></td><td><span class="coverage-role requested">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="REQ|SN1|Vendedores|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="REQ|SN1|Vendedores|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="REQ|SN1|Vendedores|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="REQ|SN1|Vendedores|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr></tbody></table></div></article><article class="coverage-zone"><div class="coverage-zone-head"><div class="coverage-zone-title">Zona 3<small>0 ingresos concretados · 0 oficiales abiertas · 4 solicitadas</small></div><div class="coverage-zone-count" style="color:var(--brand-red)">4 registros</div></div><div class="coverage-table-wrap"><table class="coverage-table"><thead><tr><th>Sucursal destino</th><th>Puesto exacto</th><th>Vía de cobertura</th><th>Excedente / origen</th><th>Candidato</th><th>Fecha programada</th><th>Resultado / estado</th></tr></thead><tbody><tr data-coverage-row="REQ|MT4|Vendedores|1"><td><div class="coverage-vacancy">SOLIDARIDAD<small>MT4 · Zona 3 · plaza 1</small><span class="coverage-kind requested">Solicitud activa</span></div></td><td><span class="coverage-role requested">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="REQ|MT4|Vendedores|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="REQ|MT4|Vendedores|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="REQ|MT4|Vendedores|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="REQ|MT4|Vendedores|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr><tr data-coverage-row="REQ|MT4|Vendedores|2"><td><div class="coverage-vacancy">SOLIDARIDAD<small>MT4 · Zona 3 · plaza 2</small><span class="coverage-kind requested">Solicitud activa</span></div></td><td><span class="coverage-role requested">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="REQ|MT4|Vendedores|2"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="REQ|MT4|Vendedores|2" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="REQ|MT4|Vendedores|2" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="REQ|MT4|Vendedores|2" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr><tr data-coverage-row="REQ|GA1|Vendedores|1"><td><div class="coverage-vacancy">GARCIA<small>GA1 · Zona 3 · plaza 1</small><span class="coverage-kind requested">Solicitud activa</span></div></td><td><span class="coverage-role requested">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="REQ|GA1|Vendedores|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="REQ|GA1|Vendedores|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="REQ|GA1|Vendedores|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="REQ|GA1|Vendedores|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr><tr data-coverage-row="REQ|MT5|Almacen|1"><td><div class="coverage-vacancy">LOMA LINDA<small>MT5 · Zona 3 · plaza 1</small><span class="coverage-kind requested">Solicitud activa</span></div></td><td><span class="coverage-role requested">Almacenistas</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="REQ|MT5|Almacen|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="REQ|MT5|Almacen|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="REQ|MT5|Almacen|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="REQ|MT5|Almacen|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr></tbody></table></div></article><article class="coverage-zone"><div class="coverage-zone-head"><div class="coverage-zone-title">Zona 4<small>0 ingresos concretados · 2 oficiales abiertas · 3 solicitadas</small></div><div class="coverage-zone-count" style="color:var(--brand-red)">5 registros</div></div><div class="coverage-table-wrap"><table class="coverage-table"><thead><tr><th>Sucursal destino</th><th>Puesto exacto</th><th>Vía de cobertura</th><th>Excedente / origen</th><th>Candidato</th><th>Fecha programada</th><th>Resultado / estado</th></tr></thead><tbody><tr data-coverage-row="GP2|Cajeras|1"><td><div class="coverage-vacancy">RUIZ CORTINES<small>GP2 · Zona 4 · plaza 1</small><span class="coverage-kind official">Vacante oficial</span></div></td><td><span class="coverage-role ">Cajeras</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="GP2|Cajeras|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="GP2|Cajeras|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="GP2|Cajeras|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="GP2|Cajeras|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr><tr data-coverage-row="GP2|Repartidor|1"><td><div class="coverage-vacancy">RUIZ CORTINES<small>GP2 · Zona 4 · plaza 1</small><span class="coverage-kind official">Vacante oficial</span></div></td><td><span class="coverage-role ">Repartidores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="GP2|Repartidor|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="GP2|Repartidor|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="GP2|Repartidor|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="GP2|Repartidor|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr><tr data-coverage-row="REQ|GP1|Vendedores|1"><td><div class="coverage-vacancy">ISRAEL CAVAZOS<small>GP1 · Zona 4 · plaza 1</small><span class="coverage-kind requested">Solicitud activa</span></div></td><td><span class="coverage-role requested">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="REQ|GP1|Vendedores|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="REQ|GP1|Vendedores|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="REQ|GP1|Vendedores|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="REQ|GP1|Vendedores|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr><tr data-coverage-row="REQ|GP3|Vendedores|1"><td><div class="coverage-vacancy">ELOY CAVAZOS<small>GP3 · Zona 4 · plaza 1</small><span class="coverage-kind requested">Solicitud activa</span></div></td><td><span class="coverage-role requested">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="REQ|GP3|Vendedores|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="REQ|GP3|Vendedores|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="REQ|GP3|Vendedores|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="REQ|GP3|Vendedores|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr><tr data-coverage-row="REQ|CY1|Vendedores|1"><td><div class="coverage-vacancy">CADEREYTA<small>CY1 · Zona 4 · plaza 1</small><span class="coverage-kind requested">Solicitud activa</span></div></td><td><span class="coverage-role requested">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="REQ|CY1|Vendedores|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="REQ|CY1|Vendedores|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="REQ|CY1|Vendedores|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="REQ|CY1|Vendedores|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr></tbody></table></div></article><article class="coverage-zone"><div class="coverage-zone-head"><div class="coverage-zone-title">Zona 5<small>0 ingresos concretados · 2 oficiales abiertas · 3 solicitadas</small></div><div class="coverage-zone-count" style="color:var(--brand-red)">5 registros</div></div><div class="coverage-table-wrap"><table class="coverage-table"><thead><tr><th>Sucursal destino</th><th>Puesto exacto</th><th>Vía de cobertura</th><th>Excedente / origen</th><th>Candidato</th><th>Fecha programada</th><th>Resultado / estado</th></tr></thead><tbody><tr data-coverage-row="MT1|Almacen|1"><td><div class="coverage-vacancy">NUEVO REPUEBLO<small>MT1 · Zona 5 · plaza 1</small><span class="coverage-kind official">Vacante oficial</span></div></td><td><span class="coverage-role ">Almacenistas</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="MT1|Almacen|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="MT1|Almacen|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="MT1|Almacen|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="MT1|Almacen|1" value="2026-08-28"></td><td><span class="coverage-result planned">● Programado</span></td></tr><tr data-coverage-row="MT2|Vendedores|1"><td><div class="coverage-vacancy">VENUSTIANO CARRANZA<small>MT2 · Zona 5 · plaza 1</small><span class="coverage-kind official">Vacante oficial</span></div></td><td><span class="coverage-role ">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="MT2|Vendedores|1"><option value="">Sin definir</option><option value="recruitment" selected="selected">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="MT2|Vendedores|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="MT2|Vendedores|1" value="entrevista reingreso" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="MT2|Vendedores|1" value="2026-09-02"></td><td><span class="coverage-result planned">● Programado</span></td></tr><tr data-coverage-row="REQ|MT1|Vendedores|1"><td><div class="coverage-vacancy">NUEVO REPUEBLO<small>MT1 · Zona 5 · plaza 1</small><span class="coverage-kind requested">Solicitud activa</span></div></td><td><span class="coverage-role requested">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="REQ|MT1|Vendedores|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="REQ|MT1|Vendedores|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="REQ|MT1|Vendedores|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="REQ|MT1|Vendedores|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr><tr data-coverage-row="REQ|MT2|Vendedores|1"><td><div class="coverage-vacancy">VENUSTIANO CARRANZA<small>MT2 · Zona 5 · plaza 1</small><span class="coverage-kind requested">Solicitud activa</span></div></td><td><span class="coverage-role requested">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="REQ|MT2|Vendedores|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="REQ|MT2|Vendedores|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="REQ|MT2|Vendedores|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="REQ|MT2|Vendedores|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr><tr data-coverage-row="REQ|MT3|Vendedores|1"><td><div class="coverage-vacancy">CHAPULTEPEC<small>MT3 · Zona 5 · plaza 1</small><span class="coverage-kind requested">Solicitud activa</span></div></td><td><span class="coverage-role requested">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="REQ|MT3|Vendedores|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="REQ|MT3|Vendedores|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="REQ|MT3|Vendedores|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="REQ|MT3|Vendedores|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr></tbody></table></div></article><article class="coverage-zone"><div class="coverage-zone-head"><div class="coverage-zone-title">Zona 6<small>0 ingresos concretados · 2 oficiales abiertas · 1 solicitadas</small></div><div class="coverage-zone-count" style="color:var(--brand-red)">3 registros</div></div><div class="coverage-table-wrap"><table class="coverage-table"><thead><tr><th>Sucursal destino</th><th>Puesto exacto</th><th>Vía de cobertura</th><th>Excedente / origen</th><th>Candidato</th><th>Fecha programada</th><th>Resultado / estado</th></tr></thead><tbody><tr data-coverage-row="ALL|Repartidor|1"><td><div class="coverage-vacancy">ALLENDE<small>ALL · Zona 6 · plaza 1</small><span class="coverage-kind official">Vacante oficial</span></div></td><td><span class="coverage-role ">Repartidores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="ALL|Repartidor|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="ALL|Repartidor|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="ALL|Repartidor|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="ALL|Repartidor|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr><tr data-coverage-row="CV1|Vendedores|1"><td><div class="coverage-vacancy">CIUDAD VICTORIA<small>CV1 · Zona 6 · plaza 1</small><span class="coverage-kind official">Vacante oficial</span></div></td><td><span class="coverage-role ">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="CV1|Vendedores|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="CV1|Vendedores|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="CV1|Vendedores|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="CV1|Vendedores|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr><tr data-coverage-row="REQ|CV2|Vendedores|1"><td><div class="coverage-vacancy">H. ILUSTRES<small>CV2 · Zona 6 · plaza 1</small><span class="coverage-kind requested">Solicitud activa</span></div></td><td><span class="coverage-role requested">Vendedores</span></td><td><select class="coverage-select" data-coverage-field="route" data-coverage-key="REQ|CV2|Vendedores|1"><option value="" selected="selected">Sin definir</option><option value="recruitment">Reclutamiento</option><option value="internal">Movimiento interno</option></select></td><td><select class="coverage-select coverage-source " data-coverage-field="source" data-coverage-key="REQ|CV2|Vendedores|1" disabled=""><option value="" selected="selected">Selecciona “Movimiento interno”</option></select></td><td><input class="coverage-input" data-coverage-field="candidate" data-coverage-key="REQ|CV2|Vendedores|1" value="" placeholder="Nombre del candidato / colaborador"></td><td><input class="coverage-date" type="date" data-coverage-field="date" data-coverage-key="REQ|CV2|Vendedores|1" value=""></td><td><span class="coverage-result pending">Pendiente de acción</span></td></tr></tbody></table></div></article></div>
-      <div class="coverage-note"><b>Lectura:</b> rojo = vacante oficial abierta; naranja = solicitud aún no oficial; verde = ingreso ya concretado. <b>Programado → ingresó</b> se confirma cuando existe un seguimiento previo y el alta real coincide por sucursal y puesto. Si el seguimiento previo no viajó en el archivo, el alta se conserva como <b>ingreso efectivo</b> sin inventar candidato o fecha. El menú de movimiento interno sigue proponiendo únicamente excedentes del mismo puesto dentro de la misma zona.</div>
-    </div>
-  </section>
+  
 
   <section id="sec-excess">
     <div class="sec-head">
@@ -1780,6 +1767,19 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
     </div>
   </section>
 
+  <section id="sec-network">
+    <div class="sec-head">
+      <div class="sec-head-l">
+        <div class="sec-num">08 — VISTA GENERAL DE LA RED</div>
+        <h2>Vacantes y excedentes en toda la red, no sólo Zona Interior 1-6</h2>
+        <div class="sec-desc">El resto de esta pestaña cubre Zona Interior 1-6 (31 sucursales). Esta vista suma <b>toda la red</b>: Frontera, Laredo, Zona Interior 1-6 y las zonas de Saltillo, Occidente, Querétaro y León (69 sucursales en total), con los cortes semanales del 31 Jul al 10 Sep.</div>
+      </div>
+    </div>
+    <div class="panel">
+      <div id="networkOverview"></div>
+    </div>
+  </section>
+
   
 
   <footer>
@@ -1789,7 +1789,7 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
     <b>Eficiencia de cobertura semanal</b> = (vacantes activas semana anterior − vacantes activas semana actual) / vacantes activas semana anterior × 100.<br>
     <b>Urgencias</b> (panel de zona) = vacantes en puestos de Gerente o Sup. Tienda, roles de liderazgo cuya ausencia afecta más la operación diaria.<br>
     MN1 (Montemorelos) se incorpora al corte 03 Sep con objetivo ya asignado, pero al ser sucursal de reciente apertura no cuenta con cortes anteriores, por lo que queda fuera de las comparativas históricas (tendencias, picos y semanas previas) hasta acumular suficiente historial.<br>
-    <b>Seguimiento TRANSFORMAR:</b> las solicitudes y acciones de cobertura se integran en 06B junto con los ingresos reales de la semana; los campos editables se guardan automáticamente en el navegador. El botón <b>Guardar HTML con datos</b> genera una copia que incrusta físicamente comentarios, solicitadas, candidatos, fechas, acciones y <b>movimientos intra-semana</b> para poder compartirlos con otra persona. La descarga PNG por zona captura estos campos para facilitar el seguimiento operativo y la comunicación.
+    <b>Seguimiento TRANSFORMAR:</b> las solicitudes se capturan en 03 — Vacantes por zona junto con los ingresos reales de la semana; los campos editables se guardan automáticamente en el navegador. El botón <b>Guardar HTML con datos</b> genera una copia que incrusta físicamente comentarios, solicitadas y <b>movimientos intra-semana</b> para poder compartirlos con otra persona. La descarga PNG por zona captura estos campos para facilitar el seguimiento operativo y la comunicación.
   </footer>
 
   </div>
@@ -1799,7 +1799,7 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
     <section id="sec-admin">
       <div class="sec-head">
         <div class="sec-head-l">
-          <div class="sec-num">08 — PUESTOS ADMINISTRATIVOS</div>
+          <div class="sec-num">09 — PUESTOS ADMINISTRATIVOS</div>
           <h2>Pipeline de reemplazo · Gerencias de Sucursal</h2>
           <div class="sec-desc">Seguimiento de los procesos de reemplazo de <b>Gerente de Sucursal</b> en curso. Esta es una lista independiente de la plantilla/vacantes por headcount de la pestaña Vacantes: aquí la posición puede seguir ocupada (el gerente actual sigue trabajando) mientras Recursos Humanos ya corre el proceso para reemplazarlo, por eso los números de esta vista no se suman a las vacantes oficiales.</div>
         </div>
@@ -1811,7 +1811,7 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
     <section id="sec-pipeline">
       <div class="sec-head">
         <div class="sec-head-l">
-          <div class="sec-num">09 — PIPELINE DE RECLUTAMIENTO</div>
+          <div class="sec-num">10 — PIPELINE DE RECLUTAMIENTO</div>
           <h2>Etapa actual de cada proceso</h2>
           <div class="sec-desc">Tablero de pipeline: cada proceso avanza de izquierda a derecha según su etapa real (apertura, entrevistas, candidato en turno, selección confirmada, carta oferta, cierre), calculada a partir de los campos del archivo — no es un estatus manual.</div>
         </div>
@@ -1883,7 +1883,7 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
     <section id="sec-process">
       <div class="sec-head">
         <div class="sec-head-l">
-          <div class="sec-num">10 — DETALLE POR PROCESO</div>
+          <div class="sec-num">11 — DETALLE POR PROCESO</div>
           <h2>Estatus de cada reemplazo</h2>
           <div class="sec-desc">Una tarjeta por proceso: a quién se reemplaza, líder y HRBP a cargo, entrevistas, candidato en turno y comentarios del reclutador. Ordenado por estatus (abiertos primero) y días desde apertura.</div>
         </div>
@@ -2651,8 +2651,10 @@ function matchActualIngressToPlans(actualRows){
 // Ingresos / coberturas confirmadas de la semana. Se mantienen separados del inventario de vacantes
 // para evitar interpretar un ingreso como una vacante adicional. Corte actual: 03 Sep → 10 Sep.
 const WEEKLY_INGRESS_LABEL = '03 → 10 Sep';
-// Sin coberturas confirmadas en el corte 10 Sep (v34): el archivo fuente llega idéntico al de 03 Sep.
-const WEEKLY_INGRESS = [];
+// MOD (Moderna, Zona 2): la nota "ingresa 11/09" se cerró en el corte 10 Sep — repartidor confirmado.
+const WEEKLY_INGRESS = [
+  {zona:'Zona 2', code:'MOD', puesto:'Repartidor', n:1}
+];
 function allWeeklyIngressRows(){ return WEEKLY_INGRESS.concat(movementLogAltaRows()); }
 function weeklyIngressRowsForCodes(codes){
   const set = new Set(codes||[]);
@@ -2882,6 +2884,141 @@ const HC_AUT_CHANGES = [
 ];
 // Regla de conversión provista por el negocio: cada unidad de HC adicional debe reflejarse en venta.
 const HC_SALES_PER_HEAD = 200000;
+
+// ================= VISTA GENERAL DE LA RED (TODAS LAS ZONAS) =================
+// A diferencia del resto de esta pestaña (Zona Interior 1-6, 31 sucursales), esta serie cubre
+// la RED COMPLETA: Frontera, Laredo, Zona Interior 1-6, y las zonas de Saltillo, Occidente,
+// Querétaro y León. Calculado sucursal por sucursal (69 sucursales/hojas) desde las pestañas
+// semanales 31 JUL a 10 Sep del archivo fuente (v38), sumando vacantes oficiales (real < objetivo)
+// y excedentes (real > objetivo) puesto por puesto para no perder plazas por cancelación de signos
+// al agregar. No incluye Mayoreo, CEDIS, Corporativo ni Centros de Servicio.
+const NETWORK_HISTORY = [
+  {label:"31 Jul", real:921, aut:874, vac:50, exc:97},
+  {label:"06 Ago", real:922, aut:874, vac:41, exc:89},
+  {label:"12 Ago", real:928, aut:873, vac:37, exc:92},
+  {label:"20 Ago", real:927, aut:874, vac:39, exc:92},
+  {label:"27 Ago", real:933, aut:882, vac:33, exc:84},
+  {label:"03 Sep", real:924, aut:890, vac:39, exc:73},
+  {label:"10 Sep", real:916, aut:893, vac:37, exc:60}
+];
+// Corte más reciente (10 Sep), desglosado por zona/región. "n" = sucursales que integran el grupo.
+const NETWORK_BREAKDOWN = [
+  {zona:"Frontera",          n:24, real:390, aut:371, vac:19, exc:38},
+  {zona:"Laredo",            n:6,  real:102, aut:98,  vac:4,  exc:8},
+  {zona:"Zona 1",            n:5,  real:60,  aut:64,  vac:4,  exc:0},
+  {zona:"Zona 2",            n:6,  real:72,  aut:73,  vac:1,  exc:0},
+  {zona:"Zona 3",            n:6,  real:65,  aut:66,  vac:2,  exc:1},
+  {zona:"Zona 4",            n:6,  real:71,  aut:72,  vac:1,  exc:0},
+  {zona:"Zona 5",            n:3,  real:27,  aut:28,  vac:2,  exc:1},
+  {zona:"Zona 6",            n:5,  real:53,  aut:53,  vac:0,  exc:0},
+  {zona:"Saltillo (Coah.)",  n:5,  real:47,  aut:44,  vac:1,  exc:4},
+  {zona:"Occidente",         n:1,  real:11,  aut:8,   vac:0,  exc:3},
+  {zona:"Querétaro",         n:1,  real:8,   aut:8,   vac:2,  exc:2},
+  {zona:"León",              n:1,  real:10,  aut:8,   vac:1,  exc:3}
+];
+// Mismo corte (10 Sep), a nivel sucursal individual (69 filas) para el filtro "por sucursal".
+const NETWORK_BRANCHES = [{"zona": "Frontera · Río Bravo", "region": "Frontera", "code": "RIO", "name": "RIO", "real": 31, "aut": 30, "vac": 1, "exc": 2}, {"zona": "Frontera · Río Bravo", "region": "Frontera", "code": "RB2", "name": "RB2", "real": 20, "aut": 19, "vac": 1, "exc": 2}, {"zona": "Frontera · Río Bravo", "region": "Frontera", "code": "RB3", "name": "RB3", "real": 9, "aut": 8, "vac": 0, "exc": 1}, {"zona": "Frontera · Reynosa 1", "region": "Frontera", "code": "JUA", "name": "JUA", "real": 24, "aut": 24, "vac": 1, "exc": 1}, {"zona": "Frontera · Reynosa 1", "region": "Frontera", "code": "LIB", "name": "LIB", "real": 19, "aut": 19, "vac": 1, "exc": 1}, {"zona": "Frontera · Reynosa 1", "region": "Frontera", "code": "RYJ", "name": "RYJ", "real": 19, "aut": 19, "vac": 2, "exc": 2}, {"zona": "Frontera · Reynosa 1", "region": "Frontera", "code": "RYA", "name": "RYA", "real": 17, "aut": 17, "vac": 1, "exc": 1}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "REY", "name": "REY", "real": 18, "aut": 17, "vac": 0, "exc": 1}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYM", "name": "RYM", "real": 8, "aut": 8, "vac": 0, "exc": 0}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYG", "name": "RYG", "real": 21, "aut": 21, "vac": 1, "exc": 1}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYH", "name": "RYH", "real": 15, "aut": 14, "vac": 0, "exc": 1}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYR", "name": "RYR", "real": 12, "aut": 14, "vac": 2, "exc": 0}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "ALE", "name": "ALE", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "REM", "name": "REM", "real": 3, "aut": 3, "vac": 2, "exc": 2}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYP", "name": "RYP", "real": 10, "aut": 3, "vac": 0, "exc": 7}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM1", "name": "MM1", "real": 20, "aut": 20, "vac": 1, "exc": 1}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM2", "name": "MM2", "real": 23, "aut": 23, "vac": 3, "exc": 3}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM3", "name": "MM3", "real": 12, "aut": 11, "vac": 1, "exc": 2}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM4", "name": "MM4", "real": 23, "aut": 23, "vac": 1, "exc": 1}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM5", "name": "MM5", "real": 22, "aut": 22, "vac": 1, "exc": 1}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM6", "name": "MM6", "real": 14, "aut": 13, "vac": 0, "exc": 1}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM7", "name": "MM7", "real": 12, "aut": 9, "vac": 0, "exc": 3}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM8", "name": "MM8", "real": 11, "aut": 9, "vac": 0, "exc": 2}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "VH1", "name": "VH1", "real": 13, "aut": 11, "vac": 0, "exc": 2}, {"zona": "Laredo", "region": "Laredo", "code": "LAR", "name": "LAR", "real": 17, "aut": 16, "vac": 1, "exc": 2}, {"zona": "Laredo", "region": "Laredo", "code": "HIP", "name": "HIP", "real": 22, "aut": 23, "vac": 2, "exc": 1}, {"zona": "Laredo", "region": "Laredo", "code": "NL 1 REFORMA", "name": "NUEVO LAREDO REFORMA", "real": 18, "aut": 18, "vac": 1, "exc": 1}, {"zona": "Laredo", "region": "Laredo", "code": "NL2 REVOLUCION", "name": "NUEVO LAREDO REVOLUCION", "real": 19, "aut": 16, "vac": 0, "exc": 3}, {"zona": "Laredo", "region": "Laredo", "code": "NL 3 CANSECO", "name": "NUEVO LAREDO CANSECO", "real": 17, "aut": 16, "vac": 0, "exc": 1}, {"zona": "Laredo", "region": "Laredo", "code": "NLM", "name": "NLM", "real": 9, "aut": 9, "vac": 0, "exc": 0}, {"zona": "Zona 1", "region": "Zona 1", "code": "AP1", "name": "CONCORDIA", "real": 13, "aut": 13, "vac": 0, "exc": 0}, {"zona": "Zona 1", "region": "Zona 1", "code": "AP2", "name": "PUEBLO NUEVO", "real": 11, "aut": 12, "vac": 1, "exc": 0}, {"zona": "Zona 1", "region": "Zona 1", "code": "AP3", "name": "APODACA CENTRO", "real": 13, "aut": 15, "vac": 2, "exc": 0}, {"zona": "Zona 1", "region": "Zona 1", "code": "AP4", "name": "HUINALA", "real": 10, "aut": 11, "vac": 1, "exc": 0}, {"zona": "Zona 1", "region": "Zona 1", "code": "HSM", "name": "HACIENDA SAN MIGUEL", "real": 13, "aut": 13, "vac": 0, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "MOD", "name": "MODERNA", "real": 16, "aut": 16, "vac": 0, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "ESC", "name": "ESCOBEDO", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "SN1", "name": "SANTO DOMINGO", "real": 8, "aut": 8, "vac": 0, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "SN2", "name": "DIEGO DIAZ DE BERLANGA", "real": 10, "aut": 10, "vac": 0, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "SN3", "name": "UNIVERSIDAD", "real": 10, "aut": 11, "vac": 1, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "ZU1", "name": "ZUAZUA", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Zona 3", "region": "Zona 3", "code": "MT4", "name": "SOLIDARIDAD", "real": 10, "aut": 10, "vac": 0, "exc": 0}, {"zona": "Zona 3", "region": "Zona 3", "code": "PEN", "name": "PENITENCIARIA", "real": 17, "aut": 18, "vac": 1, "exc": 0}, {"zona": "Zona 3", "region": "Zona 3", "code": "STA", "name": "SANTA CATARINA", "real": 10, "aut": 10, "vac": 0, "exc": 0}, {"zona": "Zona 3", "region": "Zona 3", "code": "GA1", "name": "GARCIA", "real": 10, "aut": 9, "vac": 0, "exc": 1}, {"zona": "Zona 3", "region": "Zona 3", "code": "ES2", "name": "ALIANZA", "real": 11, "aut": 11, "vac": 0, "exc": 0}, {"zona": "Zona 3", "region": "Zona 3", "code": "MT5", "name": "LOMA LINDA", "real": 7, "aut": 8, "vac": 1, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "COL", "name": "COLIBRI", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "GP1", "name": "ISRAEL CAVAZOS", "real": 12, "aut": 12, "vac": 0, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "GP2", "name": "RUIZ CORTINES", "real": 11, "aut": 12, "vac": 1, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "GP3", "name": "ELOY CAVAZOS", "real": 8, "aut": 8, "vac": 0, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "JU1", "name": "VILLA JUAREZ", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "CY1", "name": "CADEREYTA", "real": 12, "aut": 12, "vac": 0, "exc": 0}, {"zona": "Zona 5", "region": "Zona 5", "code": "MT1", "name": "NUEVO REPUEBLO", "real": 9, "aut": 9, "vac": 1, "exc": 1}, {"zona": "Zona 5", "region": "Zona 5", "code": "MT2", "name": "VENUSTIANO CARRANZA", "real": 9, "aut": 10, "vac": 1, "exc": 0}, {"zona": "Zona 5", "region": "Zona 5", "code": "MT3", "name": "CHAPULTEPEC", "real": 9, "aut": 9, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "ALL", "name": "ALLENDE", "real": 10, "aut": 10, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "LI1", "name": "LINARES", "real": 12, "aut": 12, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "CV1", "name": "CIUDAD VICTORIA", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "CV2", "name": "H. ILUSTRES", "real": 8, "aut": 8, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "MN1", "name": "MONTEMORELOS", "real": 9, "aut": 9, "vac": 0, "exc": 0}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA1", "name": "SA1", "real": 9, "aut": 8, "vac": 0, "exc": 1}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA2", "name": "SA2", "real": 9, "aut": 8, "vac": 0, "exc": 1}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA3", "name": "SA3", "real": 9, "aut": 8, "vac": 0, "exc": 1}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA4", "name": "SA4", "real": 13, "aut": 12, "vac": 0, "exc": 1}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA5", "name": "SA5", "real": 7, "aut": 8, "vac": 1, "exc": 0}, {"zona": "Occidente", "region": "Occidente", "code": "GLM", "name": "GLM", "real": 11, "aut": 8, "vac": 0, "exc": 3}, {"zona": "Querétaro", "region": "Querétaro", "code": "QT1", "name": "QT1", "real": 8, "aut": 8, "vac": 2, "exc": 2}, {"zona": "León", "region": "León", "code": "LN1", "name": "LN1", "real": 10, "aut": 8, "vac": 1, "exc": 3}];
+let NETWORK_EXPANDED = new Set();
+let NETWORK_SEARCH = '';
+function renderNetworkOverview(){
+  const el=document.getElementById('networkOverview');
+  if(!el) return;
+  const s=NETWORK_HISTORY, first=s[0], last=s[s.length-1];
+  const fmtSign=v=>(v>0?'+':'')+v;
+  const dVac=last.vac-first.vac, dExc=last.exc-first.exc, dReal=last.real-first.real, dAut=last.aut-first.aut;
+
+  const kpis=`<div class="kpis" style="grid-template-columns:repeat(4,1fr);margin-bottom:18px;">
+    <div class="kpi" style="--kpi-accent:var(--brand-red)"><div class="label">Vacantes oficiales · red completa</div><div class="value">${last.vac}</div><div class="sub">${fmtSign(dVac)} vs. 31 Jul (${first.vac})</div></div>
+    <div class="kpi" style="--kpi-accent:var(--brand-blue-2)"><div class="label">Excedentes · red completa</div><div class="value">${last.exc}</div><div class="sub">${fmtSign(dExc)} vs. 31 Jul (${first.exc})</div></div>
+    <div class="kpi" style="--kpi-accent:var(--ink-soft)"><div class="label">HC real · red completa</div><div class="value">${last.real}</div><div class="sub">${fmtSign(dReal)} vs. 31 Jul (${first.real})</div></div>
+    <div class="kpi" style="--kpi-accent:var(--brand-blue)"><div class="label">HC aprobado · red completa</div><div class="value">${last.aut}</div><div class="sub">${fmtSign(dAut)} vs. 31 Jul (${first.aut})</div></div>
+  </div>`;
+
+  const W=760,H=190,padL=34,padR=18,padT=22,padB=28;
+  const vals=s.flatMap(x=>[x.vac,x.exc]);
+  const maxV=Math.max(...vals), minV=Math.min(0,...vals);
+  const lo=Math.floor(minV/10)*10, hi=Math.ceil((maxV+8)/10)*10;
+  const xStep=(W-padL-padR)/(s.length-1);
+  const y=v=>padT+(hi-v)/(hi-lo)*(H-padT-padB);
+  const xs=i=>padL+i*xStep;
+  const mkLine=(key,color,dash)=>{const pts=s.map((d,i)=>`${xs(i)},${y(d[key])}`).join(' ');return `<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"${dash?` stroke-dasharray="${dash}"`:''}/>`;};
+  const mkDots=(key,color)=>s.map((d,i)=>`<circle cx="${xs(i)}" cy="${y(d[key])}" r="5" fill="${color}" stroke="#fff" stroke-width="1.5"/><text x="${xs(i)}" y="${y(d[key])-11}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="800" fill="${color}">${d[key]}</text>`).join('');
+  const grid=[0,.33,.66,1].map(t=>{const yy=padT+t*(H-padT-padB);return `<line x1="${padL}" y1="${yy}" x2="${W-padR}" y2="${yy}" stroke="var(--line)" stroke-dasharray="3 5"/>`;}).join('');
+  const xlabels=s.map((d,i)=>`<text x="${xs(i)}" y="${H-8}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-faint)">${d.label}</text>`).join('');
+  const chart=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Vacantes oficiales y excedentes, red completa" style="width:100%;height:auto;display:block;overflow:visible;">${grid}${mkLine('exc','var(--brand-blue-2)','5 4')}${mkLine('vac','var(--brand-red)')}${mkDots('exc','var(--brand-blue-2)')}${mkDots('vac','var(--brand-red)')}${xlabels}</svg>`;
+
+  const zi16 = NETWORK_BREAKDOWN.slice(2,8).reduce((a,z)=>({vac:a.vac+z.vac, exc:a.exc+z.exc}), {vac:0,exc:0});
+
+  const q = NETWORK_SEARCH.trim().toLowerCase();
+  const branchMatches = b => !q || b.name.toLowerCase().includes(q) || b.code.toLowerCase().includes(q) || b.zona.toLowerCase().includes(q);
+  const zoneMatches = z => !q || z.zona.toLowerCase().includes(q) || NETWORK_BRANCHES.some(b=>b.region===z.zona && branchMatches(b));
+
+  const zonesFiltered = NETWORK_BREAKDOWN.filter(zoneMatches).sort((a,b)=>(b.vac+b.exc)-(a.vac+a.exc));
+  let bodyRows;
+  if(!zonesFiltered.length){
+    bodyRows = `<tr><td colspan="5" style="text-align:center;color:var(--ink-faint);padding:18px;">Sin zonas o sucursales que coincidan con “${escapeHtml(NETWORK_SEARCH)}”.</td></tr>`;
+  } else {
+    bodyRows = zonesFiltered.map(z=>{
+      const expanded = NETWORK_EXPANDED.has(z.zona) || !!q;
+      const branches = NETWORK_BRANCHES.filter(b=>b.region===z.zona && branchMatches(b)).sort((a,b)=>(b.vac+b.exc)-(a.vac+a.exc));
+      const zoneRow = `<tr class="zone-row ${expanded?'expanded':''}" data-net-zone="${escapeHtml(z.zona)}">
+          <td><div class="zone-row-name"><span class="zone-caret"></span>${escapeHtml(z.zona)}</div><div class="zone-row-sub">${z.n} sucursal${z.n===1?'':'es'}</div></td>
+          <td class="num">${z.real}</td>
+          <td class="num">${z.aut}</td>
+          <td class="num" style="color:var(--brand-red);font-weight:800">${z.vac||'0'}</td>
+          <td class="num" style="color:var(--brand-blue-2);font-weight:800">${z.exc||'0'}</td>
+        </tr>`;
+      const branchRows = branches.map(b=>{
+        const cluster = b.zona!==b.region ? b.zona.split('·')[1].trim() : '';
+        return `<tr class="branch-row ${expanded?'show':''}">
+          <td><div class="branch-name">${escapeHtml(b.name)}${cluster?` <small style="font-weight:600;color:var(--ink-faint);">· ${escapeHtml(cluster)}</small>`:''}</div><div class="branch-sub">${escapeHtml(b.code)}</div></td>
+          <td class="num">${b.real}</td>
+          <td class="num">${b.aut}</td>
+          <td class="num" style="color:var(--brand-red);font-weight:800">${b.vac||'0'}</td>
+          <td class="num" style="color:var(--brand-blue-2);font-weight:800">${b.exc||'0'}</td>
+        </tr>`;
+      }).join('');
+      return zoneRow+branchRows;
+    }).join('');
+  }
+  const totalRow = q ? '' : `<tr style="border-top:2px solid var(--ink)"><td class="rk-name"><b>Total red</b><small>69 sucursales</small></td><td class="num"><b>${last.real}</b></td><td class="num"><b>${last.aut}</b></td><td class="num" style="color:var(--brand-red)"><b>${last.vac}</b></td><td class="num" style="color:var(--brand-blue-2)"><b>${last.exc}</b></td></tr>`;
+
+  el.innerHTML = `${kpis}
+    <div class="official-note" style="margin-bottom:16px;">Zona Interior 1-6 (la que cubre el resto de esta pestaña) hoy pesa <b>${zi16.vac} de ${last.vac}</b> vacantes oficiales y sólo <b>${zi16.exc} de ${last.exc}</b> excedentes de toda la red. La mayor parte de lo pendiente está fuera de su alcance: <b>Frontera</b> concentra el mayor excedente (38) y el mayor número de vacantes (19); le sigue <b>Laredo</b> y las zonas de <b>Saltillo, Occidente, Querétaro y León</b>.</div>
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.85fr);gap:20px;align-items:start;">
+      <div>
+        <div class="controls" style="margin-bottom:10px;">
+          <input class="search-box" id="networkSearchBox" placeholder="Buscar zona o sucursal…" value="${escapeHtml(NETWORK_SEARCH)}" style="flex:1;min-width:180px;">
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="rank-table">
+            <thead><tr><th>Zona / región <small style="font-weight:600;text-transform:none;">(clic para desglosar)</small></th><th class="num">HC real</th><th class="num">HC aprobado</th><th class="num">Vacantes</th><th class="num">Excedentes</th></tr></thead>
+            <tbody>${bodyRows}${totalRow}</tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        ${chart}
+        <div class="hc-legend" style="color:var(--ink-faint);margin-top:6px;"><span><i style="background:var(--brand-red)"></i>Vacantes oficiales</span><span><i style="background:var(--brand-blue-2)"></i>Excedentes</span></div>
+      </div>
+    </div>
+    <div class="official-note" style="margin-top:16px;"><b>Cómo leer esto:</b> se calcula sucursal por sucursal (no por totales de la hoja, para no perder plazas cuando un exceso en un puesto cancela una vacante en otro dentro del mismo grupo). Fuente: pestañas semanales 31 JUL–10 Sep del archivo fuente. No incluye Mayoreo, CEDIS, Corporativo ni Centros de Servicio.</div>`;
+
+  el.querySelectorAll('tr.zone-row').forEach(tr=>{
+    tr.addEventListener('click', ()=>{
+      const zona = tr.dataset.netZone;
+      if(NETWORK_EXPANDED.has(zona)) NETWORK_EXPANDED.delete(zona); else NETWORK_EXPANDED.add(zona);
+      renderNetworkOverview();
+    });
+  });
+  const searchBox = document.getElementById('networkSearchBox');
+  if(searchBox){
+    searchBox.addEventListener('input', (e)=>{ NETWORK_SEARCH = e.target.value; renderNetworkOverview(); });
+    searchBox.focus();
+    searchBox.setSelectionRange(searchBox.value.length, searchBox.value.length);
+  }
+}
+
 
 // Compromiso de venta adicional capturado por sucursal (en miles de pesos). Se guarda localmente.
 const SALES_COMMIT_STORE_KEY = 'jomar_transformar_sales_commitments_v1';
@@ -4334,6 +4471,7 @@ function renderAll(){
   renderTable();
   renderCoverageActions();
   renderStrategicMobility();
+  renderNetworkOverview();
 }
 renderZoneChips();
 renderZonePanel();
@@ -4578,11 +4716,11 @@ const SECTION_EXPORTS = [
   {id:'sec-trend',label:'02_Tendencia_Vacantes'},
   {id:'commitmentsSection',label:'03_Vacantes_por_Zona'},
   {id:'sec-detail',label:'06_Detalle_por_Sucursal'},
-  {id:'coverageActionsSection',label:'06B_Acciones_Cobertura'},
   {id:'sec-excess',label:'07_Excedentes'},
-  {id:'sec-admin',label:'08_Puestos_Administrativos'},
-  {id:'sec-pipeline',label:'09_Pipeline_Reclutamiento'},
-  {id:'sec-process',label:'10_Detalle_por_Proceso'}
+  {id:'sec-network',label:'08_Vista_General_Red'},
+  {id:'sec-admin',label:'09_Puestos_Administrativos'},
+  {id:'sec-pipeline',label:'10_Pipeline_Reclutamiento'},
+  {id:'sec-process',label:'11_Detalle_por_Proceso'}
 ];
 function safeFilePart(s){return String(s||'seccion').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9_-]+/g,'_').replace(/^_+|_+$/g,'');}
 function syncCaptureControls(source,clone){
@@ -4611,6 +4749,100 @@ function inlineCaptureComputedOverflow(clone){
     }
   });
 }
+// Primera aparición histórica (racha continua hasta el corte 10 Sep) de cada vacante oficial hoy
+// abierta en Zona Interior 1-6, calculada semana a semana (31 Jul-10 Sep) desde el archivo fuente.
+// Clave: "CODIGO|Puesto". Las solicitudes no tienen histórico semanal (son escenario editable, sin fecha).
+const VAC_FIRST_SEEN = {"AP3|Vendedores": {"first_label": "03 Sep", "first_date": "2026-09-03", "weeks_open": 2, "since_start": false}, "SN3|Repartidor": {"first_label": "20 Ago", "first_date": "2026-08-20", "weeks_open": 4, "since_start": false}, "PEN|Almacen": {"first_label": "03 Sep", "first_date": "2026-09-03", "weeks_open": 2, "since_start": false}, "GP2|Cajeras": {"first_label": "12 Ago", "first_date": "2026-08-12", "weeks_open": 5, "since_start": false}, "MT1|Almacen": {"first_label": "03 Sep", "first_date": "2026-09-03", "weeks_open": 2, "since_start": false}, "MT2|Vendedores": {"first_label": "31 Jul", "first_date": "2026-07-31", "weeks_open": 7, "since_start": true}, "AP2|Repartidor": {"first_label": "10 Sep", "first_date": "2026-09-10", "weeks_open": 1, "since_start": false}, "AP3|Cajeras": {"first_label": "03 Sep", "first_date": "2026-09-03", "weeks_open": 2, "since_start": false}, "AP4|Desarrollador": {"first_label": "03 Sep", "first_date": "2026-09-03", "weeks_open": 2, "since_start": false}, "MT5|Almacen": {"first_label": "10 Sep", "first_date": "2026-09-10", "weeks_open": 1, "since_start": false}};
+const XLSX_CDNS=[
+  'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js',
+  'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js',
+  'https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js'
+];
+let xlsxEnginePromise=null;
+function loadXlsxScript(src,timeoutMs=7000){
+  return new Promise((resolve,reject)=>{
+    const existing=[...document.scripts].find(s=>s.src===src);
+    if(existing && window.XLSX) return resolve(true);
+    const s=existing||document.createElement('script');
+    let done=false;
+    const finish=(ok,err)=>{if(done)return;done=true;clearTimeout(timer);ok?resolve(true):reject(err||new Error('No se pudo cargar '+src));};
+    const timer=setTimeout(()=>finish(false,new Error('Tiempo de espera agotado')),timeoutMs);
+    s.onload=()=>finish(!!window.XLSX,new Error('La librería no quedó disponible'));
+    s.onerror=()=>finish(false,new Error('Error al cargar '+src));
+    if(!existing){s.src=src;s.async=true;s.crossOrigin='anonymous';document.head.appendChild(s);}
+  });
+}
+async function ensureXlsxEngine(){
+  if(window.XLSX) return window.XLSX;
+  if(xlsxEnginePromise) return xlsxEnginePromise;
+  xlsxEnginePromise=(async()=>{
+    for(const src of XLSX_CDNS){
+      try{await loadXlsxScript(src);if(window.XLSX)return window.XLSX;}catch(e){}
+    }
+    throw new Error('No fue posible cargar el motor de exportación.');
+  })();
+  try{return await xlsxEnginePromise;}catch(e){xlsxEnginePromise=null;throw e;}
+}
+function fmtFechaMX(iso){
+  if(!iso) return '';
+  const [y,m,d]=iso.split('-');
+  return `${d}/${m}/${y}`;
+}
+function vacantesSolicitudesExportRows(){
+  const rows=[];
+  zoneNames.forEach(z=>codesForZone(z).forEach(code=>{
+    (VAC_OVERRIDE[code]||[]).forEach(entry=>{
+      const n=Math.max(0,Number(entry.n)||0);
+      const pos=coverageCanonicalRole(entry.pos);
+      const info=VAC_FIRST_SEEN[`${code}|${pos}`];
+      for(let slot=1; slot<=n; slot++){
+        rows.push({
+          'Zona': z,
+          'Sucursal': branchName[code]||code,
+          'Código': code,
+          'Puesto': fullPositionName(pos),
+          'Tipo': 'Vacante oficial',
+          'Primera fecha en histórico (31 Jul–10 Sep)': info? fmtFechaMX(info.first_date) : 'Fuera de rango histórico',
+          'Semanas abierta seguidas': info? info.weeks_open : ''
+        });
+      }
+    });
+    requestedEntriesForBranch(code).forEach(entry=>{
+      const n=Math.max(0,Number(entry.n)||0);
+      for(let slot=1; slot<=n; slot++){
+        rows.push({
+          'Zona': z,
+          'Sucursal': branchName[code]||code,
+          'Código': code,
+          'Puesto': entry.pos,
+          'Tipo': 'Solicitud (no oficial)',
+          'Primera fecha en histórico (31 Jul–10 Sep)': 'Sin histórico — no se rastrea por semana',
+          'Semanas abierta seguidas': ''
+        });
+      }
+    });
+  }));
+  return rows;
+}
+async function exportVacantesSolicitudesExcel(button){
+  const original=button?button.textContent:'';
+  if(button){button.disabled=true;button.textContent='Generando Excel…';}
+  try{
+    const XLSX=await ensureXlsxEngine();
+    const rows=vacantesSolicitudesExportRows();
+    const ws=XLSX.utils.json_to_sheet(rows);
+    ws['!cols']=[{wch:9},{wch:22},{wch:9},{wch:16},{wch:20},{wch:34},{wch:16}];
+    const wb=XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb,ws,'Vacantes y solicitudes');
+    XLSX.writeFile(wb,`Vacantes_Solicitudes_ZonaInterior_${weeks[weeks.length-1].replace(/\s+/g,'')}.xlsx`);
+  }catch(err){
+    console.error(err);
+    alert('No fue posible generar el Excel en este navegador. Verifica tu conexión e inténtalo de nuevo.');
+  }finally{
+    if(button){button.disabled=false;button.textContent=original||'⬇ Descargar Excel';}
+  }
+}
+
 const SECTION_CAPTURE_CDNS=[
   'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js',
   'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js',
@@ -4761,6 +4993,8 @@ function jumpToDashboardSection(view,targetId,btn){
 }
 document.querySelectorAll('.quick-nav-btn[data-jump-target]').forEach(btn=>btn.addEventListener('click',()=>jumpToDashboardSection(btn.dataset.jumpView,btn.dataset.jumpTarget,btn)));
 initSectionExports();
+const exportVacExcelBtn=document.getElementById('exportVacExcelBtn');
+if(exportVacExcelBtn) exportVacExcelBtn.addEventListener('click',()=>exportVacantesSolicitudesExcel(exportVacExcelBtn));
 
 function switchView(view){
   document.getElementById('view-vacantes').classList.toggle('active', view==='vacantes');
