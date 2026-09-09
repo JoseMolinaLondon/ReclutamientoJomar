@@ -920,6 +920,8 @@ function portableLoadState(storageKey,field){
 .hc-copy{font-size:12px;line-height:1.55;color:rgba(255,255,255,.86);max-width:820px;margin-top:8px}
 .hc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
 .hc-stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 12px}
+.hc-stat.mn1{background:rgba(0,0,0,.14);border:1px dashed rgba(255,255,255,.4)}
+.hc-stat.mn1 .hc-stat-label{color:rgba(255,255,255,.85)}
 .hc-stat-label{font:700 8.8px/1.3 'IBM Plex Mono',monospace;color:rgba(255,255,255,.68);text-transform:uppercase}
 .hc-stat-val{font:800 24px/1.05 'Barlow Condensed',Arial,sans-serif;margin-top:4px}
 .hc-stat-sub{font:600 8.8px/1.3 'IBM Plex Mono',monospace;color:rgba(255,255,255,.58);margin-top:3px}
@@ -1116,7 +1118,6 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
         <button class="quick-nav-btn" data-jump-view="vacantes" data-jump-target="sec-detail"><b>06 · Detalle por sucursal</b><span>Plantilla, vacantes, excedentes y reclutamiento semanal.</span></button>
         <button class="quick-nav-btn" data-jump-view="vacantes" data-jump-target="coverageActionsSection"><b>06B · Acciones de cobertura</b><span>Candidato, fecha y vía de cobertura por vacante.</span></button>
         <button class="quick-nav-btn" data-jump-view="vacantes" data-jump-target="sec-excess"><b>07 · Excedentes</b><span>Sucursales, cantidades y puestos excedentes.</span></button>
-        <button class="quick-nav-btn" data-jump-view="vacantes" data-jump-target="strategicMobilitySection"><b>08 · Movilidad potencial</b><span>Matches del mismo puesto entre vacante y excedente.</span></button>
       </div>
     </div>
     <div class="quick-index-group">
@@ -1383,7 +1384,7 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
       <div class="controls">
         <input class="search-box" id="searchBox" placeholder="Buscar sucursal…" value="">
       </div>
-      <div id="positionSummary" class="position-summary"><div class="position-card"><div class="position-title">1 · Vacantes oficiales</div><div class="position-list"><span class="position-pill ">Repartidores · 5</span><span class="position-pill ">Cajeras · 2</span><span class="position-pill ">Vendedores · 2</span><span class="position-pill ">Almacenistas · 1</span></div></div><div class="position-card req"><div class="position-title">2 · Vacantes solicitadas (editable)</div><div class="position-list"><span class="position-pill req">Vendedores · 13</span><span class="position-pill req">Almacenistas · 1</span></div></div><div class="position-card exc"><div class="position-title">3 · Excedentes</div><div class="position-list"><span class="position-pill exc">Repartidores · 8</span><span class="position-pill exc">Cajeras · 6</span><span class="position-pill exc">Almacenistas · 5</span><span class="position-pill exc">Vendedores · 4</span><span class="position-pill exc">Supervisores de tienda · 2</span><span class="position-pill exc">Desarrolladores · 1</span></div></div></div>
+      <div id="positionSummary" class="position-summary"><div class="position-card"><div class="position-title">1 · Vacantes oficiales</div><div class="position-list"><span class="position-pill ">Almacenistas · 3</span><span class="position-pill ">Repartidores · 2</span><span class="position-pill ">Vendedores · 2</span><span class="position-pill ">Cajeras · 2</span><span class="position-pill ">Desarrolladores · 1</span></div></div><div class="position-card req"><div class="position-title">2 · Vacantes solicitadas (editable)</div><div class="position-list"><span class="position-pill req">Vendedores · 13</span><span class="position-pill req">Almacenistas · 1</span></div></div><div class="position-card exc"><div class="position-title">3 · Excedentes</div><div class="position-list"><span class="position-pill exc">Supervisores de tienda · 2</span></div></div></div>
       <div id="weeklyIngressSummary" class="weekly-ingress"><div class="weekly-ingress-kpi"><span class="weekly-ingress-icon">✓</span><div><b>0</b><span>Ingresos confirmados · 27 → 03 Sep</span></div></div><div class="weekly-ingress-list"><span class="weekly-ingress-empty">Sin ingresos / coberturas confirmadas en la zona seleccionada durante esta semana.</span></div><div class="weekly-ingress-note"><b>Cobertura semanal</b><br>Ubica rápidamente dónde ingresó personal y qué puesto fue cubierto. No altera el orden de vacantes oficiales, solicitadas y excedentes.</div></div>
       <div style="overflow-x:auto;">
         <table class="detail-compact-table">
@@ -1405,32 +1406,14 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
           </thead>
           <tbody id="branchBody"><tr class="zone-row " data-zone="Zona 1">
       <td><div class="zone-row-name"><span class="zone-caret"></span>Zona 1</div><div class="zone-row-sub">5 sucursales</div></td>
+      <td class="num">64</td>
       <td class="num">60</td>
-      <td class="num">62</td>
-      <td class="num" style="color:var(--brand-red);font-weight:800">-1</td>
+      <td class="num" style="color:var(--brand-red);font-weight:800">-4</td>
       <td class="num"><span class="request-badge pending">0</span></td>
-      <td class="num" style="color:var(--brand-blue-2);font-weight:800">+3</td>
-      <td class=""><div class="imbalance-groups"><div class="imbalance-group"><span class="imbalance-group-label" style="color:var(--brand-red)">Vacantes oficiales</span><div class="pos-chips-cell"><span class="pos-chip vacancy-chip">Repartidores -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Excedentes</span><div class="pos-chips-cell"><span class="pos-chip excess-chip">Almacenistas +1</span><span class="pos-chip excess-chip">Cajeras +1</span><span class="pos-chip excess-chip">Repartidores +1</span></div></div></div></td>
+      <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+      <td class=""><div class="imbalance-groups"><div class="imbalance-group"><span class="imbalance-group-label" style="color:var(--brand-red)">Vacantes oficiales</span><div class="pos-chips-cell"><span class="pos-chip vacancy-chip">Vendedores -1</span><span class="pos-chip vacancy-chip">Desarrolladores -1</span><span class="pos-chip vacancy-chip">Cajeras -1</span><span class="pos-chip vacancy-chip">Repartidores -1</span></div></div></div></td>
       <td class=""><div class="zone-cell-title recruitment">Reclutamiento semanal</div><span class="recruitment-empty">Sin ingresos</span></td>
     </tr><tr class="branch-row " data-zone="Zona 1">
-    <td><div class="branch-name">HUINALA</div><div class="branch-sub">AP4</div></td>
-    <td class="num">9</td>
-    <td class="num">11</td>
-    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
-    <td class="num"><span class="request-badge pending">0</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+2</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip excess-chip">Cajeras +1</span><span class="pos-chip excess-chip">Repartidores +1</span></div></td>
-    <td><span class="recruitment-empty">Sin ingresos</span></td>
-  </tr><tr class="branch-row " data-zone="Zona 1">
-    <td><div class="branch-name">APODACA CENTRO</div><div class="branch-sub">AP3</div></td>
-    <td class="num">14</td>
-    <td class="num">14</td>
-    <td class="num" style="color:var(--brand-red);font-weight:800">-1</td>
-    <td class="num"><span class="request-badge pending">0</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Repartidores -1</span><span class="pos-chip excess-chip">Almacenistas +1</span></div></td>
-    <td><span class="recruitment-empty">Sin ingresos</span></td>
-  </tr><tr class="branch-row " data-zone="Zona 1">
     <td><div class="branch-name">CONCORDIA</div><div class="branch-sub">AP1</div></td>
     <td class="num">13</td>
     <td class="num">13</td>
@@ -1442,16 +1425,34 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
   </tr><tr class="branch-row " data-zone="Zona 1">
     <td><div class="branch-name">PUEBLO NUEVO</div><div class="branch-sub">AP2</div></td>
     <td class="num">12</td>
-    <td class="num">12</td>
-    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
+    <td class="num">11</td>
+    <td class="num" style="color:var(--brand-red);font-weight:800">-1</td>
     <td class="num"><span class="request-badge pending">0</span></td>
     <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
-    <td><span class="recruitment-empty">Sin desbalance</span></td>
+    <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Repartidores -1</span></div></td>
+    <td><span class="recruitment-empty">Sin ingresos</span></td>
+  </tr><tr class="branch-row " data-zone="Zona 1">
+    <td><div class="branch-name">APODACA CENTRO</div><div class="branch-sub">AP3</div></td>
+    <td class="num">15</td>
+    <td class="num">13</td>
+    <td class="num" style="color:var(--brand-red);font-weight:800">-2</td>
+    <td class="num"><span class="request-badge pending">0</span></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Vendedores -1</span><span class="pos-chip vacancy-chip">Cajeras -1</span></div></td>
+    <td><span class="recruitment-empty">Sin ingresos</span></td>
+  </tr><tr class="branch-row " data-zone="Zona 1">
+    <td><div class="branch-name">HUINALA</div><div class="branch-sub">AP4</div></td>
+    <td class="num">11</td>
+    <td class="num">10</td>
+    <td class="num" style="color:var(--brand-red);font-weight:800">-1</td>
+    <td class="num"><span class="request-badge pending">0</span></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Desarrolladores -1</span></div></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="branch-row " data-zone="Zona 1">
     <td><div class="branch-name">HACIENDA SAN MIGUEL</div><div class="branch-sub">HSM</div></td>
-    <td class="num">12</td>
-    <td class="num">12</td>
+    <td class="num">13</td>
+    <td class="num">13</td>
     <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
     <td class="num"><span class="request-badge pending">0</span></td>
     <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
@@ -1459,39 +1460,21 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="zone-row " data-zone="Zona 2">
       <td><div class="zone-row-name"><span class="zone-caret"></span>Zona 2</div><div class="zone-row-sub">6 sucursales</div></td>
-      <td class="num">71</td>
+      <td class="num">73</td>
       <td class="num">72</td>
-      <td class="num" style="color:var(--brand-red);font-weight:800">-3</td>
+      <td class="num" style="color:var(--brand-red);font-weight:800">-1</td>
       <td class="num"><span class="request-badge confirmed">-3</span></td>
-      <td class="num" style="color:var(--brand-blue-2);font-weight:800">+4</td>
-      <td class=""><div class="imbalance-groups"><div class="imbalance-group"><span class="imbalance-group-label" style="color:var(--brand-red)">Vacantes oficiales</span><div class="pos-chips-cell"><span class="pos-chip vacancy-chip">Repartidores -2</span><span class="pos-chip vacancy-chip">Cajeras -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Solicitadas</span><div class="pos-chips-cell"><span class="pos-chip requested-chip">Vendedores -3</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Excedentes</span><div class="pos-chips-cell"><span class="pos-chip excess-chip">Vendedores +2</span><span class="pos-chip excess-chip">Cajeras +1</span><span class="pos-chip excess-chip">Repartidores +1</span></div></div></div></td>
+      <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+      <td class=""><div class="imbalance-groups"><div class="imbalance-group"><span class="imbalance-group-label" style="color:var(--brand-red)">Vacantes oficiales</span><div class="pos-chips-cell"><span class="pos-chip vacancy-chip">Repartidores -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Solicitadas</span><div class="pos-chips-cell"><span class="pos-chip requested-chip">Vendedores -3</span></div></div></div></td>
       <td class=""><div class="zone-cell-title recruitment">Reclutamiento semanal</div><span class="recruitment-empty">Sin ingresos</span></td>
     </tr><tr class="branch-row " data-zone="Zona 2">
-    <td><div class="branch-name">DIEGO DIAZ DE BERLANGA</div><div class="branch-sub">SN2</div></td>
-    <td class="num">8</td>
-    <td class="num">10</td>
-    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
-    <td class="num"><span class="request-badge pending">0</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+2</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip excess-chip">Vendedores +1</span><span class="pos-chip excess-chip">Repartidores +1</span></div></td>
-    <td><span class="recruitment-empty">Sin ingresos</span></td>
-  </tr><tr class="branch-row " data-zone="Zona 2">
     <td><div class="branch-name">MODERNA</div><div class="branch-sub">MOD</div></td>
     <td class="num">16</td>
     <td class="num">16</td>
-    <td class="num" style="color:var(--brand-red);font-weight:800">-1</td>
+    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
     <td class="num"><span class="request-badge confirmed">-1</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Repartidores -1</span><span class="pos-chip requested-chip">Vendedores -1</span><span class="pos-chip excess-chip">Cajeras +1</span></div></td>
-    <td><span class="recruitment-empty">Sin ingresos</span></td>
-  </tr><tr class="branch-row " data-zone="Zona 2">
-    <td><div class="branch-name">SANTO DOMINGO</div><div class="branch-sub">SN1</div></td>
-    <td class="num">8</td>
-    <td class="num">8</td>
-    <td class="num" style="color:var(--brand-red);font-weight:800">-1</td>
-    <td class="num"><span class="request-badge confirmed">-1</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Cajeras -1</span><span class="pos-chip requested-chip">Vendedores -1</span><span class="pos-chip excess-chip">Vendedores +1</span></div></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -1</span></div></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="branch-row " data-zone="Zona 2">
     <td><div class="branch-name">ESCOBEDO</div><div class="branch-sub">ESC</div></td>
@@ -1501,6 +1484,24 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
     <td class="num"><span class="request-badge confirmed">-1</span></td>
     <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
     <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -1</span></div></td>
+    <td><span class="recruitment-empty">Sin ingresos</span></td>
+  </tr><tr class="branch-row " data-zone="Zona 2">
+    <td><div class="branch-name">SANTO DOMINGO</div><div class="branch-sub">SN1</div></td>
+    <td class="num">8</td>
+    <td class="num">8</td>
+    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
+    <td class="num"><span class="request-badge confirmed">-1</span></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -1</span></div></td>
+    <td><span class="recruitment-empty">Sin ingresos</span></td>
+  </tr><tr class="branch-row " data-zone="Zona 2">
+    <td><div class="branch-name">DIEGO DIAZ DE BERLANGA</div><div class="branch-sub">SN2</div></td>
+    <td class="num">10</td>
+    <td class="num">10</td>
+    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
+    <td class="num"><span class="request-badge pending">0</span></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><span class="recruitment-empty">Sin desbalance</span></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="branch-row " data-zone="Zona 2">
     <td><div class="branch-name">UNIVERSIDAD</div><div class="branch-sub">SN3</div></td>
@@ -1522,39 +1523,39 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="zone-row " data-zone="Zona 3">
       <td><div class="zone-row-name"><span class="zone-caret"></span>Zona 3</div><div class="zone-row-sub">6 sucursales</div></td>
-      <td class="num">62</td>
-      <td class="num">67</td>
-      <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
+      <td class="num">66</td>
+      <td class="num">65</td>
+      <td class="num" style="color:var(--brand-red);font-weight:800">-2</td>
       <td class="num"><span class="request-badge confirmed">-4</span></td>
-      <td class="num" style="color:var(--brand-blue-2);font-weight:800">+5</td>
-      <td class=""><div class="imbalance-groups"><div class="imbalance-group"><span class="imbalance-group-label" style="color:var(--brand-red)">Vacantes oficiales</span><span class="recruitment-empty">Sin vacantes</span></div><div class="imbalance-group"><span class="imbalance-group-label">Solicitadas</span><div class="pos-chips-cell"><span class="pos-chip requested-chip">Vendedores -3</span><span class="pos-chip requested-chip">Almacenistas -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Excedentes</span><div class="pos-chips-cell"><span class="pos-chip excess-chip">Cajeras +2</span><span class="pos-chip excess-chip">Repartidores +2</span><span class="pos-chip excess-chip">Supervisores de tienda +1</span></div></div></div></td>
+      <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
+      <td class=""><div class="imbalance-groups"><div class="imbalance-group"><span class="imbalance-group-label" style="color:var(--brand-red)">Vacantes oficiales</span><div class="pos-chips-cell"><span class="pos-chip vacancy-chip">Almacenistas -2</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Solicitadas</span><div class="pos-chips-cell"><span class="pos-chip requested-chip">Vendedores -3</span><span class="pos-chip requested-chip">Almacenistas -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Excedentes</span><div class="pos-chips-cell"><span class="pos-chip excess-chip">Supervisores de tienda +1</span></div></div></div></td>
       <td class=""><div class="zone-cell-title recruitment">Reclutamiento semanal</div><span class="recruitment-empty">Sin ingresos</span></td>
     </tr><tr class="branch-row " data-zone="Zona 3">
     <td><div class="branch-name">SOLIDARIDAD</div><div class="branch-sub">MT4</div></td>
-    <td class="num">9</td>
+    <td class="num">10</td>
     <td class="num">10</td>
     <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
     <td class="num"><span class="request-badge confirmed">-2</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -2</span><span class="pos-chip excess-chip">Cajeras +1</span></div></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -2</span></div></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="branch-row " data-zone="Zona 3">
     <td><div class="branch-name">PENITENCIARIA</div><div class="branch-sub">PEN</div></td>
     <td class="num">18</td>
-    <td class="num">19</td>
-    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
+    <td class="num">17</td>
+    <td class="num" style="color:var(--brand-red);font-weight:800">-1</td>
     <td class="num"><span class="request-badge pending">0</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip excess-chip">Repartidores +1</span></div></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Almacenistas -1</span></div></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="branch-row " data-zone="Zona 3">
     <td><div class="branch-name">SANTA CATARINA</div><div class="branch-sub">STA</div></td>
-    <td class="num">9</td>
+    <td class="num">10</td>
     <td class="num">10</td>
     <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
     <td class="num"><span class="request-badge pending">0</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip excess-chip">Cajeras +1</span></div></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><span class="recruitment-empty">Sin desbalance</span></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="branch-row " data-zone="Zona 3">
     <td><div class="branch-name">GARCIA</div><div class="branch-sub">GA1</div></td>
@@ -1567,111 +1568,102 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="branch-row " data-zone="Zona 3">
     <td><div class="branch-name">ALIANZA</div><div class="branch-sub">ES2</div></td>
-    <td class="num">10</td>
+    <td class="num">11</td>
     <td class="num">11</td>
     <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
     <td class="num"><span class="request-badge pending">0</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip excess-chip">Repartidores +1</span></div></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><span class="recruitment-empty">Sin desbalance</span></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="branch-row " data-zone="Zona 3">
     <td><div class="branch-name">LOMA LINDA</div><div class="branch-sub">MT5</div></td>
+    <td class="num">8</td>
     <td class="num">7</td>
-    <td class="num">7</td>
-    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
+    <td class="num" style="color:var(--brand-red);font-weight:800">-1</td>
     <td class="num"><span class="request-badge confirmed">-1</span></td>
     <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Almacenistas -1</span></div></td>
+    <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Almacenistas -1</span><span class="pos-chip requested-chip">Almacenistas -1</span></div></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="zone-row " data-zone="Zona 4">
       <td><div class="zone-row-name"><span class="zone-caret"></span>Zona 4</div><div class="zone-row-sub">6 sucursales</div></td>
       <td class="num">72</td>
-      <td class="num">77</td>
-      <td class="num" style="color:var(--brand-red);font-weight:800">-2</td>
+      <td class="num">71</td>
+      <td class="num" style="color:var(--brand-red);font-weight:800">-1</td>
       <td class="num"><span class="request-badge confirmed">-3</span></td>
-      <td class="num" style="color:var(--brand-blue-2);font-weight:800">+7</td>
-      <td class=""><div class="imbalance-groups"><div class="imbalance-group"><span class="imbalance-group-label" style="color:var(--brand-red)">Vacantes oficiales</span><div class="pos-chips-cell"><span class="pos-chip vacancy-chip">Cajeras -1</span><span class="pos-chip vacancy-chip">Repartidores -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Solicitadas</span><div class="pos-chips-cell"><span class="pos-chip requested-chip">Vendedores -3</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Excedentes</span><div class="pos-chips-cell"><span class="pos-chip excess-chip">Repartidores +3</span><span class="pos-chip excess-chip">Cajeras +2</span><span class="pos-chip excess-chip">Almacenistas +2</span></div></div></div></td>
+      <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+      <td class=""><div class="imbalance-groups"><div class="imbalance-group"><span class="imbalance-group-label" style="color:var(--brand-red)">Vacantes oficiales</span><div class="pos-chips-cell"><span class="pos-chip vacancy-chip">Cajeras -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Solicitadas</span><div class="pos-chips-cell"><span class="pos-chip requested-chip">Vendedores -3</span></div></div></div></td>
       <td class=""><div class="zone-cell-title recruitment">Reclutamiento semanal</div><span class="recruitment-empty">Sin ingresos</span></td>
     </tr><tr class="branch-row " data-zone="Zona 4">
-    <td><div class="branch-name">ISRAEL CAVAZOS</div><div class="branch-sub">GP1</div></td>
-    <td class="num">12</td>
-    <td class="num">15</td>
-    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
-    <td class="num"><span class="request-badge confirmed">-1</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+3</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -1</span><span class="pos-chip excess-chip">Cajeras +1</span><span class="pos-chip excess-chip">Almacenistas +1</span><span class="pos-chip excess-chip">Repartidores +1</span></div></td>
-    <td><span class="recruitment-empty">Sin ingresos</span></td>
-  </tr><tr class="branch-row " data-zone="Zona 4">
     <td><div class="branch-name">COLIBRI</div><div class="branch-sub">COL</div></td>
     <td class="num">14</td>
-    <td class="num">15</td>
+    <td class="num">14</td>
     <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
     <td class="num"><span class="request-badge pending">0</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip excess-chip">Repartidores +1</span></div></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><span class="recruitment-empty">Sin desbalance</span></td>
+    <td><span class="recruitment-empty">Sin ingresos</span></td>
+  </tr><tr class="branch-row " data-zone="Zona 4">
+    <td><div class="branch-name">ISRAEL CAVAZOS</div><div class="branch-sub">GP1</div></td>
+    <td class="num">12</td>
+    <td class="num">12</td>
+    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
+    <td class="num"><span class="request-badge confirmed">-1</span></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -1</span></div></td>
+    <td><span class="recruitment-empty">Sin ingresos</span></td>
+  </tr><tr class="branch-row " data-zone="Zona 4">
+    <td><div class="branch-name">RUIZ CORTINES</div><div class="branch-sub">GP2</div></td>
+    <td class="num">12</td>
+    <td class="num">11</td>
+    <td class="num" style="color:var(--brand-red);font-weight:800">-1</td>
+    <td class="num"><span class="request-badge pending">0</span></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Cajeras -1</span></div></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="branch-row " data-zone="Zona 4">
     <td><div class="branch-name">ELOY CAVAZOS</div><div class="branch-sub">GP3</div></td>
     <td class="num">8</td>
-    <td class="num">9</td>
+    <td class="num">8</td>
     <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
     <td class="num"><span class="request-badge confirmed">-1</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -1</span><span class="pos-chip excess-chip">Almacenistas +1</span></div></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -1</span></div></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="branch-row " data-zone="Zona 4">
     <td><div class="branch-name">VILLA JUAREZ</div><div class="branch-sub">JU1</div></td>
     <td class="num">14</td>
-    <td class="num">15</td>
+    <td class="num">14</td>
     <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
     <td class="num"><span class="request-badge pending">0</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip excess-chip">Repartidores +1</span></div></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><span class="recruitment-empty">Sin desbalance</span></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="branch-row " data-zone="Zona 4">
     <td><div class="branch-name">CADEREYTA</div><div class="branch-sub">CY1</div></td>
-    <td class="num">11</td>
+    <td class="num">12</td>
     <td class="num">12</td>
     <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
     <td class="num"><span class="request-badge confirmed">-1</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -1</span><span class="pos-chip excess-chip">Cajeras +1</span></div></td>
-    <td><span class="recruitment-empty">Sin ingresos</span></td>
-  </tr><tr class="branch-row " data-zone="Zona 4">
-    <td><div class="branch-name">RUIZ CORTINES</div><div class="branch-sub">GP2</div></td>
-    <td class="num">13</td>
-    <td class="num">11</td>
-    <td class="num" style="color:var(--brand-red);font-weight:800">-2</td>
-    <td class="num"><span class="request-badge pending">0</span></td>
     <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Cajeras -1</span><span class="pos-chip vacancy-chip">Repartidores -1</span></div></td>
+    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -1</span></div></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="zone-row " data-zone="Zona 5">
       <td><div class="zone-row-name"><span class="zone-caret"></span>Zona 5</div><div class="zone-row-sub">3 sucursales</div></td>
-      <td class="num">27</td>
       <td class="num">28</td>
+      <td class="num">27</td>
       <td class="num" style="color:var(--brand-red);font-weight:800">-2</td>
       <td class="num"><span class="request-badge confirmed">-3</span></td>
-      <td class="num" style="color:var(--brand-blue-2);font-weight:800">+3</td>
-      <td class=""><div class="imbalance-groups"><div class="imbalance-group"><span class="imbalance-group-label" style="color:var(--brand-red)">Vacantes oficiales</span><div class="pos-chips-cell"><span class="pos-chip vacancy-chip">Almacenistas -1</span><span class="pos-chip vacancy-chip">Vendedores -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Solicitadas</span><div class="pos-chips-cell"><span class="pos-chip requested-chip">Vendedores -3</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Excedentes</span><div class="pos-chips-cell"><span class="pos-chip excess-chip">Supervisores de tienda +1</span><span class="pos-chip excess-chip">Repartidores +1</span><span class="pos-chip excess-chip">Almacenistas +1</span></div></div></div></td>
+      <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
+      <td class=""><div class="imbalance-groups"><div class="imbalance-group"><span class="imbalance-group-label" style="color:var(--brand-red)">Vacantes oficiales</span><div class="pos-chips-cell"><span class="pos-chip vacancy-chip">Vendedores -1</span><span class="pos-chip vacancy-chip">Almacenistas -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Solicitadas</span><div class="pos-chips-cell"><span class="pos-chip requested-chip">Vendedores -3</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Excedentes</span><div class="pos-chips-cell"><span class="pos-chip excess-chip">Supervisores de tienda +1</span></div></div></div></td>
       <td class=""><div class="zone-cell-title recruitment">Reclutamiento semanal</div><span class="recruitment-empty">Sin ingresos</span></td>
     </tr><tr class="branch-row " data-zone="Zona 5">
     <td><div class="branch-name">NUEVO REPUEBLO</div><div class="branch-sub">MT1</div></td>
     <td class="num">9</td>
-    <td class="num">10</td>
+    <td class="num">9</td>
     <td class="num" style="color:var(--brand-red);font-weight:800">-1</td>
     <td class="num"><span class="request-badge confirmed">-1</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+2</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Almacenistas -1</span><span class="pos-chip requested-chip">Vendedores -1</span><span class="pos-chip excess-chip">Supervisores de tienda +1</span><span class="pos-chip excess-chip">Repartidores +1</span></div></td>
-    <td><span class="recruitment-empty">Sin ingresos</span></td>
-  </tr><tr class="branch-row " data-zone="Zona 5">
-    <td><div class="branch-name">CHAPULTEPEC</div><div class="branch-sub">MT3</div></td>
-    <td class="num">8</td>
-    <td class="num">9</td>
-    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
-    <td class="num"><span class="request-badge confirmed">-1</span></td>
     <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -1</span><span class="pos-chip excess-chip">Almacenistas +1</span></div></td>
+    <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Almacenistas -1</span><span class="pos-chip requested-chip">Vendedores -1</span><span class="pos-chip excess-chip">Supervisores de tienda +1</span></div></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="branch-row " data-zone="Zona 5">
     <td><div class="branch-name">VENUSTIANO CARRANZA</div><div class="branch-sub">MT2</div></td>
@@ -1682,41 +1674,32 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
     <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
     <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Vendedores -1</span><span class="pos-chip requested-chip">Vendedores -1</span></div></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
+  </tr><tr class="branch-row " data-zone="Zona 5">
+    <td><div class="branch-name">CHAPULTEPEC</div><div class="branch-sub">MT3</div></td>
+    <td class="num">9</td>
+    <td class="num">9</td>
+    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
+    <td class="num"><span class="request-badge confirmed">-1</span></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -1</span></div></td>
+    <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="zone-row " data-zone="Zona 6">
       <td><div class="zone-row-name"><span class="zone-caret"></span>Zona 6</div><div class="zone-row-sub">4 sucursales</div></td>
       <td class="num">44</td>
-      <td class="num">46</td>
-      <td class="num" style="color:var(--brand-red);font-weight:800">-2</td>
+      <td class="num">44</td>
+      <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
       <td class="num"><span class="request-badge confirmed">-1</span></td>
-      <td class="num" style="color:var(--brand-blue-2);font-weight:800">+4</td>
-      <td class=""><div class="imbalance-groups"><div class="imbalance-group"><span class="imbalance-group-label" style="color:var(--brand-red)">Vacantes oficiales</span><div class="pos-chips-cell"><span class="pos-chip vacancy-chip">Repartidores -1</span><span class="pos-chip vacancy-chip">Vendedores -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Solicitadas</span><div class="pos-chips-cell"><span class="pos-chip requested-chip">Vendedores -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Excedentes</span><div class="pos-chips-cell"><span class="pos-chip excess-chip">Vendedores +2</span><span class="pos-chip excess-chip">Desarrolladores +1</span><span class="pos-chip excess-chip">Almacenistas +1</span></div></div></div></td>
+      <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+      <td class=""><div class="imbalance-groups"><div class="imbalance-group"><span class="imbalance-group-label">Solicitadas</span><div class="pos-chips-cell"><span class="pos-chip requested-chip">Vendedores -1</span></div></div></div></td>
       <td class=""><div class="zone-cell-title recruitment">Reclutamiento semanal</div><span class="recruitment-empty">Sin ingresos</span></td>
     </tr><tr class="branch-row " data-zone="Zona 6">
-    <td><div class="branch-name">H. ILUSTRES</div><div class="branch-sub">CV2</div></td>
-    <td class="num">7</td>
-    <td class="num">10</td>
-    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
-    <td class="num"><span class="request-badge confirmed">-1</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+3</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -1</span><span class="pos-chip excess-chip">Vendedores +2</span><span class="pos-chip excess-chip">Almacenistas +1</span></div></td>
-    <td><span class="recruitment-empty">Sin ingresos</span></td>
-  </tr><tr class="branch-row " data-zone="Zona 6">
-    <td><div class="branch-name">CIUDAD VICTORIA</div><div class="branch-sub">CV1</div></td>
-    <td class="num">15</td>
-    <td class="num">15</td>
-    <td class="num" style="color:var(--brand-red);font-weight:800">-1</td>
-    <td class="num"><span class="request-badge pending">0</span></td>
-    <td class="num" style="color:var(--brand-blue-2);font-weight:800">+1</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Vendedores -1</span><span class="pos-chip excess-chip">Desarrolladores +1</span></div></td>
-    <td><span class="recruitment-empty">Sin ingresos</span></td>
-  </tr><tr class="branch-row " data-zone="Zona 6">
     <td><div class="branch-name">ALLENDE</div><div class="branch-sub">ALL</div></td>
     <td class="num">10</td>
-    <td class="num">9</td>
-    <td class="num" style="color:var(--brand-red);font-weight:800">-1</td>
+    <td class="num">10</td>
+    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
     <td class="num"><span class="request-badge pending">0</span></td>
     <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
-    <td><div class="branch-balance-compact"><span class="pos-chip vacancy-chip">Repartidores -1</span></div></td>
+    <td><span class="recruitment-empty">Sin desbalance</span></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr><tr class="branch-row " data-zone="Zona 6">
     <td><div class="branch-name">LINARES</div><div class="branch-sub">LI1</div></td>
@@ -1727,8 +1710,26 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
     <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
     <td><span class="recruitment-empty">Sin desbalance</span></td>
     <td><span class="recruitment-empty">Sin ingresos</span></td>
+  </tr><tr class="branch-row " data-zone="Zona 6">
+    <td><div class="branch-name">CIUDAD VICTORIA</div><div class="branch-sub">CV1</div></td>
+    <td class="num">14</td>
+    <td class="num">14</td>
+    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
+    <td class="num"><span class="request-badge pending">0</span></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><span class="recruitment-empty">Sin desbalance</span></td>
+    <td><span class="recruitment-empty">Sin ingresos</span></td>
+  </tr><tr class="branch-row " data-zone="Zona 6">
+    <td><div class="branch-name">H. ILUSTRES</div><div class="branch-sub">CV2</div></td>
+    <td class="num">8</td>
+    <td class="num">8</td>
+    <td class="num" style="color:var(--brand-red);font-weight:800">0</td>
+    <td class="num"><span class="request-badge confirmed">-1</span></td>
+    <td class="num" style="color:var(--brand-blue-2);font-weight:800">0</td>
+    <td><div class="branch-balance-compact"><span class="pos-chip requested-chip">Vendedores -1</span></div></td>
+    <td><span class="recruitment-empty">Sin ingresos</span></td>
   </tr></tbody>
-          <tfoot id="branchFoot"><tr class="total-row"><td>Total red / alcance actual<span class="total-sub">Zonas 1–6</span></td><td class="num">336</td><td class="num">352</td><td class="num" style="color:var(--brand-red);font-weight:800">-10</td><td class="num"><span class="request-badge confirmed">-14</span></td><td class="num" style="color:var(--brand-blue-2);font-weight:800">+26</td><td><div class="imbalance-groups"><div class="imbalance-group"><span class="imbalance-group-label">Oficiales</span><div class="pos-chips-cell"><span class="pos-chip vacancy-chip">Repartidores -5</span><span class="pos-chip vacancy-chip">Cajeras -2</span><span class="pos-chip vacancy-chip">Vendedores -2</span><span class="pos-chip vacancy-chip">Almacenistas -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Solicitadas</span><div class="pos-chips-cell"><span class="pos-chip requested-chip">Vendedores -13</span><span class="pos-chip requested-chip">Almacenistas -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Excedentes</span><div class="pos-chips-cell"><span class="pos-chip excess-chip">Repartidores +8</span><span class="pos-chip excess-chip">Cajeras +6</span><span class="pos-chip excess-chip">Almacenistas +5</span><span class="pos-chip excess-chip">Vendedores +4</span><span class="pos-chip excess-chip">Supervisores de tienda +2</span><span class="pos-chip excess-chip">Desarrolladores +1</span></div></div></div></td><td><span class="recruitment-empty">Sin ingresos</span></td></tr></tfoot>
+          <tfoot id="branchFoot"><tr class="total-row"><td>Total red / alcance actual<span class="total-sub">Zonas 1–6</span></td><td class="num">347</td><td class="num">339</td><td class="num" style="color:var(--brand-red);font-weight:800">-10</td><td class="num"><span class="request-badge confirmed">-14</span></td><td class="num" style="color:var(--brand-blue-2);font-weight:800">+2</td><td><div class="imbalance-groups"><div class="imbalance-group"><span class="imbalance-group-label">Oficiales</span><div class="pos-chips-cell"><span class="pos-chip vacancy-chip">Almacenistas -3</span><span class="pos-chip vacancy-chip">Repartidores -2</span><span class="pos-chip vacancy-chip">Vendedores -2</span><span class="pos-chip vacancy-chip">Cajeras -2</span><span class="pos-chip vacancy-chip">Desarrolladores -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Solicitadas</span><div class="pos-chips-cell"><span class="pos-chip requested-chip">Vendedores -13</span><span class="pos-chip requested-chip">Almacenistas -1</span></div></div><div class="imbalance-group"><span class="imbalance-group-label">Excedentes</span><div class="pos-chips-cell"><span class="pos-chip excess-chip">Supervisores de tienda +2</span></div></div></div></td><td><span class="recruitment-empty">Sin ingresos</span></td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -1761,122 +1762,25 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
     <div class="panel">
       <div class="cost-list" id="costList">
     <div class="cost-row">
-      <div class="cost-code">H. ILUSTRES<small>CV2</small><span class="excess-role-inline"><b>Puestos:</b> Vendedores +2 · Almacenistas +1</span></div>
-      <div class="cost-track" title="3 personas excedentes"><div class="cost-bar" style="width:100%"></div></div>
-      <div class="cost-val">+3 excedentes<small>$48,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">ISRAEL CAVAZOS<small>GP1</small><span class="excess-role-inline"><b>Puestos:</b> Cajeras +1 · Almacenistas +1 · Repartidores +1</span></div>
-      <div class="cost-track" title="3 personas excedentes"><div class="cost-bar" style="width:100%"></div></div>
-      <div class="cost-val">+3 excedentes<small>$48,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">DIEGO DIAZ DE BERLANGA<small>SN2</small><span class="excess-role-inline"><b>Puestos:</b> Vendedores +1 · Repartidores +1</span></div>
-      <div class="cost-track" title="2 personas excedentes"><div class="cost-bar" style="width:66.66666666666666%"></div></div>
-      <div class="cost-val">+2 excedentes<small>$32,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">HUINALA<small>AP4</small><span class="excess-role-inline"><b>Puestos:</b> Cajeras +1 · Repartidores +1</span></div>
-      <div class="cost-track" title="2 personas excedentes"><div class="cost-bar" style="width:66.66666666666666%"></div></div>
-      <div class="cost-val">+2 excedentes<small>$32,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">NUEVO REPUEBLO<small>MT1</small><span class="excess-role-inline"><b>Puestos:</b> Supervisores de tienda +1 · Repartidores +1</span></div>
-      <div class="cost-track" title="2 personas excedentes"><div class="cost-bar" style="width:66.66666666666666%"></div></div>
-      <div class="cost-val">+2 excedentes<small>$32,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">ALIANZA<small>ES2</small><span class="excess-role-inline"><b>Puestos:</b> Repartidores +1</span></div>
-      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:33.33333333333333%"></div></div>
-      <div class="cost-val">+1 excedente<small>$16,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">APODACA CENTRO<small>AP3</small><span class="excess-role-inline"><b>Puestos:</b> Almacenistas +1</span></div>
-      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:33.33333333333333%"></div></div>
-      <div class="cost-val">+1 excedente<small>$16,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">CADEREYTA<small>CY1</small><span class="excess-role-inline"><b>Puestos:</b> Cajeras +1</span></div>
-      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:33.33333333333333%"></div></div>
-      <div class="cost-val">+1 excedente<small>$16,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">CHAPULTEPEC<small>MT3</small><span class="excess-role-inline"><b>Puestos:</b> Almacenistas +1</span></div>
-      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:33.33333333333333%"></div></div>
-      <div class="cost-val">+1 excedente<small>$16,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">CIUDAD VICTORIA<small>CV1</small><span class="excess-role-inline"><b>Puestos:</b> Desarrolladores +1</span></div>
-      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:33.33333333333333%"></div></div>
-      <div class="cost-val">+1 excedente<small>$16,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">COLIBRI<small>COL</small><span class="excess-role-inline"><b>Puestos:</b> Repartidores +1</span></div>
-      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:33.33333333333333%"></div></div>
-      <div class="cost-val">+1 excedente<small>$16,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">ELOY CAVAZOS<small>GP3</small><span class="excess-role-inline"><b>Puestos:</b> Almacenistas +1</span></div>
-      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:33.33333333333333%"></div></div>
-      <div class="cost-val">+1 excedente<small>$16,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
       <div class="cost-code">GARCIA<small>GA1</small><span class="excess-role-inline"><b>Puestos:</b> Supervisores de tienda +1</span></div>
-      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:33.33333333333333%"></div></div>
+      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:100.0%"></div></div>
       <div class="cost-val">+1 excedente<small>$16,000/mes estimado</small></div>
     </div>
     <div class="cost-row">
-      <div class="cost-code">MODERNA<small>MOD</small><span class="excess-role-inline"><b>Puestos:</b> Cajeras +1</span></div>
-      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:33.33333333333333%"></div></div>
-      <div class="cost-val">+1 excedente<small>$16,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">PENITENCIARIA<small>PEN</small><span class="excess-role-inline"><b>Puestos:</b> Repartidores +1</span></div>
-      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:33.33333333333333%"></div></div>
-      <div class="cost-val">+1 excedente<small>$16,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">SANTA CATARINA<small>STA</small><span class="excess-role-inline"><b>Puestos:</b> Cajeras +1</span></div>
-      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:33.33333333333333%"></div></div>
-      <div class="cost-val">+1 excedente<small>$16,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">SANTO DOMINGO<small>SN1</small><span class="excess-role-inline"><b>Puestos:</b> Vendedores +1</span></div>
-      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:33.33333333333333%"></div></div>
-      <div class="cost-val">+1 excedente<small>$16,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">SOLIDARIDAD<small>MT4</small><span class="excess-role-inline"><b>Puestos:</b> Cajeras +1</span></div>
-      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:33.33333333333333%"></div></div>
-      <div class="cost-val">+1 excedente<small>$16,000/mes estimado</small></div>
-    </div>
-    <div class="cost-row">
-      <div class="cost-code">VILLA JUAREZ<small>JU1</small><span class="excess-role-inline"><b>Puestos:</b> Repartidores +1</span></div>
-      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:33.33333333333333%"></div></div>
+      <div class="cost-code">NUEVO REPUEBLO<small>MT1</small><span class="excess-role-inline"><b>Puestos:</b> Supervisores de tienda +1</span></div>
+      <div class="cost-track" title="1 persona excedente"><div class="cost-bar" style="width:100.0%"></div></div>
       <div class="cost-val">+1 excedente<small>$16,000/mes estimado</small></div>
     </div><div class="cost-row" style="margin-top:8px;padding-top:14px;border-top:2px solid var(--line-strong);">
       <div class="cost-code" style="color:var(--brand-blue-2);">TOTAL RED</div>
       <div></div>
-      <div class="cost-val" style="color:var(--brand-blue-2);">+26 excedentes<small>$416,000/mes estimado</small></div>
-    </div></div>
+      <div class="cost-val" style="color:var(--brand-blue-2);">+2 excedentes<small>$32,000/mes estimado</small></div>
+    </div>
+  </div>
       <div id="excessActions"></div>
     </div>
   </section>
 
-  <section id="strategicMobilitySection">
-    <div class="sec-head">
-      <div class="sec-head-l">
-        <div class="sec-num">08 — VALIDACIÓN ESTRATÉGICA DE EXCEDENTES</div>
-        <h2>¿Tenemos excedente compatible para cubrir una necesidad?</h2>
-        <div class="sec-desc">Auditoría por zona que muestra <b style="color:var(--brand-red)">cada puesto con vacante oficial</b>, la sucursal destino y, cuando existe, el <b style="color:var(--brand-blue-2)">puesto excedente exacto y la sucursal origen</b>. Así se distingue rápidamente qué necesidades podrían resolverse con recurso interno y cuáles realmente requieren reclutamiento.</div>
-      </div>
-    <button type="button" class="section-export-btn">⬇ Descargar JPG</button></div>
-    <div class="panel">
-      <div class="mobility-kpis" id="mobilityKpis"><div class="mobility-kpi"><div class="mk-label">Cobertura interna potencial</div><div class="mk-value">7</div><div class="mk-sub">plazas con excedente del mismo puesto</div></div><div class="mobility-kpi blue"><div class="mk-label">Vacantes oficiales</div><div class="mk-value">10</div><div class="mk-sub">necesidades confirmadas del alcance</div></div><div class="mobility-kpi amber"><div class="mk-label">Potencial de cobertura</div><div class="mk-value">70%</div><div class="mk-sub">mismo puesto + misma zona</div></div><div class="mobility-kpi red"><div class="mk-label">Sin excedente compatible</div><div class="mk-value">3</div><div class="mk-sub">plazas que aún requerirían reclutamiento u otra decisión</div></div></div>
-      <div class="mobility-grid" id="mobilityGrid"><article class="mobility-zone has-match"><div class="mobility-zone-head"><div><div class="mobility-zone-name">Zona 1</div><div class="mobility-zone-sub">1 puesto con excedente compatible · se auditan todas las necesidades</div></div><div class="mobility-zone-score"><b>1/1</b><span>cobertura interna potencial · 100%</span></div></div><div class="mobility-body"><div class="mobility-role "><div><div class="mobility-role-name">Repartidores</div><div class="mobility-role-detail">Cobertura total potencial</div></div><div><div class="mobility-role-detail"><b style="color:var(--brand-red)">Vacante / destino</b></div><span class="mobility-chip vac">AP3 · APODACA CENTRO · 1</span></div><div class="mobility-arrow">←</div><div><div class="mobility-role-detail"><b style="color:var(--brand-blue-2)">Excedente exacto / origen</b></div><span class="mobility-chip exc">AP4 · HUINALA · 1</span></div><div class="mobility-potential"><b>1 de 1</b><span>podrían cubrirse</span><span class="mobility-status match">Validar movimiento</span></div></div></div></article><article class="mobility-zone has-match"><div class="mobility-zone-head"><div><div class="mobility-zone-name">Zona 2</div><div class="mobility-zone-sub">2 puestos con excedente compatible · se auditan todas las necesidades</div></div><div class="mobility-zone-score"><b>2/3</b><span>cobertura interna potencial · 67%</span></div></div><div class="mobility-body"><div class="mobility-role "><div><div class="mobility-role-name">Repartidores</div><div class="mobility-role-detail">Cobertura parcial potencial</div></div><div><div class="mobility-role-detail"><b style="color:var(--brand-red)">Vacante / destino</b></div><span class="mobility-chip vac">MOD · MODERNA · 1</span><span class="mobility-chip vac">SN3 · UNIVERSIDAD · 1</span></div><div class="mobility-arrow">←</div><div><div class="mobility-role-detail"><b style="color:var(--brand-blue-2)">Excedente exacto / origen</b></div><span class="mobility-chip exc">SN2 · DIEGO DIAZ DE BERLANGA · 1</span></div><div class="mobility-potential"><b>1 de 2</b><span>podrían cubrirse</span><span class="mobility-status match">Validar movimiento</span></div></div><div class="mobility-role "><div><div class="mobility-role-name">Cajeras</div><div class="mobility-role-detail">Cobertura total potencial</div></div><div><div class="mobility-role-detail"><b style="color:var(--brand-red)">Vacante / destino</b></div><span class="mobility-chip vac">SN1 · SANTO DOMINGO · 1</span></div><div class="mobility-arrow">←</div><div><div class="mobility-role-detail"><b style="color:var(--brand-blue-2)">Excedente exacto / origen</b></div><span class="mobility-chip exc">MOD · MODERNA · 1</span></div><div class="mobility-potential"><b>1 de 1</b><span>podrían cubrirse</span><span class="mobility-status match">Validar movimiento</span></div></div></div></article><article class="mobility-zone no-match"><div class="mobility-zone-head"><div><div class="mobility-zone-name">Zona 3</div><div class="mobility-zone-sub">0 puestos con excedente compatible · se auditan todas las necesidades</div></div><div class="mobility-zone-score"><b>0/0</b><span>cobertura interna potencial · 0%</span></div></div><div class="mobility-body"><div class="mobility-empty">Zona 3 no tiene vacantes oficiales abiertas en el alcance actual.</div></div></article><article class="mobility-zone has-match"><div class="mobility-zone-head"><div><div class="mobility-zone-name">Zona 4</div><div class="mobility-zone-sub">2 puestos con excedente compatible · se auditan todas las necesidades</div></div><div class="mobility-zone-score"><b>2/2</b><span>cobertura interna potencial · 100%</span></div></div><div class="mobility-body"><div class="mobility-role "><div><div class="mobility-role-name">Cajeras</div><div class="mobility-role-detail">Cobertura total potencial</div></div><div><div class="mobility-role-detail"><b style="color:var(--brand-red)">Vacante / destino</b></div><span class="mobility-chip vac">GP2 · RUIZ CORTINES · 1</span></div><div class="mobility-arrow">←</div><div><div class="mobility-role-detail"><b style="color:var(--brand-blue-2)">Excedente exacto / origen</b></div><span class="mobility-chip exc">GP1 · ISRAEL CAVAZOS · 1</span><span class="mobility-chip exc">CY1 · CADEREYTA · 1</span></div><div class="mobility-potential"><b>1 de 1</b><span>podrían cubrirse</span><span class="mobility-status match">Validar movimiento</span></div></div><div class="mobility-role "><div><div class="mobility-role-name">Repartidores</div><div class="mobility-role-detail">Cobertura total potencial</div></div><div><div class="mobility-role-detail"><b style="color:var(--brand-red)">Vacante / destino</b></div><span class="mobility-chip vac">GP2 · RUIZ CORTINES · 1</span></div><div class="mobility-arrow">←</div><div><div class="mobility-role-detail"><b style="color:var(--brand-blue-2)">Excedente exacto / origen</b></div><span class="mobility-chip exc">COL · COLIBRI · 1</span><span class="mobility-chip exc">GP1 · ISRAEL CAVAZOS · 1</span><span class="mobility-chip exc">JU1 · VILLA JUAREZ · 1</span></div><div class="mobility-potential"><b>1 de 1</b><span>podrían cubrirse</span><span class="mobility-status match">Validar movimiento</span></div></div></div></article><article class="mobility-zone has-match"><div class="mobility-zone-head"><div><div class="mobility-zone-name">Zona 5</div><div class="mobility-zone-sub">1 puesto con excedente compatible · se auditan todas las necesidades</div></div><div class="mobility-zone-score"><b>1/2</b><span>cobertura interna potencial · 50%</span></div></div><div class="mobility-body"><div class="mobility-role "><div><div class="mobility-role-name">Almacenistas</div><div class="mobility-role-detail">Cobertura total potencial</div></div><div><div class="mobility-role-detail"><b style="color:var(--brand-red)">Vacante / destino</b></div><span class="mobility-chip vac">MT1 · NUEVO REPUEBLO · 1</span></div><div class="mobility-arrow">←</div><div><div class="mobility-role-detail"><b style="color:var(--brand-blue-2)">Excedente exacto / origen</b></div><span class="mobility-chip exc">MT3 · CHAPULTEPEC · 1</span></div><div class="mobility-potential"><b>1 de 1</b><span>podrían cubrirse</span><span class="mobility-status match">Validar movimiento</span></div></div><div class="mobility-role no-supply"><div><div class="mobility-role-name">Vendedores</div><div class="mobility-role-detail">Requiere reclutamiento / otra decisión</div></div><div><div class="mobility-role-detail"><b style="color:var(--brand-red)">Vacante / destino</b></div><span class="mobility-chip vac">MT2 · VENUSTIANO CARRANZA · 1</span></div><div class="mobility-arrow">×</div><div><div class="mobility-role-detail"><b style="color:var(--brand-blue-2)">Excedente exacto / origen</b></div><span class="mobility-status nomatch">Sin excedente del mismo puesto</span></div><div class="mobility-potential"><b style="color:var(--brand-red)">0 de 1</b><span>match interno</span></div></div></div></article><article class="mobility-zone has-match"><div class="mobility-zone-head"><div><div class="mobility-zone-name">Zona 6</div><div class="mobility-zone-sub">1 puesto con excedente compatible · se auditan todas las necesidades</div></div><div class="mobility-zone-score"><b>1/2</b><span>cobertura interna potencial · 50%</span></div></div><div class="mobility-body"><div class="mobility-role "><div><div class="mobility-role-name">Vendedores</div><div class="mobility-role-detail">Cobertura total potencial</div></div><div><div class="mobility-role-detail"><b style="color:var(--brand-red)">Vacante / destino</b></div><span class="mobility-chip vac">CV1 · CIUDAD VICTORIA · 1</span></div><div class="mobility-arrow">←</div><div><div class="mobility-role-detail"><b style="color:var(--brand-blue-2)">Excedente exacto / origen</b></div><span class="mobility-chip exc">CV2 · H. ILUSTRES · 2</span></div><div class="mobility-potential"><b>1 de 1</b><span>podrían cubrirse</span><span class="mobility-status match">Validar movimiento</span></div></div><div class="mobility-role no-supply"><div><div class="mobility-role-name">Repartidores</div><div class="mobility-role-detail">Requiere reclutamiento / otra decisión</div></div><div><div class="mobility-role-detail"><b style="color:var(--brand-red)">Vacante / destino</b></div><span class="mobility-chip vac">ALL · ALLENDE · 1</span></div><div class="mobility-arrow">×</div><div><div class="mobility-role-detail"><b style="color:var(--brand-blue-2)">Excedente exacto / origen</b></div><span class="mobility-status nomatch">Sin excedente del mismo puesto</span></div><div class="mobility-potential"><b style="color:var(--brand-red)">0 de 1</b><span>match interno</span></div></div></div></article></div>
-      <div class="mobility-note"><b>Lectura de gestión:</b> “Potencial” significa compatibilidad cuantitativa por <u>mismo puesto y misma zona</u>; no es una instrucción de transferencia. Antes de ejecutar, validar desempeño, horarios, distancia entre sucursales, continuidad operativa, voluntad del colaborador y autorización del líder.</div>
-    </div>
-  </section>
+  
 
   <footer>
     <b>Fuente:</b> Plantilla vs Venta Junio 2026 (36).xlsx (13 cortes semanales, 12 Jun–10 Sep 2026, objetivo de plantilla según venta de mayo). La columna <b>Vac. oficiales</b> utiliza exclusivamente la lista aprobada de vacantes abiertas. <b>Solicitadas</b> identifica necesidades aún no autorizadas; mientras estén pendientes no se agregan al total oficial ni al cálculo de cobertura. Los excedentes se presentan de forma separada.<br>
@@ -2204,7 +2108,7 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
 </div>
 
 <script>
-const DATA = {"weeks":["12 Jun","19 Jun","26 Jun","02 Jul","09 Jul","16 Jul","31 Jul","06 Ago","12 Ago","20 Ago","27 Ago","03 Sep","10 Sep"],"positions":["Gerente","Sup. Tda.","Vendedores","Desarrollador","Cajeras","Almacen","Repartidor"],"zones":{"Zona 1":["AP1","AP2","AP3","AP4","HSM"],"Zona 2":["MOD","ESC","SN1","SN2","SN3","ZU1"],"Zona 3":["MT4","PEN","STA","GA1","ES2","MT5"],"Zona 4":["COL","GP1","GP2","GP3","JU1","CY1"],"Zona 5":["MT1","MT2","MT3"],"Zona 6":["ALL","LI1","CV1","CV2","MN1"]},"branch_to_zone":{"AP1":"Zona 1","AP2":"Zona 1","AP3":"Zona 1","AP4":"Zona 1","HSM":"Zona 1","MOD":"Zona 2","ESC":"Zona 2","SN1":"Zona 2","SN2":"Zona 2","SN3":"Zona 2","ZU1":"Zona 2","MT4":"Zona 3","PEN":"Zona 3","STA":"Zona 3","GA1":"Zona 3","ES2":"Zona 3","MT5":"Zona 3","COL":"Zona 4","GP1":"Zona 4","GP2":"Zona 4","GP3":"Zona 4","JU1":"Zona 4","CY1":"Zona 4","MT1":"Zona 5","MT2":"Zona 5","MT3":"Zona 5","ALL":"Zona 6","LI1":"Zona 6","CV1":"Zona 6","CV2":"Zona 6","MN1":"Zona 6"},"branch_names":{"AP1":"CONCORDIA","AP2":"PUEBLO NUEVO","AP3":"APODACA CENTRO","AP4":"HUINALA","HSM":"HACIENDA SAN MIGUEL","MOD":"MODERNA","ESC":"ESCOBEDO","SN1":"SANTO DOMINGO","SN2":"DIEGO DIAZ DE BERLANGA","SN3":"UNIVERSIDAD","ZU1":"ZUAZUA","MT4":"SOLIDARIDAD","PEN":"PENITENCIARIA","STA":"SANTA CATARINA","GA1":"GARCIA","ES2":"ALIANZA","MT5":"LOMA LINDA","COL":"COLIBRI","GP1":"ISRAEL CAVAZOS","GP2":"RUIZ CORTINES","GP3":"ELOY CAVAZOS","JU1":"VILLA JUAREZ","CY1":"CADEREYTA","MT1":"NUEVO REPUEBLO","MT2":"VENUSTIANO CARRANZA","MT3":"CHAPULTEPEC","ALL":"ALLENDE","LI1":"LINARES","CV1":"CIUDAD VICTORIA","CV2":"H. ILUSTRES","MN1":"MONTEMORELOS"},"utilidad":{"AP1":138870.09142472656,"AP2":205650.68356844474,"AP3":253517.53476829524,"AP4":80311.1188418857,"HSM":209252.3283752752,"MOD":178814.64633940178,"ESC":254627.58013568103,"SN1":-8650.217611083277,"SN2":-8457.856913068059,"SN3":89633.51365279075,"ZU1":230868.41939052404,"MT4":9295.16856058258,"PEN":280941.5480667726,"STA":82482.17062192807,"GA1":95635.17466552678,"ES2":113987.57006440795,"MT5":7666.572720306804,"COL":123354.17647363667,"GP1":107208.16369991068,"GP2":140275.99410485418,"GP3":-5313.909151620301,"JU1":168810.46806009082,"CY1":151818.0201894336,"MT1":107960.56131341489,"MT2":68194.7001759921,"MT3":-13683.91125159194,"ALL":104977.65658632151,"LI1":124534.34054591024,"CV1":89071.77877129496,"CV2":627.9982603209974},"utilidad_julio":{"AP1":202000,"AP2":253000,"AP3":288000,"AP4":121000,"HSM":280000,"MOD":240000,"ESC":349000,"SN1":20000,"SN2":23000,"SN3":131000,"ZU1":237000,"MT4":53000,"PEN":309000,"STA":110000,"GA1":129000,"ES2":145000,"MT5":33000,"COL":134000,"GP1":136000,"GP2":185000,"GP3":36000,"JU1":205000,"CY1":182000,"MT1":149000,"MT2":121000,"MT3":5000,"ALL":131000,"LI1":138000,"CV1":114000,"CV2":18000},"utilidad_acum_prom_mensual":{"AP1":75740.18284945312,"AP2":158301.36713688952,"AP3":219035.0695365905,"AP4":39622.23768377142,"HSM":138504.6567505504,"MOD":117629.29267880357,"ESC":160255.16027136208,"SN1":-37300.435222166554,"SN2":-39915.71382613612,"SN3":48267.02730558149,"ZU1":224736.8387810481,"MT4":-34409.66287883484,"PEN":252883.0961335452,"STA":54964.34124385615,"GA1":62270.34933105356,"ES2":82975.14012881588,"MT5":-17666.854559386393,"COL":112708.35294727336,"GP1":78416.32739982138,"GP2":95551.98820970836,"GP3":-46627.8183032406,"JU1":132620.93612018164,"CY1":121636.0403788672,"MT1":66921.12262682978,"MT2":15389.400351984194,"MT3":-32367.82250318388,"ALL":78955.31317264303,"LI1":111068.68109182046,"CV1":64143.55754258994,"CV2":-16744.003479358005},"aut_b":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,6,1,2,2,3],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,3],"MOD":[1,0,8,1,2,1,3],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,3,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,6,1,2,1,3],"MT4":[1,0,4,1,1,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,1,1],"COL":[1,0,6,1,2,2,2],"GP1":[1,0,6,1,1,1,2],"GP2":[1,0,3,1,2,1,4],"GP3":[1,0,4,1,1,0,1],"JU1":[1,0,7,1,2,1,2],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,1],"MT2":[1,0,4,1,1,1,2],"MT3":[1,0,4,1,1,0,1],"ALL":[1,0,4,1,2,1,1],"LI1":[1,0,5,1,2,1,2],"CV1":[1,0,6,1,2,1,3],"CV2":[1,0,3,1,1,1,1],"MN1":[1,0,4,1,1,1,1]},"weekly_real":{"12 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,6,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,2],"MOD":[1,0,7,0,3,1,2],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,5,1,2,1,2],"PEN":[1,0,8,1,2,2,4],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,2,0,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,null,4,1,1,0,1],"COL":[1,0,7,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[0,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,4,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"19 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,6,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,2],"MOD":[1,0,7,0,3,1,2],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,5,1,2,1,2],"PEN":[1,0,8,1,2,2,4],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,2,0,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,null,4,1,1,0,1],"COL":[1,0,7,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[0,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,4,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"26 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,1],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,6,1,2,2,3],"MT4":[1,0,4,1,2,1,2],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,0,0],"GA1":[1,0,4,1,2,1,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,4,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"02 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[1,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"09 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[2,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,6,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"16 Jul":{"AP1":[1,0,6,1,2,1,1],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[2,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,0],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,4,1,1,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"31 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,0,2],"MOD":[1,1,8,0,2,1,2],"ESC":[1,0,7,0,1,2,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,1],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,1,1,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,2,1,2,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,4,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,3,0,0,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"06 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,0,2],"MOD":[1,1,8,0,2,0,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,1,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,3,1,0,1,1],"ALL":[1,0,4,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"12 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,1,8,1,2,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,4,1,0,1,1],"ALL":[1,0,4,1,2,1,0],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"20 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,6,1,2,2,3],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,0,3,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,0,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,1,1,2],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,3,1,0,1,1],"ALL":[1,0,5,1,1,1,0],"LI1":[1,0,5,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"27 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,6,1,2,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,1,3,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,0,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,6,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,1,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,1,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,4,1,1,1,1],"ALL":[1,0,4,1,2,1,0],"LI1":[1,0,5,1,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"03 Sep":{"AP1":[1, 0, 6, 1, 2, 1, 2],"AP2":[1, 0, 5, 0, 2, 1, 2],"AP3":[1, 0, 5, 1, 1, 2, 3],"AP4":[1, 0, 4, 0, 2, 1, 2],"HSM":[1, 0, 5, 1, 2, 1, 3],"MOD":[1, 0, 8, 1, 3, 1, 2],"ESC":[1, 0, 7, 1, 2, 1, 2],"SN1":[1, 0, 4, 1, 1, 1, 1],"SN2":[1, 0, 4, 1, 1, 1, 2],"SN3":[1, 0, 4, 1, 2, 1, 1],"ZU1":[1, 0, 6, 1, 2, 1, 3],"MT4":[1, 0, 4, 1, 2, 1, 1],"PEN":[1, 1, 8, 1, 2, 1, 3],"STA":[1, 0, 4, 1, 2, 1, 1],"GA1":[1, 1, 4, 1, 1, 1, 1],"ES2":[1, 0, 4, 1, 2, 1, 2],"MT5":[1, 0, 3, 1, 1, 0, 1],"COL":[1, 0, 6, 1, 2, 2, 2],"GP1":[1, 0, 6, 1, 2, 2, 2],"GP2":[1, 0, 3, 1, 1, 1, 4],"GP3":[1, 0, 4, 1, 1, 1, 1],"JU1":[1, 0, 7, 1, 2, 1, 3],"CY1":[1, 0, 6, 1, 2, 1, 1],"MT1":[1, 1, 4, 1, 1, 0, 2],"MT2":[1, 0, 3, 1, 1, 1, 2],"MT3":[1, 0, 4, 1, 1, 1, 1],"ALL":[1, 0, 4, 1, 2, 1, 1],"LI1":[1, 0, 5, 1, 2, 1, 2],"CV1":[1, 0, 6, 2, 2, 1, 3],"CV2":[1, 0, 5, 1, 1, 1, 1],"MN1":[1, 0, 4, 1, 1, 1, 1]},"10 Sep":{"AP1":[1, 0, 6, 1, 2, 1, 2],"AP2":[1, 0, 5, 1, 2, 1, 1],"AP3":[1, 0, 5, 1, 1, 2, 3],"AP4":[1, 0, 4, 0, 2, 1, 2],"HSM":[1, 0, 5, 1, 2, 1, 3],"MOD":[1, 0, 8, 1, 2, 1, 2],"ESC":[1, 0, 7, 1, 2, 1, 2],"SN1":[1, 0, 3, 1, 1, 1, 1],"SN2":[1, 0, 4, 1, 1, 1, 2],"SN3":[1, 0, 4, 1, 2, 1, 1],"ZU1":[1, 0, 6, 1, 2, 1, 3],"MT4":[1, 0, 4, 1, 2, 1, 1],"PEN":[1, 1, 8, 1, 2, 1, 3],"STA":[1, 0, 4, 1, 2, 1, 1],"GA1":[1, 1, 4, 1, 1, 1, 1],"ES2":[1, 0, 4, 1, 2, 1, 2],"MT5":[1, 0, 3, 1, 1, 0, 1],"COL":[1, 0, 6, 1, 2, 2, 2],"GP1":[1, 0, 6, 1, 1, 1, 2],"GP2":[1, 0, 3, 1, 1, 1, 4],"GP3":[1, 0, 4, 1, 1, 0, 1],"JU1":[1, 0, 7, 1, 2, 1, 2],"CY1":[1, 0, 6, 1, 2, 1, 1],"MT1":[1, 1, 4, 1, 1, 0, 1],"MT2":[1, 0, 3, 1, 1, 1, 2],"MT3":[1, 0, 4, 1, 1, 1, 1],"ALL":[1, 0, 4, 1, 2, 1, 1],"LI1":[1, 0, 5, 1, 2, 1, 2],"CV1":[1, 0, 6, 1, 2, 1, 3],"CV2":[1, 0, 3, 1, 1, 1, 1],"MN1":[1, 0, 4, 1, 1, 1, 1]}}};
+const DATA = {"weeks":["12 Jun","19 Jun","26 Jun","02 Jul","09 Jul","16 Jul","31 Jul","06 Ago","12 Ago","20 Ago","27 Ago","03 Sep","10 Sep"],"positions":["Gerente","Sup. Tda.","Vendedores","Desarrollador","Cajeras","Almacen","Repartidor"],"zones":{"Zona 1":["AP1","AP2","AP3","AP4","HSM"],"Zona 2":["MOD","ESC","SN1","SN2","SN3","ZU1"],"Zona 3":["MT4","PEN","STA","GA1","ES2","MT5"],"Zona 4":["COL","GP1","GP2","GP3","JU1","CY1"],"Zona 5":["MT1","MT2","MT3"],"Zona 6":["ALL","LI1","CV1","CV2","MN1"]},"branch_to_zone":{"AP1":"Zona 1","AP2":"Zona 1","AP3":"Zona 1","AP4":"Zona 1","HSM":"Zona 1","MOD":"Zona 2","ESC":"Zona 2","SN1":"Zona 2","SN2":"Zona 2","SN3":"Zona 2","ZU1":"Zona 2","MT4":"Zona 3","PEN":"Zona 3","STA":"Zona 3","GA1":"Zona 3","ES2":"Zona 3","MT5":"Zona 3","COL":"Zona 4","GP1":"Zona 4","GP2":"Zona 4","GP3":"Zona 4","JU1":"Zona 4","CY1":"Zona 4","MT1":"Zona 5","MT2":"Zona 5","MT3":"Zona 5","ALL":"Zona 6","LI1":"Zona 6","CV1":"Zona 6","CV2":"Zona 6","MN1":"Zona 6"},"branch_names":{"AP1":"CONCORDIA","AP2":"PUEBLO NUEVO","AP3":"APODACA CENTRO","AP4":"HUINALA","HSM":"HACIENDA SAN MIGUEL","MOD":"MODERNA","ESC":"ESCOBEDO","SN1":"SANTO DOMINGO","SN2":"DIEGO DIAZ DE BERLANGA","SN3":"UNIVERSIDAD","ZU1":"ZUAZUA","MT4":"SOLIDARIDAD","PEN":"PENITENCIARIA","STA":"SANTA CATARINA","GA1":"GARCIA","ES2":"ALIANZA","MT5":"LOMA LINDA","COL":"COLIBRI","GP1":"ISRAEL CAVAZOS","GP2":"RUIZ CORTINES","GP3":"ELOY CAVAZOS","JU1":"VILLA JUAREZ","CY1":"CADEREYTA","MT1":"NUEVO REPUEBLO","MT2":"VENUSTIANO CARRANZA","MT3":"CHAPULTEPEC","ALL":"ALLENDE","LI1":"LINARES","CV1":"CIUDAD VICTORIA","CV2":"H. ILUSTRES","MN1":"MONTEMORELOS"},"utilidad":{"AP1":138870.09142472656,"AP2":205650.68356844474,"AP3":253517.53476829524,"AP4":80311.1188418857,"HSM":209252.3283752752,"MOD":178814.64633940178,"ESC":254627.58013568103,"SN1":-8650.217611083277,"SN2":-8457.856913068059,"SN3":89633.51365279075,"ZU1":230868.41939052404,"MT4":9295.16856058258,"PEN":280941.5480667726,"STA":82482.17062192807,"GA1":95635.17466552678,"ES2":113987.57006440795,"MT5":7666.572720306804,"COL":123354.17647363667,"GP1":107208.16369991068,"GP2":140275.99410485418,"GP3":-5313.909151620301,"JU1":168810.46806009082,"CY1":151818.0201894336,"MT1":107960.56131341489,"MT2":68194.7001759921,"MT3":-13683.91125159194,"ALL":104977.65658632151,"LI1":124534.34054591024,"CV1":89071.77877129496,"CV2":627.9982603209974},"utilidad_julio":{"AP1":202000,"AP2":253000,"AP3":288000,"AP4":121000,"HSM":280000,"MOD":240000,"ESC":349000,"SN1":20000,"SN2":23000,"SN3":131000,"ZU1":237000,"MT4":53000,"PEN":309000,"STA":110000,"GA1":129000,"ES2":145000,"MT5":33000,"COL":134000,"GP1":136000,"GP2":185000,"GP3":36000,"JU1":205000,"CY1":182000,"MT1":149000,"MT2":121000,"MT3":5000,"ALL":131000,"LI1":138000,"CV1":114000,"CV2":18000},"utilidad_acum_prom_mensual":{"AP1":75740.18284945312,"AP2":158301.36713688952,"AP3":219035.0695365905,"AP4":39622.23768377142,"HSM":138504.6567505504,"MOD":117629.29267880357,"ESC":160255.16027136208,"SN1":-37300.435222166554,"SN2":-39915.71382613612,"SN3":48267.02730558149,"ZU1":224736.8387810481,"MT4":-34409.66287883484,"PEN":252883.0961335452,"STA":54964.34124385615,"GA1":62270.34933105356,"ES2":82975.14012881588,"MT5":-17666.854559386393,"COL":112708.35294727336,"GP1":78416.32739982138,"GP2":95551.98820970836,"GP3":-46627.8183032406,"JU1":132620.93612018164,"CY1":121636.0403788672,"MT1":66921.12262682978,"MT2":15389.400351984194,"MT3":-32367.82250318388,"ALL":78955.31317264303,"LI1":111068.68109182046,"CV1":64143.55754258994,"CV2":-16744.003479358005},"aut_b":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,6,1,2,2,3],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,3],"MOD":[1,0,8,1,2,1,3],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,3,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,6,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,1,1],"COL":[1,0,6,1,2,2,2],"GP1":[1,0,5,1,2,1,2],"GP2":[1,0,3,1,2,1,4],"GP3":[1,0,4,1,1,0,1],"JU1":[1,0,7,1,2,1,2],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,1],"MT2":[1,0,4,1,1,1,2],"MT3":[1,0,4,1,1,1,1],"ALL":[1,0,4,1,2,1,1],"LI1":[1,0,5,1,2,1,2],"CV1":[1,0,6,1,2,1,3],"CV2":[1,0,3,1,1,1,1],"MN1":[1,0,4,1,1,1,1]},"weekly_real":{"12 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,6,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,2],"MOD":[1,0,7,0,3,1,2],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,5,1,2,1,2],"PEN":[1,0,8,1,2,2,4],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,2,0,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,null,4,1,1,0,1],"COL":[1,0,7,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[0,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,4,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"19 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,6,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,2],"MOD":[1,0,7,0,3,1,2],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,5,1,2,1,2],"PEN":[1,0,8,1,2,2,4],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,2,0,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,null,4,1,1,0,1],"COL":[1,0,7,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[0,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,4,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"26 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,1],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,6,1,2,2,3],"MT4":[1,0,4,1,2,1,2],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,0,0],"GA1":[1,0,4,1,2,1,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,4,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"02 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[1,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"09 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[2,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,6,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"16 Jul":{"AP1":[1,0,6,1,2,1,1],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[2,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,0],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,4,1,1,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"31 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,0,2],"MOD":[1,1,8,0,2,1,2],"ESC":[1,0,7,0,1,2,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,1],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,1,1,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,2,1,2,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,4,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,3,0,0,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"06 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,0,2],"MOD":[1,1,8,0,2,0,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,1,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,3,1,0,1,1],"ALL":[1,0,4,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"12 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,1,8,1,2,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,4,1,0,1,1],"ALL":[1,0,4,1,2,1,0],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"20 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,6,1,2,2,3],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,0,3,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,0,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,1,1,2],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,3,1,0,1,1],"ALL":[1,0,5,1,1,1,0],"LI1":[1,0,5,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"27 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,6,1,2,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,1,3,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,0,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,6,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,1,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,1,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,4,1,1,1,1],"ALL":[1,0,4,1,2,1,0],"LI1":[1,0,5,1,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"03 Sep":{"AP1":[1, 0, 6, 1, 2, 1, 2],"AP2":[1, 0, 5, 0, 2, 1, 2],"AP3":[1, 0, 5, 1, 1, 2, 3],"AP4":[1, 0, 4, 0, 2, 1, 2],"HSM":[1, 0, 5, 1, 2, 1, 3],"MOD":[1, 0, 8, 1, 3, 1, 2],"ESC":[1, 0, 7, 1, 2, 1, 2],"SN1":[1, 0, 4, 1, 1, 1, 1],"SN2":[1, 0, 4, 1, 1, 1, 2],"SN3":[1, 0, 4, 1, 2, 1, 1],"ZU1":[1, 0, 6, 1, 2, 1, 3],"MT4":[1, 0, 4, 1, 2, 1, 1],"PEN":[1, 1, 8, 1, 2, 1, 3],"STA":[1, 0, 4, 1, 2, 1, 1],"GA1":[1, 1, 4, 1, 1, 1, 1],"ES2":[1, 0, 4, 1, 2, 1, 2],"MT5":[1, 0, 3, 1, 1, 0, 1],"COL":[1, 0, 6, 1, 2, 2, 2],"GP1":[1, 0, 6, 1, 2, 2, 2],"GP2":[1, 0, 3, 1, 1, 1, 4],"GP3":[1, 0, 4, 1, 1, 1, 1],"JU1":[1, 0, 7, 1, 2, 1, 3],"CY1":[1, 0, 6, 1, 2, 1, 1],"MT1":[1, 1, 4, 1, 1, 0, 2],"MT2":[1, 0, 3, 1, 1, 1, 2],"MT3":[1, 0, 4, 1, 1, 1, 1],"ALL":[1, 0, 4, 1, 2, 1, 1],"LI1":[1, 0, 5, 1, 2, 1, 2],"CV1":[1, 0, 6, 2, 2, 1, 3],"CV2":[1, 0, 5, 1, 1, 1, 1],"MN1":[1, 0, 4, 1, 1, 1, 1]},"10 Sep":{"AP1":[1, 0, 6, 1, 2, 1, 2],"AP2":[1, 0, 5, 1, 2, 1, 1],"AP3":[1, 0, 5, 1, 1, 2, 3],"AP4":[1, 0, 4, 0, 2, 1, 2],"HSM":[1, 0, 5, 1, 2, 1, 3],"MOD":[1, 0, 8, 1, 2, 1, 3],"ESC":[1, 0, 7, 1, 2, 1, 2],"SN1":[1, 0, 3, 1, 1, 1, 1],"SN2":[1, 0, 4, 1, 1, 1, 2],"SN3":[1, 0, 4, 1, 2, 1, 1],"ZU1":[1, 0, 6, 1, 2, 1, 3],"MT4":[1, 0, 4, 1, 2, 1, 1],"PEN":[1, 1, 8, 1, 2, 1, 3],"STA":[1, 0, 4, 1, 2, 1, 1],"GA1":[1, 1, 4, 1, 1, 1, 1],"ES2":[1, 0, 4, 1, 2, 1, 2],"MT5":[1, 0, 3, 1, 1, 0, 1],"COL":[1, 0, 6, 1, 2, 2, 2],"GP1":[1, 0, 5, 1, 2, 1, 2],"GP2":[1, 0, 3, 1, 1, 1, 4],"GP3":[1, 0, 4, 1, 1, 0, 1],"JU1":[1, 0, 7, 1, 2, 1, 2],"CY1":[1, 0, 6, 1, 2, 1, 1],"MT1":[1, 1, 4, 1, 1, 0, 1],"MT2":[1, 0, 3, 1, 1, 1, 2],"MT3":[1, 0, 4, 1, 1, 1, 1],"ALL":[1, 0, 4, 1, 2, 1, 1],"LI1":[1, 0, 5, 1, 2, 1, 2],"CV1":[1, 0, 6, 1, 2, 1, 3],"CV2":[1, 0, 3, 1, 1, 1, 1],"MN1":[1, 0, 4, 1, 1, 1, 1]}}};
 </script>
 <script>
 
@@ -2918,12 +2822,12 @@ const OFFICIAL_HISTORY = [
   {label:"20 Ago", total:13},
   {label:"27 Ago", total:8},
   {label:"03 Sep", total:10},
-  {label:"10 Sep", total:11}
+  {label:"10 Sep", total:10}
 ];
 // OFFICIAL_PREV_ZONE = corte anterior al vigente (ahora 03 Sep, para comparar contra 10 Sep). El corte 03 Sep
 // queda cerrado tal cual con 10 en OFFICIAL_HISTORY / OFFICIAL_HISTORY_BY_ZONE — no se retocó su cifra histórica.
 const OFFICIAL_PREV_ZONE = {"Zona 1":4,"Zona 2":2,"Zona 3":1,"Zona 4":1,"Zona 5":2,"Zona 6":0};
-const OFFICIAL_HISTORY_BY_ZONE = {"31 Jul":{"Zona 1":5,"Zona 2":7,"Zona 3":3,"Zona 4":6,"Zona 5":6,"Zona 6":2},"06 Ago":{"Zona 1":5,"Zona 2":4,"Zona 3":1,"Zona 4":4,"Zona 5":4,"Zona 6":1},"12 Ago":{"Zona 1":2,"Zona 2":2,"Zona 3":0,"Zona 4":3,"Zona 5":3,"Zona 6":2},"20 Ago":{"Zona 1":1,"Zona 2":5,"Zona 3":0,"Zona 4":1,"Zona 5":4,"Zona 6":2},"27 Ago":{"Zona 1":1,"Zona 2":3,"Zona 3":0,"Zona 4":2,"Zona 5":1,"Zona 6":1},"03 Sep":{"Zona 1":4,"Zona 2":2,"Zona 3":1,"Zona 4":1,"Zona 5":2,"Zona 6":0},"10 Sep":{"Zona 1":4,"Zona 2":2,"Zona 3":2,"Zona 4":1,"Zona 5":2,"Zona 6":0}};
+const OFFICIAL_HISTORY_BY_ZONE = {"31 Jul":{"Zona 1":5,"Zona 2":7,"Zona 3":3,"Zona 4":6,"Zona 5":6,"Zona 6":2},"06 Ago":{"Zona 1":5,"Zona 2":4,"Zona 3":1,"Zona 4":4,"Zona 5":4,"Zona 6":1},"12 Ago":{"Zona 1":2,"Zona 2":2,"Zona 3":0,"Zona 4":3,"Zona 5":3,"Zona 6":2},"20 Ago":{"Zona 1":1,"Zona 2":5,"Zona 3":0,"Zona 4":1,"Zona 5":4,"Zona 6":2},"27 Ago":{"Zona 1":1,"Zona 2":3,"Zona 3":0,"Zona 4":2,"Zona 5":1,"Zona 6":1},"03 Sep":{"Zona 1":4,"Zona 2":2,"Zona 3":1,"Zona 4":1,"Zona 5":2,"Zona 6":0},"10 Sep":{"Zona 1":4,"Zona 2":1,"Zona 3":2,"Zona 4":1,"Zona 5":2,"Zona 6":0}};
 
 // Excedentes por semana: plazas por encima del objetivo aprobado, calculadas con el objetivo VIGENTE en cada
 // corte del Excel (no con el objetivo de hoy aplicado hacia atrás). Fuente: hojas 31 JUL–10 Sep, v34.
@@ -2934,9 +2838,9 @@ const EXCESS_HISTORY = [
   {label:"20 Ago", total:35},
   {label:"27 Ago", total:26},
   {label:"03 Sep", total:15},
-  {label:"10 Sep", total:4}
+  {label:"10 Sep", total:2}
 ];
-const EXCESS_HISTORY_BY_ZONE = {"31 Jul":{"Zona 1":3,"Zona 2":6,"Zona 3":5,"Zona 4":7,"Zona 5":3,"Zona 6":15},"06 Ago":{"Zona 1":3,"Zona 2":5,"Zona 3":4,"Zona 4":8,"Zona 5":3,"Zona 6":14},"12 Ago":{"Zona 1":3,"Zona 2":5,"Zona 3":4,"Zona 4":7,"Zona 5":3,"Zona 6":13},"20 Ago":{"Zona 1":3,"Zona 2":4,"Zona 3":4,"Zona 4":7,"Zona 5":3,"Zona 6":14},"27 Ago":{"Zona 1":3,"Zona 2":4,"Zona 3":5,"Zona 4":7,"Zona 5":3,"Zona 6":4},"03 Sep":{"Zona 1":1,"Zona 2":2,"Zona 3":2,"Zona 4":4,"Zona 5":3,"Zona 6":3},"10 Sep":{"Zona 1":0,"Zona 2":0,"Zona 3":2,"Zona 4":0,"Zona 5":2,"Zona 6":0}};
+const EXCESS_HISTORY_BY_ZONE = {"31 Jul":{"Zona 1":3,"Zona 2":6,"Zona 3":5,"Zona 4":7,"Zona 5":3,"Zona 6":15},"06 Ago":{"Zona 1":3,"Zona 2":5,"Zona 3":4,"Zona 4":8,"Zona 5":3,"Zona 6":14},"12 Ago":{"Zona 1":3,"Zona 2":5,"Zona 3":4,"Zona 4":7,"Zona 5":3,"Zona 6":13},"20 Ago":{"Zona 1":3,"Zona 2":4,"Zona 3":4,"Zona 4":7,"Zona 5":3,"Zona 6":14},"27 Ago":{"Zona 1":3,"Zona 2":4,"Zona 3":5,"Zona 4":7,"Zona 5":3,"Zona 6":4},"03 Sep":{"Zona 1":1,"Zona 2":2,"Zona 3":2,"Zona 4":4,"Zona 5":3,"Zona 6":3},"10 Sep":{"Zona 1":0,"Zona 2":0,"Zona 3":1,"Zona 4":0,"Zona 5":1,"Zona 6":0}};
 
 // Ajustes incrementales de objetivo de plantilla aplicados en los últimos cortes (Zona Interior 1–6).
 // Cada registro: sucursal, puesto, objetivo anterior → nuevo, y el corte en que se detectó el cambio.
@@ -2944,29 +2848,36 @@ const EXCESS_HISTORY_BY_ZONE = {"31 Jul":{"Zona 1":3,"Zona 2":6,"Zona 3":5,"Zona
 // vigente en ese corte), "real" = HC realmente en nómina. Las series "cmp" excluyen MN1 (Montemorelos), que
 // abrió durante el periodo y suma 9 plazas nuevas, para poder comparar tiendas iguales contra iguales.
 // Fuente: suma de todas las posiciones de las 31 sucursales en cada hoja semanal del Excel v27.
+// HC_HISTORY: aut/real = las 31 sucursales de Zona Interior 1-6 (incluye MN1, apertura nueva).
+// autCmp/realCmp = comparable tienda-tienda, EXCLUYE MN1 porque no tiene historial previo y su
+// HC aprobado sólo se dio de alta hasta el 27 Ago (aunque su HC real ya operaba desde antes),
+// lo cual distorsiona cualquier lectura de tendencia si se deja mezclado. Fuente: hojas 31 JUL–10 Sep, v38.
 const HC_HISTORY = [
   {label:"31 Jul", aut:337, real:347, autCmp:337, realCmp:338},
   {label:"06 Ago", aut:337, real:355, autCmp:337, realCmp:347},
   {label:"12 Ago", aut:336, real:355, autCmp:336, realCmp:347},
   {label:"20 Ago", aut:337, real:357, autCmp:337, realCmp:348},
   {label:"27 Ago", aut:345, real:361, autCmp:336, realCmp:352},
-  {label:"03 Sep", aut:352, real:357, autCmp:343, realCmp:348},
-  {label:"10 Sep", aut:354, real:347, autCmp:345, realCmp:338}
+  {label:"03 Sep", aut:353, real:357, autCmp:344, realCmp:348},
+  {label:"10 Sep", aut:356, real:348, autCmp:347, realCmp:339}
 ];
-// Detalle de los movimientos de HC aprobado entre 31 Jul y 03 Sep (solo sucursales que cambiaron).
+// Detalle de los movimientos de HC aprobado entre 31 Jul y 10 Sep (solo sucursales comparables que
+// cambiaron; MN1 se reporta aparte por ser apertura nueva, no ajuste de techo en tienda existente).
 const HC_AUT_CHANGES = [
   {code:"AP4", from:9,  to:11, delta:2},
-  {code:"HSM", from:12, to:13, delta:1},
   {code:"SN2", from:8,  to:10, delta:2},
-  {code:"CY1", from:11, to:12, delta:1},
-  {code:"LI1", from:13, to:12, delta:-1},
-  {code:"CV1", from:15, to:14, delta:-1},
-  {code:"CV2", from:7,  to:8,  delta:1},
+  {code:"AP3", from:14, to:15, delta:1},
+  {code:"HSM", from:12, to:13, delta:1},
+  {code:"MT4", from:9,  to:10, delta:1},
   {code:"STA", from:9,  to:10, delta:1},
   {code:"ES2", from:10, to:11, delta:1},
-  {code:"GP2", from:13, to:12, delta:-1},
-  {code:"AP3", from:14, to:15, delta:1},
   {code:"MT5", from:7,  to:8,  delta:1},
+  {code:"CY1", from:11, to:12, delta:1},
+  {code:"MT3", from:8,  to:9,  delta:1},
+  {code:"CV2", from:7,  to:8,  delta:1},
+  {code:"GP2", from:13, to:12, delta:-1},
+  {code:"LI1", from:13, to:12, delta:-1},
+  {code:"CV1", from:15, to:14, delta:-1},
   {code:"MN1", from:0,  to:9,  delta:9, nueva:true}
 ];
 // Regla de conversión provista por el negocio: cada unidad de HC adicional debe reflejarse en venta.
@@ -3025,7 +2936,7 @@ const PLANTILLA_INCREMENTS = [
 // Comparativo de HC: 1 alta, 1 baja relevantes para vacantes, neto 0.
 const WEEKLY_MOVEMENT_LABEL = "03 Sep → 10 Sep";
 // Movimiento detectable al comparar HC entre cortes. No captura rotaciones que se compensan dentro de la misma semana.
-const WEEKLY_MOVEMENT = {"Zona 1":{altas:1,bajas:1},"Zona 2":{altas:0,bajas:0},"Zona 3":{altas:0,bajas:0},"Zona 4":{altas:0,bajas:0},"Zona 5":{altas:0,bajas:0},"Zona 6":{altas:0,bajas:0}};
+const WEEKLY_MOVEMENT = {"Zona 1":{altas:1,bajas:1},"Zona 2":{altas:1,bajas:0},"Zona 3":{altas:0,bajas:0},"Zona 4":{altas:0,bajas:0},"Zona 5":{altas:0,bajas:0},"Zona 6":{altas:0,bajas:0}};
 // Movilidad interna CONFIRMADA por el negocio (no se pierde al avanzar de corte, a diferencia de WEEKLY_MOVEMENT
 // que solo compara el corte vigente contra el anterior). Se agrega aquí cuando el equipo confirma explícitamente
 // que una plaza excedente se usó para cubrir una vacante en otra sucursal.
@@ -3639,13 +3550,15 @@ function renderHcEvolution(){
   const el=document.getElementById('hcEvolution');
   if(!el) return;
   const s=HC_HISTORY, first=s[0], last=s[s.length-1];
-  const dAut=last.aut-first.aut, dReal=last.real-first.real;
+  // La serie comparable (sin MN1) es la que manda: es la unica con historial real desde 31 Jul.
   const dAutCmp=last.autCmp-first.autCmp, dRealCmp=last.realCmp-first.realCmp;
-  const bajo = dAut<0;
+  const mn1Aprobado = HC_AUT_CHANGES.find(x=>x.nueva);
   const fmtSign = v=> (v>0?'+':'')+v;
+  const realFlat = Math.abs(dRealCmp)<=2;
+  const bajo = dAutCmp<0;
 
   const W=760,H=210,padL=44,padR=18,padT=26,padB=32;
-  const vals=s.flatMap(x=>[x.aut,x.real]);
+  const vals=s.flatMap(x=>[x.autCmp,x.realCmp]);
   const maxV=Math.max(...vals), minV=Math.min(...vals);
   const lo=Math.floor((minV-6)/5)*5, hi=Math.ceil((maxV+6)/5)*5;
   const xStep=(W-padL-padR)/(s.length-1);
@@ -3658,26 +3571,31 @@ function renderHcEvolution(){
   const mkDots=(key,color)=>s.map((d,i)=>`<circle cx="${xs(i)}" cy="${y(d[key])}" r="5" fill="${color}" stroke="rgba(0,0,0,.25)" stroke-width="1.5"/><text x="${xs(i)}" y="${y(d[key])-12}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="800" fill="${color}">${d[key]}</text>`).join('');
   const grid=[0,.25,.5,.75,1].map(t=>{const yy=padT+t*(H-padT-padB);const v=Math.round(hi-t*(hi-lo));return `<line x1="${padL}" y1="${yy}" x2="${W-padR}" y2="${yy}" stroke="rgba(255,255,255,.14)" stroke-dasharray="3 5"/><text x="${padL-8}" y="${yy+3}" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="rgba(255,255,255,.5)">${v}</text>`;}).join('');
   const xlabels=s.map((d,i)=>`<text x="${xs(i)}" y="${H-8}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="rgba(255,255,255,.62)">${d.label}</text>`).join('');
-  const chart=`<svg class="hc-chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Evolución de plantilla aprobada y real">${grid}${mkLine('real','rgba(255,255,255,.55)','5 4')}${mkLine('aut','#fff')}${mkDots('real','rgba(255,255,255,.8)')}${mkDots('aut','#ffd9c2')}${xlabels}</svg>`;
+  const chart=`<svg class="hc-chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Evolucion de plantilla aprobada y real, comparable sin MN1">${grid}${mkLine('realCmp','rgba(255,255,255,.55)','5 4')}${mkLine('autCmp','#fff')}${mkDots('realCmp','rgba(255,255,255,.8)')}${mkDots('autCmp','#ffd9c2')}${xlabels}</svg>`;
 
-  const nuevas = HC_AUT_CHANGES.filter(x=>x.nueva);
   const subieron = HC_AUT_CHANGES.filter(x=>!x.nueva && x.delta>0);
   const bajaron = HC_AUT_CHANGES.filter(x=>!x.nueva && x.delta<0);
   const listTxt = arr => arr.map(x=>`${branchName[x.code]||x.code} (${x.code}) ${fmtSign(x.delta)}`).join(' · ');
 
+  const headline = bajo
+    ? `El techo aprobado sí bajó: ${fmtSign(dAutCmp)} plazas`
+    : (realFlat
+        ? `HC real prácticamente estable (${fmtSign(dRealCmp)}); el techo aprobado subió ${fmtSign(dAutCmp)}`
+        : `El techo aprobado (${fmtSign(dAutCmp)}) subió más que el HC real (${fmtSign(dRealCmp)})`);
+
   el.innerHTML = `<div class="hc-verdict${bajo?' good':''}">
-    <div class="hc-eyebrow">Plantilla aprobada · validación contra la reducción de excedentes</div>
-    <div class="hc-headline">${bajo?'La plantilla aprobada sí disminuyó':'La plantilla aprobada NO disminuyó: subió '+fmtSign(dAut)+' plazas'}</div>
-    <div class="hc-copy">Entre <b>${first.label}</b> y <b>${last.label}</b>, el HC aprobado pasó de <b>${first.aut}</b> a <b>${last.aut}</b> (<b>${fmtSign(dAut)}</b>) y el HC real de <b>${first.real}</b> a <b>${last.real}</b> (<b>${fmtSign(dReal)}</b>). En el mismo periodo el excedente bajó de 39 a 20 plazas — pero esa caída <b>no vino de reducir personal</b>, vino de <b>aprobar más posiciones</b>. Descontando MN1 (Montemorelos, apertura nueva que suma 9 plazas), la comparación tienda contra tienda sigue siendo al alza: aprobado <b>${fmtSign(dAutCmp)}</b> y real <b>${fmtSign(dRealCmp)}</b>.</div>
+    <div class="hc-eyebrow">Plantilla aprobada vs. real · comparativo en el tiempo</div>
+    <div class="hc-headline">${headline}</div>
+    <div class="hc-copy">Comparando tienda contra tienda (30 sucursales, <b>excluye MN1</b>) entre <b>${first.label}</b> y <b>${last.label}</b>: el HC aprobado pasó de <b>${first.autCmp}</b> a <b>${last.autCmp}</b> (<b>${fmtSign(dAutCmp)}</b>) y el HC real de <b>${first.realCmp}</b> a <b>${last.realCmp}</b> (<b>${fmtSign(dRealCmp)}</b>). En el mismo periodo el excedente de la red bajó de 39 a 2 plazas — esa caída <b>no vino de reducir personal</b>, vino de <b>subir el techo aprobado</b> hasta acercarlo al HC que ya estaba en nómina.</div>
     <div class="hc-stats">
-      <div class="hc-stat"><div class="hc-stat-label">HC aprobado ${last.label}</div><div class="hc-stat-val">${last.aut}</div><div class="hc-stat-sub">${fmtSign(dAut)} vs. ${first.label}</div></div>
-      <div class="hc-stat"><div class="hc-stat-label">HC real ${last.label}</div><div class="hc-stat-val">${last.real}</div><div class="hc-stat-sub">${fmtSign(dReal)} vs. ${first.label}</div></div>
-      <div class="hc-stat"><div class="hc-stat-label">Aprobado sin MN1</div><div class="hc-stat-val">${last.autCmp}</div><div class="hc-stat-sub">${fmtSign(dAutCmp)} tienda vs. tienda</div></div>
-      <div class="hc-stat"><div class="hc-stat-label">Venta adicional implícita</div><div class="hc-stat-val">$${((dAut*HC_SALES_PER_HEAD)/1000000).toFixed(1)}M</div><div class="hc-stat-sub">${dAut} HC × $${HC_SALES_PER_HEAD.toLocaleString('es-MX')} al mes</div></div>
+      <div class="hc-stat"><div class="hc-stat-label">HC aprobado (comparable)</div><div class="hc-stat-val">${last.autCmp}</div><div class="hc-stat-sub">${fmtSign(dAutCmp)} vs. ${first.label} · sin MN1</div></div>
+      <div class="hc-stat"><div class="hc-stat-label">HC real (comparable)</div><div class="hc-stat-val">${last.realCmp}</div><div class="hc-stat-sub">${fmtSign(dRealCmp)} vs. ${first.label} · sin MN1</div></div>
+      <div class="hc-stat"><div class="hc-stat-label">Excedente de red</div><div class="hc-stat-val">-37</div><div class="hc-stat-sub">39 → 2 plazas, ${first.label}→${last.label}</div></div>
+      <div class="hc-stat mn1"><div class="hc-stat-label">MN1 · aparte (apertura nueva)</div><div class="hc-stat-val">${fmtSign(mn1Aprobado?mn1Aprobado.delta:9)}</div><div class="hc-stat-sub">Aprobado y real ya alineados en 9 · no se compara</div></div>
     </div>
     ${chart}
-    <div class="hc-legend"><span><i style="background:#fff"></i>HC aprobado (objetivo)</span><span><i style="background:rgba(255,255,255,.6)"></i>HC real (nómina)</span></div>
-    <div class="hc-note"><b>Qué se movió:</b> subieron objetivo ${subieron.length?listTxt(subieron):'—'}; bajaron objetivo ${bajaron.length?listTxt(bajaron):'—'}; apertura nueva ${nuevas.length?listTxt(nuevas):'—'}.<br><b>Conclusión:</b> el objetivo de reducir plantilla total <b>aún no se cumple</b>. Para que la baja de excedentes represente ahorro real, la plaza debe eliminarse del objetivo, no absorberse dentro de él. Cada plaza aprobada de más equivale a <b>$${HC_SALES_PER_HEAD.toLocaleString('es-MX')}</b> de venta mensual que la sucursal debe generar (ver el compromiso capturado en la vista 02D).</div>
+    <div class="hc-legend"><span><i style="background:#fff"></i>HC aprobado (objetivo, sin MN1)</span><span><i style="background:rgba(255,255,255,.6)"></i>HC real (nómina, sin MN1)</span></div>
+    <div class="hc-note"><b>Qué se movió (techo aprobado, sin MN1):</b> subió en ${subieron.length?listTxt(subieron):'—'}; bajó en ${bajaron.length?listTxt(bajaron):'—'}.<br><b>Conclusión:</b> la reducción de excedentes de estas semanas es, en su mayoría, una reclasificación del techo aprobado hacia el HC que ya existía — no una baja real de personal. MN1 (Montemorelos) se excluye de esta comparación por ser apertura nueva: su HC aprobado y real ya coinciden en 9 plazas desde que se dio de alta y no tiene semanas previas con las que comparar.</div>
   </div>`;
 }
 
@@ -3814,6 +3732,7 @@ function buildExcessExecutiveView(rows){
 function renderExcessActions(){
   const el=document.getElementById('excessActions');
   if(!el) return;
+  el.innerHTML=''; return; // Vista "Plan de acción por plaza excedente" retirada a solicitud del usuario.
   const rows=excessActionRows();
   if(!rows.length){ el.innerHTML=''; return; }
 
@@ -4661,7 +4580,6 @@ const SECTION_EXPORTS = [
   {id:'sec-detail',label:'06_Detalle_por_Sucursal'},
   {id:'coverageActionsSection',label:'06B_Acciones_Cobertura'},
   {id:'sec-excess',label:'07_Excedentes'},
-  {id:'strategicMobilitySection',label:'08_Movilidad_Potencial'},
   {id:'sec-admin',label:'08_Puestos_Administrativos'},
   {id:'sec-pipeline',label:'09_Pipeline_Reclutamiento'},
   {id:'sec-process',label:'10_Detalle_por_Proceso'}
