@@ -951,8 +951,19 @@ function portableLoadState(storageKey,field){
 .incr-zone-h{font:800 9px/1 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.04em;color:var(--brand-blue-2);margin:6px 0 1px;padding-top:6px;border-top:1px dashed var(--line-strong)}
 .incr-zone-group:first-child .incr-zone-h{margin-top:0;padding-top:0;border-top:none}
 .incr-poslist{display:flex;flex-wrap:wrap;gap:4px}
-.incr-pos-tag{display:inline-flex;align-items:baseline;gap:4px;background:var(--panel-3);border:1px solid var(--line-strong);border-radius:6px;padding:2px 7px;font:800 9.5px/1.3 'IBM Plex Mono',monospace;color:var(--brand-green-2);white-space:nowrap}
+.incr-pos-tag{display:inline-flex;align-items:baseline;gap:4px;background:var(--panel-3);border:1px solid var(--line-strong);border-radius:6px;padding:2px 4px 2px 7px;font:800 9.5px/1.3 'IBM Plex Mono',monospace;color:var(--brand-green-2);white-space:nowrap}
 .incr-pos-tag small{font:600 7.5px/1 'IBM Plex Mono',monospace;color:var(--ink-faint);text-transform:none}
+.incr-pos-remove{border:none;background:transparent;color:var(--ink-faint);font:800 12px/1 'Inter',sans-serif;cursor:pointer;padding:1px 3px;border-radius:4px;margin-left:1px}
+.incr-pos-remove:hover{background:#fde2e2;color:var(--brand-red)}
+.incr-add-form{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line-strong)}
+.incr-add-title{font:800 9px/1 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);margin-bottom:6px}
+.incr-add-fields{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.incr-add-fields select,.incr-add-fields input{font:700 10.5px/1.2 'Inter',sans-serif;padding:5px 7px;border:1px solid var(--line-strong);border-radius:6px;background:var(--panel-2);color:var(--ink)}
+.incr-add-fields select{max-width:210px}
+.incr-add-fields input[type=number]{width:80px}
+.incr-add-arrow{color:var(--ink-faint);font-weight:800}
+.incr-add-btn{font:800 10.5px/1 'Inter',sans-serif;padding:6px 12px;border-radius:6px;border:none;background:var(--brand-blue);color:#fff;cursor:pointer}
+.incr-add-btn:hover{background:var(--brand-blue-2)}
 
 /* Panel ejecutivo 02D */
 .incr-exec{background:linear-gradient(160deg,#0b3f70,#0a5590);color:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 10px 26px rgba(11,63,112,.2)}
@@ -3070,6 +3081,8 @@ const EXCESS_ACTION_OPTIONS = [
 // objetivo pasó de 0 a igualar su real ya operando, el 27 Ago), pero se excluyen de este listado por
 // ser la autorización inicial completa de una apertura nueva, no la formalización de una plaza
 // excedente en una tienda ya existente — mismo criterio que el resto del dashboard aplica a MN1.
+//  · GA1 · Sup. Tda. (03 Sep→10 Sep, auth 0→1): agregado con la actualización v39 — confirmado, misma
+//    prueba (excedente antes, real sin cambio, objetivo sube exactamente para alcanzarlo).
 const PLANTILLA_INCREMENTS = [
   {code:"AP2", pos:"Cajeras", from:1, to:2, week:"12 Ago"},
   {code:"AP4", pos:"Repartidor", from:1, to:2, week:"03 Sep"},
@@ -3078,6 +3091,7 @@ const PLANTILLA_INCREMENTS = [
   {code:"SN2", pos:"Repartidor", from:1, to:2, week:"03 Sep"},
   {code:"SN2", pos:"Vendedores", from:3, to:4, week:"03 Sep"},
   {code:"STA", pos:"Cajeras", from:1, to:2, week:"03 Sep"},
+  {code:"GA1", pos:"Sup. Tda.", from:0, to:1, week:"10 Sep"},
   {code:"ES2", pos:"Repartidor", from:1, to:2, week:"03 Sep"},
   {code:"MT4", pos:"Cajeras", from:1, to:2, week:"10 Sep"},
   {code:"COL", pos:"Almacen", from:1, to:2, week:"12 Ago"},
@@ -3086,6 +3100,36 @@ const PLANTILLA_INCREMENTS = [
   {code:"MT3", pos:"Almacen", from:0, to:1, week:"10 Sep"},
   {code:"CV2", pos:"Almacen", from:0, to:1, week:"03 Sep"}
 ];
+// Registros agregados/ocultados manualmente desde la UI (persisten en el navegador).
+const INCREMENTS_MANUAL_KEY='jomar_transformar_increments_manual_v1';
+let INCREMENTS_MANUAL=portableLoadState(INCREMENTS_MANUAL_KEY,'incrementsManual');
+if(!Array.isArray(INCREMENTS_MANUAL)) INCREMENTS_MANUAL=[];
+function saveIncrementsManual(){try{localStorage.setItem(INCREMENTS_MANUAL_KEY,JSON.stringify(INCREMENTS_MANUAL));}catch(e){}}
+const INCREMENTS_REMOVED_KEY='jomar_transformar_increments_removed_v1';
+let INCREMENTS_REMOVED=portableLoadState(INCREMENTS_REMOVED_KEY,'incrementsRemoved');
+if(!Array.isArray(INCREMENTS_REMOVED)) INCREMENTS_REMOVED=[];
+function saveIncrementsRemoved(){try{localStorage.setItem(INCREMENTS_REMOVED_KEY,JSON.stringify(INCREMENTS_REMOVED));}catch(e){}}
+function incrementRowKey(r){ return `${r.code}|${r.pos}|${r.from}-${r.to}|${r.week}`; }
+function allIncrementRows(){
+  const base = PLANTILLA_INCREMENTS.filter(r=>!INCREMENTS_REMOVED.includes(incrementRowKey(r)));
+  return base.concat(INCREMENTS_MANUAL);
+}
+function addIncrementFromForm(){
+  const code=document.getElementById('incBranch')?.value;
+  const pos=document.getElementById('incPosition')?.value;
+  const from=Math.max(0,Number(document.getElementById('incFrom')?.value)||0);
+  const to=Math.max(0,Number(document.getElementById('incTo')?.value)||0);
+  const week=document.getElementById('incWeek')?.value||weeks[weeks.length-1];
+  if(!code||!pos||to<=from){ alert('Revisa la sucursal, el puesto y que el objetivo "después" sea mayor al "antes".'); return; }
+  INCREMENTS_MANUAL.push({id:`inc_${Date.now()}_${Math.random().toString(36).slice(2,7)}`,code,pos,from,to,week,manual:true});
+  saveIncrementsManual();
+  renderPlantillaIncrements();
+}
+function removeIncrement(row){
+  if(row.manual){ INCREMENTS_MANUAL=INCREMENTS_MANUAL.filter(x=>x.id!==row.id); saveIncrementsManual(); }
+  else { const k=incrementRowKey(row); if(!INCREMENTS_REMOVED.includes(k)){ INCREMENTS_REMOVED.push(k); saveIncrementsRemoved(); } }
+  renderPlantillaIncrements();
+}
 
 // Movimiento real de personal de la semana — comparación directa de Plantilla Real 03 Sep vs. 10 Sep (v36).
 // Este archivo trae 8 posiciones con real reducido. Se clasifican según si la plaza YA era excedente antes
@@ -3632,7 +3676,7 @@ function renderExcessTrend(){
 function commitKeyFor(code){ return code; }
 function incrementsByBranch(){
   const map = {}, order = [];
-  PLANTILLA_INCREMENTS.forEach(r=>{
+  allIncrementRows().forEach(r=>{
     if(!map[r.code]){ map[r.code] = {code:r.code, zone:branchZone[r.code]||'—', items:[]}; order.push(r.code); }
     map[r.code].items.push(r);
   });
@@ -3641,7 +3685,7 @@ function incrementsByBranch(){
 function incrementStats(){
   const branches = incrementsByBranch();
   let addedTotal=0, committedTotal=0, captured=0;
-  PLANTILLA_INCREMENTS.forEach(r=>{ addedTotal += Math.max(0,(r.to||0)-(r.from||0)); });
+  allIncrementRows().forEach(r=>{ addedTotal += Math.max(0,(r.to||0)-(r.from||0)); });
   branches.forEach(b=>{
     const v = Number(SALES_COMMITMENTS[commitKeyFor(b.code)])||0;
     committedTotal += v;
@@ -3655,17 +3699,21 @@ function renderPlantillaIncrements(){
   const el=document.getElementById('plantillaIncrements');
   if(!el) return;
   const fmtK = v => '$'+Number(v||0).toLocaleString('es-MX')+' K';
+  const incWeeks = ["31 Jul","06 Ago","12 Ago","20 Ago","27 Ago","03 Sep","10 Sep"];
+  const incBranchCodes = zoneNames.flatMap(z=>codesForZone(z).map(c=>({code:c,zone:z})));
 
   const branches = incrementsByBranch();
   const byZone = {};
   branches.forEach(b=>{ (byZone[b.zone]=byZone[b.zone]||[]).push(b); });
 
+  const rowAttrs = r => `data-inc-code="${escapeHtml(r.code)}" data-inc-pos="${escapeHtml(r.pos)}" data-inc-from="${r.from}" data-inc-to="${r.to}" data-inc-week="${escapeHtml(r.week)}"${r.manual?` data-inc-manual="1" data-inc-id="${escapeHtml(r.id)}"`:''}`;
+
   const zoneLogGroups = zoneNames.filter(z=>byZone[z]).map(z=>{
-    const rows = byZone[z].map(b=>{
+    const rows = [...byZone[z]].sort((a,b)=>(branchName[a.code]||a.code).localeCompare(branchName[b.code]||b.code)).map(b=>{
       const addedTotal = b.items.reduce((a,r)=>a+Math.max(0,(r.to||0)-(r.from||0)),0);
       const suggested = Math.round(addedTotal*HC_SALES_PER_HEAD/1000);
       const val = SALES_COMMITMENTS[commitKeyFor(b.code)];
-      const posTags = b.items.map(r=>`<span class="incr-pos-tag">${escapeHtml(fullPositionName(r.pos))} ${r.from}→${r.to}<small>${escapeHtml(r.week)}</small></span>`).join('');
+      const posTags = b.items.map(r=>`<span class="incr-pos-tag">${escapeHtml(fullPositionName(r.pos))} ${r.from}→${r.to}<small>${escapeHtml(r.week)}</small><button type="button" class="incr-pos-remove" title="Quitar este incremento" ${rowAttrs(r)}>×</button></span>`).join('');
       return `<div class="incr-row">
         <div class="incr-branch">${escapeHtml(branchName[b.code]||b.code)}<small>${escapeHtml(b.code)} · ${escapeHtml(z)}</small></div>
         <div class="incr-poslist">${posTags}</div>
@@ -3675,11 +3723,24 @@ function renderPlantillaIncrements(){
     return `<div class="incr-zone-group"><div class="incr-zone-h">${escapeHtml(z)} · ${byZone[z].length} sucursal${byZone[z].length===1?'':'es'}</div>${rows}</div>`;
   }).join('');
 
+  const addForm = `<div class="incr-add-form">
+    <div class="incr-add-title">+ Agregar incremento</div>
+    <div class="incr-add-fields">
+      <select id="incBranch">${incBranchCodes.map(b=>`<option value="${escapeHtml(b.code)}">${escapeHtml(b.zone)} · ${escapeHtml(branchName[b.code]||b.code)} (${escapeHtml(b.code)})</option>`).join('')}</select>
+      <select id="incPosition">${["Gerente","Sup. Tda.","Vendedores","Desarrollador","Cajeras","Almacen","Repartidor"].map(p=>`<option value="${escapeHtml(p)}">${escapeHtml(fullPositionName(p))}</option>`).join('')}</select>
+      <input id="incFrom" type="number" min="0" step="1" placeholder="Objetivo antes" title="Objetivo antes">
+      <span class="incr-add-arrow">→</span>
+      <input id="incTo" type="number" min="0" step="1" placeholder="Objetivo después" title="Objetivo después">
+      <select id="incWeek">${incWeeks.map(w=>`<option value="${escapeHtml(w)}" ${w===incWeeks[incWeeks.length-1]?'selected':''}>${escapeHtml(w)}</option>`).join('')}</select>
+      <button type="button" id="incAddBtn" class="incr-add-btn">Agregar</button>
+    </div>
+  </div>`;
+
   const st = incrementStats();
 
   // Resumen ejecutivo agrupado por zona (una línea por sucursal, puestos combinados)
   const zoneBlocks = zoneNames.filter(z=>byZone[z]).map(z=>{
-    const items = byZone[z];
+    const items = [...byZone[z]].sort((a,b)=>(branchName[a.code]||a.code).localeCompare(branchName[b.code]||b.code));
     const plazas = items.reduce((a,b)=>a+b.items.reduce((s,r)=>s+Math.max(0,(r.to||0)-(r.from||0)),0),0);
     const lines = items.map(b=>{
       const added = b.items.reduce((s,r)=>s+Math.max(0,(r.to||0)-(r.from||0)),0);
@@ -3698,6 +3759,7 @@ function renderPlantillaIncrements(){
       <div class="incr-head"><span>Sucursal · zona</span><span>Puestos incrementados</span><span>Meta venta</span></div>
       ${zoneLogGroups || '<div class="vac-slide-empty">Sin incrementos registrados.</div>'}
       <div class="incr-commit-total">${st.addedTotal} plazas aprobadas de más · referencia a $${HC_SALES_PER_HEAD.toLocaleString('es-MX')} por HC: <b>${fmtK(st.referenceK)}</b> de venta mensual adicional · capturado <b>${fmtK(st.committedTotal)}</b> (${st.captured}/${st.totalBranches} tiendas)</div>
+      ${addForm}
     </div>
     <div class="incr-exec">
       <div class="incr-exec-title">Resumen ejecutivo · incremento vs. compromiso</div>
@@ -3711,6 +3773,15 @@ function renderPlantillaIncrements(){
       <div class="incr-exec-gap">${gap>0?`Faltan <b style="color:#ffb3bd">${fmtK(gap)}</b> de venta mensual por comprometer para cubrir las ${st.addedTotal} plazas aprobadas de más.`:`Compromiso completo: la venta capturada cubre las ${st.addedTotal} plazas aprobadas de más.`}</div>
     </div>
   </div>`;
+
+  el.querySelectorAll('.incr-pos-remove').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const d = btn.dataset;
+      removeIncrement({code:d.incCode, pos:d.incPos, from:Number(d.incFrom), to:Number(d.incTo), week:d.incWeek, manual: d.incManual==='1', id:d.incId});
+    });
+  });
+  const incAddBtn = document.getElementById('incAddBtn');
+  if(incAddBtn) incAddBtn.addEventListener('click', addIncrementFromForm);
 
   el.querySelectorAll('input[data-commit-key]').forEach(inp=>{
     inp.addEventListener('change', ()=>{
