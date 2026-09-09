@@ -1277,9 +1277,10 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
       <div class="sec-head-l">
         <div class="sec-num">02D — AJUSTES DE PLANTILLA INCREMENTALES</div>
         <h2>Incrementos de objetivo y compromiso de venta</h2>
-        <div class="sec-desc">Cada sucursal que recibió personal adicional debe reflejarlo en su venta. Captura aquí la meta de venta mensual adicional comprometida por tienda, en miles de pesos. La referencia sugerida usa $200,000 de venta por cada HC aprobado de más.</div>
+        <div class="sec-desc">Sólo incluye plazas que <b>ya operaban como excedente</b> y cuya zona formalizó subiendo el objetivo aprobado para igualarlas — validado semana a semana contra el archivo fuente. No incluye vacantes nuevas ni contrataciones que llegaron junto con su propia aprobación. Captura aquí la meta de venta mensual adicional comprometida por tienda, en miles de pesos; la referencia sugerida usa $200,000 de venta por cada HC formalizado.</div>
       </div>
     </div>
+    <div class="official-note" style="margin:0 0 14px;">Cada plaza de esta lista pasó esta prueba en el archivo fuente: <b>tenía excedente en el corte anterior</b> (real por encima del objetivo) <b>y el objetivo subió exactamente para alcanzar ese real, sin que el real se moviera</b> en el mismo corte. MT1 · Repartidor no aparece porque en el archivo su excedente se resolvió al bajar el real (2→1), no al subir el objetivo — vale la pena confirmar si esa autorización ya se aplicó y aún no llega a este corte.</div>
     <div id="plantillaIncrements"></div>
   </section>
 
@@ -3046,19 +3047,44 @@ const EXCESS_ACTION_OPTIONS = [
 
 // Ajustes incrementales de objetivo de plantilla aplicados en los últimos cortes (Zona Interior 1–6).
 // Cada registro: sucursal, puesto, objetivo anterior → nuevo, y el corte en que se detectó el cambio.
+// VALIDADO 1-a-1 contra las 7 hojas semanales del archivo fuente (31 Jul-10 Sep, v38). Definición
+// estricta: sólo cuenta aquí una posición que YA tenía excedente (real > objetivo vigente) en el
+// corte anterior, Y cuyo objetivo subió exactamente para alcanzar ese real — sin que el real se
+// moviera en el mismo paso. Es decir: no es una vacante nueva, no es una contratación nueva; es una
+// plaza que ya estaba de más y la zona simplemente la formalizó subiendo el techo aprobado.
+// Se excluyeron del listado anterior 3 renglones que NO cumplían esta definición al validarlos:
+//  · HSM Repartidor 2→3 (27 Ago→03 Sep): el real también subió de 2 a 3 en el mismo corte — fue una
+//    contratación nueva con su aprobación simultánea, no una plaza que ya existiera de más.
+//  · MT5 Almacen 0→1 (03 Sep→10 Sep): el real de esa posición fue 0 en las 7 semanas — nunca hubo
+//    nadie ahí, así que nunca fue excedente. Es una vacante nueva sin cubrir, no una formalización.
+//  · MT3 Cajeras 0→1 (dato incorrecto): el objetivo de Cajeras en MT3 se mantuvo en 1 las 7 semanas,
+//    nunca cambió. El cambio real de MT3 fue en Almacén (0→1, 03 Sep→10 Sep), ya incluido abajo.
+// Se agregaron 5 renglones que sí cumplían la definición y no estaban capturados: AP2 Cajeras,
+// COL Almacen, MT4 Cajeras, GP1 Cajeras y CY1 Cajeras.
+// Nota aparte — MT1 Repartidor (el caso reportado): no aparece aquí porque en el archivo fuente su
+// objetivo se mantuvo en 1 las 7 semanas; lo que bajó fue el real (2→1, 03 Sep→10 Sep), es decir el
+// excedente se resolvió porque la plaza se desocupó, no porque se haya subido el objetivo. Si en tu
+// sistema de RH sí autorizaste esa segunda plaza de Repartidor en MT1, aún no se refleja en este
+// archivo — vale la pena confirmarlo en el próximo corte.
+// Nota aparte — MN1 (Montemorelos): tiene 5 posiciones que técnicamente cumplen la definición (su
+// objetivo pasó de 0 a igualar su real ya operando, el 27 Ago), pero se excluyen de este listado por
+// ser la autorización inicial completa de una apertura nueva, no la formalización de una plaza
+// excedente en una tienda ya existente — mismo criterio que el resto del dashboard aplica a MN1.
 const PLANTILLA_INCREMENTS = [
-  {code:"HSM", pos:"Repartidor", from:2, to:3, week:"03 Sep (v20)"},
-  {code:"MT3", pos:"Cajeras", from:0, to:1, week:"03 Sep (v20)"},
-  {code:"AP4", pos:"Repartidor", from:1, to:2, week:"03 Sep (v26)"},
-  {code:"SN2", pos:"Repartidor", from:1, to:2, week:"03 Sep (v26)"},
-  {code:"SN2", pos:"Vendedores", from:3, to:4, week:"03 Sep (v27)"},
-  {code:"CV2", pos:"Almacen", from:0, to:1, week:"03 Sep (v27)"},
-  {code:"CY1", pos:"Cajeras", from:1, to:2, week:"03 Sep (v27)"},
-  {code:"AP4", pos:"Cajeras", from:1, to:2, week:"03 Sep (v30)"},
-  {code:"STA", pos:"Cajeras", from:1, to:2, week:"03 Sep (v30)"},
-  {code:"ES2", pos:"Repartidor", from:1, to:2, week:"03 Sep (v30)"},
-  {code:"AP3", pos:"Almacen", from:1, to:2, week:"10 Sep (v36)"},
-  {code:"MT5", pos:"Almacen", from:0, to:1, week:"10 Sep (v36)"}
+  {code:"AP2", pos:"Cajeras", from:1, to:2, week:"12 Ago"},
+  {code:"AP4", pos:"Repartidor", from:1, to:2, week:"03 Sep"},
+  {code:"AP4", pos:"Cajeras", from:1, to:2, week:"03 Sep"},
+  {code:"AP3", pos:"Almacen", from:1, to:2, week:"10 Sep"},
+  {code:"SN2", pos:"Repartidor", from:1, to:2, week:"03 Sep"},
+  {code:"SN2", pos:"Vendedores", from:3, to:4, week:"03 Sep"},
+  {code:"STA", pos:"Cajeras", from:1, to:2, week:"03 Sep"},
+  {code:"ES2", pos:"Repartidor", from:1, to:2, week:"03 Sep"},
+  {code:"MT4", pos:"Cajeras", from:1, to:2, week:"10 Sep"},
+  {code:"COL", pos:"Almacen", from:1, to:2, week:"12 Ago"},
+  {code:"GP1", pos:"Cajeras", from:1, to:2, week:"10 Sep"},
+  {code:"CY1", pos:"Cajeras", from:1, to:2, week:"03 Sep"},
+  {code:"MT3", pos:"Almacen", from:0, to:1, week:"10 Sep"},
+  {code:"CV2", pos:"Almacen", from:0, to:1, week:"03 Sep"}
 ];
 
 // Movimiento real de personal de la semana — comparación directa de Plantilla Real 03 Sep vs. 10 Sep (v36).
