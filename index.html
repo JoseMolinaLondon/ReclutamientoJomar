@@ -944,6 +944,15 @@ function portableLoadState(storageKey,field){
 .incr-commit input{width:70px;padding:3px 6px;border:1px solid var(--line-strong);border-radius:6px;font:800 11px/1.2 'IBM Plex Mono',monospace;color:var(--ink);text-align:right;background:var(--panel-2)}
 .incr-commit input:focus{outline:none;border-color:var(--brand-blue);background:#fff}
 .incr-commit-unit{font:700 9.5px/1 'IBM Plex Mono',monospace;color:var(--ink-faint)}
+.excr-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(120px,1fr) 150px;gap:8px;padding:5px 0;align-items:center;border-top:1px solid var(--line)}
+.excr-row:first-of-type{border-top:none}
+.excr-branch{font-size:11px;line-height:1.15}.excr-branch small{font-size:8px;color:var(--ink-faint);font-weight:600}
+.excr-pos{display:flex}
+.excr-commit{display:flex;justify-content:flex-end}
+.excr-commit-select{font:700 10px/1.2 'Inter',sans-serif;padding:4px 6px;border-radius:6px;border:1px solid var(--line-strong);background:var(--panel-2);color:var(--ink);max-width:150px}
+.excr-commit-select.is-val{border-color:#dcb75f;background:#fffaef;color:#8a6d1f}
+.excr-commit-select.is-cumplido{border-color:#7fbf7f;background:#f1faf1;color:#2f7a2f}
+.excr-commit-select.is-no-cumplido{border-color:#e08a8a;background:#fdf2f2;color:#a33a3a}
 .incr-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,1.7fr) 108px;gap:8px;padding-bottom:5px;margin-bottom:2px;border-bottom:1.5px solid var(--ink);font:800 8.5px/1.2 'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--ink-faint)}
 .incr-head span:last-child{text-align:right}
 .incr-commit-total{margin-top:6px;padding-top:6px;border-top:1px solid var(--line);font:700 10px/1.4 'IBM Plex Mono',monospace;color:var(--ink-soft)}
@@ -1286,12 +1295,11 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
   <section id="sec-plantilla-increments">
     <div class="sec-head">
       <div class="sec-head-l">
-        <div class="sec-num">02D — AJUSTES DE PLANTILLA INCREMENTALES</div>
-        <h2>Incrementos de objetivo y compromiso de venta</h2>
-        <div class="sec-desc">Sólo incluye plazas que <b>ya operaban como excedente</b> y cuya zona formalizó subiendo el objetivo aprobado para igualarlas — validado semana a semana contra el archivo fuente. No incluye vacantes nuevas ni contrataciones que llegaron junto con su propia aprobación. Captura aquí la meta de venta mensual adicional comprometida por tienda, en miles de pesos; la referencia sugerida usa $200,000 de venta por cada HC formalizado.</div>
+        <div class="sec-num">02D — EXCEDENTES OFICIALES Y COMPROMISO DE RESOLUCIÓN</div>
+        <h2>Excedentes vigentes · seguimiento de compromiso</h2>
+        <div class="sec-desc">Muestra las plazas con excedente oficial <b>vigentes en el corte actual</b> (real por encima del objetivo aprobado), calculado en vivo — no requiere validación manual cada semana. Para cada una, marca si el compromiso de resolverla (por traslado, baja de la posición, o formalización del objetivo) se cumplió o no.</div>
       </div>
     </div>
-    <div class="official-note" style="margin:0 0 14px;">Cada plaza de esta lista pasó esta prueba en el archivo fuente: <b>tenía excedente en el corte anterior</b> (real por encima del objetivo) <b>y el objetivo subió exactamente para alcanzar ese real, sin que el real se moviera</b> en el mismo corte. MT1 · Repartidor no aparece porque en el archivo su excedente se resolvió al bajar el real (2→1), no al subir el objetivo — vale la pena confirmar si esa autorización ya se aplicó y aún no llega a este corte.</div>
     <div id="plantillaIncrements"></div>
   </section>
 
@@ -2125,7 +2133,7 @@ tr.exc-exec-zone-row td{background:#F0F4F9;font:800 8px/1.1 'IBM Plex Mono',mono
 </div>
 
 <script>
-const DATA = {"weeks":["12 Jun","19 Jun","26 Jun","02 Jul","09 Jul","16 Jul","31 Jul","06 Ago","12 Ago","20 Ago","27 Ago","03 Sep","10 Sep"],"positions":["Gerente","Sup. Tda.","Vendedores","Desarrollador","Cajeras","Almacen","Repartidor"],"zones":{"Zona 1":["AP1","AP2","AP3","AP4","HSM"],"Zona 2":["MOD","ESC","SN1","SN2","SN3","ZU1"],"Zona 3":["MT4","PEN","STA","GA1","ES2","MT5"],"Zona 4":["COL","GP1","GP2","GP3","JU1","CY1"],"Zona 5":["MT1","MT2","MT3"],"Zona 6":["ALL","LI1","CV1","CV2","MN1"]},"branch_to_zone":{"AP1":"Zona 1","AP2":"Zona 1","AP3":"Zona 1","AP4":"Zona 1","HSM":"Zona 1","MOD":"Zona 2","ESC":"Zona 2","SN1":"Zona 2","SN2":"Zona 2","SN3":"Zona 2","ZU1":"Zona 2","MT4":"Zona 3","PEN":"Zona 3","STA":"Zona 3","GA1":"Zona 3","ES2":"Zona 3","MT5":"Zona 3","COL":"Zona 4","GP1":"Zona 4","GP2":"Zona 4","GP3":"Zona 4","JU1":"Zona 4","CY1":"Zona 4","MT1":"Zona 5","MT2":"Zona 5","MT3":"Zona 5","ALL":"Zona 6","LI1":"Zona 6","CV1":"Zona 6","CV2":"Zona 6","MN1":"Zona 6"},"branch_names":{"AP1":"CONCORDIA","AP2":"PUEBLO NUEVO","AP3":"APODACA CENTRO","AP4":"HUINALA","HSM":"HACIENDA SAN MIGUEL","MOD":"MODERNA","ESC":"ESCOBEDO","SN1":"SANTO DOMINGO","SN2":"DIEGO DIAZ DE BERLANGA","SN3":"UNIVERSIDAD","ZU1":"ZUAZUA","MT4":"SOLIDARIDAD","PEN":"PENITENCIARIA","STA":"SANTA CATARINA","GA1":"GARCIA","ES2":"ALIANZA","MT5":"LOMA LINDA","COL":"COLIBRI","GP1":"ISRAEL CAVAZOS","GP2":"RUIZ CORTINES","GP3":"ELOY CAVAZOS","JU1":"VILLA JUAREZ","CY1":"CADEREYTA","MT1":"NUEVO REPUEBLO","MT2":"VENUSTIANO CARRANZA","MT3":"CHAPULTEPEC","ALL":"ALLENDE","LI1":"LINARES","CV1":"CIUDAD VICTORIA","CV2":"H. ILUSTRES","MN1":"MONTEMORELOS"},"utilidad":{"AP1":138870.09142472656,"AP2":205650.68356844474,"AP3":253517.53476829524,"AP4":80311.1188418857,"HSM":209252.3283752752,"MOD":178814.64633940178,"ESC":254627.58013568103,"SN1":-8650.217611083277,"SN2":-8457.856913068059,"SN3":89633.51365279075,"ZU1":230868.41939052404,"MT4":9295.16856058258,"PEN":280941.5480667726,"STA":82482.17062192807,"GA1":95635.17466552678,"ES2":113987.57006440795,"MT5":7666.572720306804,"COL":123354.17647363667,"GP1":107208.16369991068,"GP2":140275.99410485418,"GP3":-5313.909151620301,"JU1":168810.46806009082,"CY1":151818.0201894336,"MT1":107960.56131341489,"MT2":68194.7001759921,"MT3":-13683.91125159194,"ALL":104977.65658632151,"LI1":124534.34054591024,"CV1":89071.77877129496,"CV2":627.9982603209974},"utilidad_julio":{"AP1":202000,"AP2":253000,"AP3":288000,"AP4":121000,"HSM":280000,"MOD":240000,"ESC":349000,"SN1":20000,"SN2":23000,"SN3":131000,"ZU1":237000,"MT4":53000,"PEN":309000,"STA":110000,"GA1":129000,"ES2":145000,"MT5":33000,"COL":134000,"GP1":136000,"GP2":185000,"GP3":36000,"JU1":205000,"CY1":182000,"MT1":149000,"MT2":121000,"MT3":5000,"ALL":131000,"LI1":138000,"CV1":114000,"CV2":18000},"utilidad_acum_prom_mensual":{"AP1":75740.18284945312,"AP2":158301.36713688952,"AP3":219035.0695365905,"AP4":39622.23768377142,"HSM":138504.6567505504,"MOD":117629.29267880357,"ESC":160255.16027136208,"SN1":-37300.435222166554,"SN2":-39915.71382613612,"SN3":48267.02730558149,"ZU1":224736.8387810481,"MT4":-34409.66287883484,"PEN":252883.0961335452,"STA":54964.34124385615,"GA1":62270.34933105356,"ES2":82975.14012881588,"MT5":-17666.854559386393,"COL":112708.35294727336,"GP1":78416.32739982138,"GP2":95551.98820970836,"GP3":-46627.8183032406,"JU1":132620.93612018164,"CY1":121636.0403788672,"MT1":66921.12262682978,"MT2":15389.400351984194,"MT3":-32367.82250318388,"ALL":78955.31317264303,"LI1":111068.68109182046,"CV1":64143.55754258994,"CV2":-16744.003479358005},"aut_b":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,6,1,2,2,3],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,3],"MOD":[1,0,8,1,2,1,3],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,3,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,6,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,1,1],"COL":[1,0,6,1,2,2,2],"GP1":[1,0,5,1,2,1,2],"GP2":[1,0,3,1,2,1,4],"GP3":[1,0,4,1,1,0,1],"JU1":[1,0,7,1,2,1,2],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,1],"MT2":[1,0,4,1,1,1,2],"MT3":[1,0,4,1,1,1,1],"ALL":[1,0,4,1,2,1,1],"LI1":[1,0,5,1,2,1,2],"CV1":[1,0,6,1,2,1,3],"CV2":[1,0,3,1,1,1,1],"MN1":[1,0,4,1,1,1,1]},"weekly_real":{"12 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,6,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,2],"MOD":[1,0,7,0,3,1,2],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,5,1,2,1,2],"PEN":[1,0,8,1,2,2,4],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,2,0,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,null,4,1,1,0,1],"COL":[1,0,7,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[0,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,4,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"19 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,6,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,2],"MOD":[1,0,7,0,3,1,2],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,5,1,2,1,2],"PEN":[1,0,8,1,2,2,4],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,2,0,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,null,4,1,1,0,1],"COL":[1,0,7,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[0,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,4,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"26 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,1],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,6,1,2,2,3],"MT4":[1,0,4,1,2,1,2],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,0,0],"GA1":[1,0,4,1,2,1,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,4,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"02 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[1,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"09 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[2,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,6,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"16 Jul":{"AP1":[1,0,6,1,2,1,1],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[2,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,0],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,4,1,1,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"31 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,0,2],"MOD":[1,1,8,0,2,1,2],"ESC":[1,0,7,0,1,2,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,1],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,1,1,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,2,1,2,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,4,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,3,0,0,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"06 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,0,2],"MOD":[1,1,8,0,2,0,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,1,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,3,1,0,1,1],"ALL":[1,0,4,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"12 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,1,8,1,2,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,4,1,0,1,1],"ALL":[1,0,4,1,2,1,0],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"20 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,6,1,2,2,3],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,0,3,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,0,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,1,1,2],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,3,1,0,1,1],"ALL":[1,0,5,1,1,1,0],"LI1":[1,0,5,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"27 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,6,1,2,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,1,3,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,0,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,6,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,1,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,1,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,4,1,1,1,1],"ALL":[1,0,4,1,2,1,0],"LI1":[1,0,5,1,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"03 Sep":{"AP1":[1, 0, 6, 1, 2, 1, 2],"AP2":[1, 0, 5, 0, 2, 1, 2],"AP3":[1, 0, 5, 1, 1, 2, 3],"AP4":[1, 0, 4, 0, 2, 1, 2],"HSM":[1, 0, 5, 1, 2, 1, 3],"MOD":[1, 0, 8, 1, 3, 1, 2],"ESC":[1, 0, 7, 1, 2, 1, 2],"SN1":[1, 0, 4, 1, 1, 1, 1],"SN2":[1, 0, 4, 1, 1, 1, 2],"SN3":[1, 0, 4, 1, 2, 1, 1],"ZU1":[1, 0, 6, 1, 2, 1, 3],"MT4":[1, 0, 4, 1, 2, 1, 1],"PEN":[1, 1, 8, 1, 2, 1, 3],"STA":[1, 0, 4, 1, 2, 1, 1],"GA1":[1, 1, 4, 1, 1, 1, 1],"ES2":[1, 0, 4, 1, 2, 1, 2],"MT5":[1, 0, 3, 1, 1, 0, 1],"COL":[1, 0, 6, 1, 2, 2, 2],"GP1":[1, 0, 6, 1, 2, 2, 2],"GP2":[1, 0, 3, 1, 1, 1, 4],"GP3":[1, 0, 4, 1, 1, 1, 1],"JU1":[1, 0, 7, 1, 2, 1, 3],"CY1":[1, 0, 6, 1, 2, 1, 1],"MT1":[1, 1, 4, 1, 1, 0, 2],"MT2":[1, 0, 3, 1, 1, 1, 2],"MT3":[1, 0, 4, 1, 1, 1, 1],"ALL":[1, 0, 4, 1, 2, 1, 1],"LI1":[1, 0, 5, 1, 2, 1, 2],"CV1":[1, 0, 6, 2, 2, 1, 3],"CV2":[1, 0, 5, 1, 1, 1, 1],"MN1":[1, 0, 4, 1, 1, 1, 1]},"10 Sep":{"AP1":[1, 0, 6, 1, 2, 1, 2],"AP2":[1, 0, 5, 1, 2, 1, 1],"AP3":[1, 0, 5, 1, 1, 2, 3],"AP4":[1, 0, 4, 0, 2, 1, 2],"HSM":[1, 0, 5, 1, 2, 1, 3],"MOD":[1, 0, 8, 1, 2, 1, 3],"ESC":[1, 0, 7, 1, 2, 1, 2],"SN1":[1, 0, 3, 1, 1, 1, 1],"SN2":[1, 0, 4, 1, 1, 1, 2],"SN3":[1, 0, 4, 1, 2, 1, 1],"ZU1":[1, 0, 6, 1, 2, 1, 3],"MT4":[1, 0, 4, 1, 2, 1, 1],"PEN":[1, 1, 8, 1, 2, 1, 3],"STA":[1, 0, 4, 1, 2, 1, 1],"GA1":[1, 1, 4, 1, 1, 1, 1],"ES2":[1, 0, 4, 1, 2, 1, 2],"MT5":[1, 0, 3, 1, 1, 0, 1],"COL":[1, 0, 6, 1, 2, 2, 2],"GP1":[1, 0, 5, 1, 2, 1, 2],"GP2":[1, 0, 3, 1, 1, 1, 4],"GP3":[1, 0, 4, 1, 1, 0, 1],"JU1":[1, 0, 7, 1, 2, 1, 2],"CY1":[1, 0, 6, 1, 2, 1, 1],"MT1":[1, 1, 4, 1, 1, 0, 1],"MT2":[1, 0, 3, 1, 1, 1, 2],"MT3":[1, 0, 4, 1, 1, 1, 1],"ALL":[1, 0, 4, 1, 2, 1, 1],"LI1":[1, 0, 5, 1, 2, 1, 2],"CV1":[1, 0, 6, 1, 2, 1, 3],"CV2":[1, 0, 3, 1, 1, 1, 1],"MN1":[1, 0, 4, 1, 1, 1, 1]}}};
+const DATA = {"weeks":["12 Jun","19 Jun","26 Jun","02 Jul","09 Jul","16 Jul","31 Jul","06 Ago","12 Ago","20 Ago","27 Ago","03 Sep","10 Sep"],"positions":["Gerente","Sup. Tda.","Vendedores","Desarrollador","Cajeras","Almacen","Repartidor"],"zones":{"Zona 1":["AP1","AP2","AP3","AP4","HSM"],"Zona 2":["MOD","ESC","SN1","SN2","SN3","ZU1"],"Zona 3":["MT4","PEN","STA","GA1","ES2","MT5"],"Zona 4":["COL","GP1","GP2","GP3","JU1","CY1"],"Zona 5":["MT1","MT2","MT3"],"Zona 6":["ALL","LI1","CV1","CV2","MN1"]},"branch_to_zone":{"AP1":"Zona 1","AP2":"Zona 1","AP3":"Zona 1","AP4":"Zona 1","HSM":"Zona 1","MOD":"Zona 2","ESC":"Zona 2","SN1":"Zona 2","SN2":"Zona 2","SN3":"Zona 2","ZU1":"Zona 2","MT4":"Zona 3","PEN":"Zona 3","STA":"Zona 3","GA1":"Zona 3","ES2":"Zona 3","MT5":"Zona 3","COL":"Zona 4","GP1":"Zona 4","GP2":"Zona 4","GP3":"Zona 4","JU1":"Zona 4","CY1":"Zona 4","MT1":"Zona 5","MT2":"Zona 5","MT3":"Zona 5","ALL":"Zona 6","LI1":"Zona 6","CV1":"Zona 6","CV2":"Zona 6","MN1":"Zona 6"},"branch_names":{"AP1":"CONCORDIA","AP2":"PUEBLO NUEVO","AP3":"APODACA CENTRO","AP4":"HUINALA","HSM":"HACIENDA SAN MIGUEL","MOD":"MODERNA","ESC":"ESCOBEDO","SN1":"SANTO DOMINGO","SN2":"DIEGO DIAZ DE BERLANGA","SN3":"UNIVERSIDAD","ZU1":"ZUAZUA","MT4":"SOLIDARIDAD","PEN":"PENITENCIARIA","STA":"SANTA CATARINA","GA1":"GARCIA","ES2":"ALIANZA","MT5":"LOMA LINDA","COL":"COLIBRI","GP1":"ISRAEL CAVAZOS","GP2":"RUIZ CORTINES","GP3":"ELOY CAVAZOS","JU1":"VILLA JUAREZ","CY1":"CADEREYTA","MT1":"NUEVO REPUEBLO","MT2":"VENUSTIANO CARRANZA","MT3":"CHAPULTEPEC","ALL":"ALLENDE","LI1":"LINARES","CV1":"CIUDAD VICTORIA","CV2":"H. ILUSTRES","MN1":"MONTEMORELOS"},"utilidad":{"AP1":138870.09142472656,"AP2":205650.68356844474,"AP3":253517.53476829524,"AP4":80311.1188418857,"HSM":209252.3283752752,"MOD":178814.64633940178,"ESC":254627.58013568103,"SN1":-8650.217611083277,"SN2":-8457.856913068059,"SN3":89633.51365279075,"ZU1":230868.41939052404,"MT4":9295.16856058258,"PEN":280941.5480667726,"STA":82482.17062192807,"GA1":95635.17466552678,"ES2":113987.57006440795,"MT5":7666.572720306804,"COL":123354.17647363667,"GP1":107208.16369991068,"GP2":140275.99410485418,"GP3":-5313.909151620301,"JU1":168810.46806009082,"CY1":151818.0201894336,"MT1":107960.56131341489,"MT2":68194.7001759921,"MT3":-13683.91125159194,"ALL":104977.65658632151,"LI1":124534.34054591024,"CV1":89071.77877129496,"CV2":627.9982603209974},"utilidad_julio":{"AP1":202000,"AP2":253000,"AP3":288000,"AP4":121000,"HSM":280000,"MOD":240000,"ESC":349000,"SN1":20000,"SN2":23000,"SN3":131000,"ZU1":237000,"MT4":53000,"PEN":309000,"STA":110000,"GA1":129000,"ES2":145000,"MT5":33000,"COL":134000,"GP1":136000,"GP2":185000,"GP3":36000,"JU1":205000,"CY1":182000,"MT1":149000,"MT2":121000,"MT3":5000,"ALL":131000,"LI1":138000,"CV1":114000,"CV2":18000},"utilidad_acum_prom_mensual":{"AP1":75740.18284945312,"AP2":158301.36713688952,"AP3":219035.0695365905,"AP4":39622.23768377142,"HSM":138504.6567505504,"MOD":117629.29267880357,"ESC":160255.16027136208,"SN1":-37300.435222166554,"SN2":-39915.71382613612,"SN3":48267.02730558149,"ZU1":224736.8387810481,"MT4":-34409.66287883484,"PEN":252883.0961335452,"STA":54964.34124385615,"GA1":62270.34933105356,"ES2":82975.14012881588,"MT5":-17666.854559386393,"COL":112708.35294727336,"GP1":78416.32739982138,"GP2":95551.98820970836,"GP3":-46627.8183032406,"JU1":132620.93612018164,"CY1":121636.0403788672,"MT1":66921.12262682978,"MT2":15389.400351984194,"MT3":-32367.82250318388,"ALL":78955.31317264303,"LI1":111068.68109182046,"CV1":64143.55754258994,"CV2":-16744.003479358005},"aut_b":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,6,1,2,1,3],"AP4":[1,0,4,1,1,1,1],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,1,2,1,3],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,3,1,1,1,1],"SN2":[1,0,3,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,6,1,2,1,2],"MT4":[1,0,4,1,1,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,1,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,1],"MT5":[1,0,3,1,1,1,1],"COL":[1,0,6,1,2,2,2],"GP1":[1,0,5,1,1,1,2],"GP2":[1,0,3,1,2,1,4],"GP3":[1,0,4,1,1,0,1],"JU1":[1,0,7,1,2,1,2],"CY1":[1,0,6,1,1,1,1],"MT1":[1,0,4,1,1,1,1],"MT2":[1,0,4,1,1,1,2],"MT3":[1,0,4,1,1,0,1],"ALL":[1,0,4,1,2,1,1],"LI1":[1,0,5,1,2,1,2],"CV1":[1,0,6,1,2,1,3],"CV2":[1,0,3,1,1,1,1],"MN1":[1,0,4,1,1,1,1]},"weekly_real":{"12 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,6,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,2],"MOD":[1,0,7,0,3,1,2],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,5,1,2,1,2],"PEN":[1,0,8,1,2,2,4],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,2,0,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,null,4,1,1,0,1],"COL":[1,0,7,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[0,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,4,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"19 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,6,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,2],"MOD":[1,0,7,0,3,1,2],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,5,1,2,1,2],"PEN":[1,0,8,1,2,2,4],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,2,0,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,null,4,1,1,0,1],"COL":[1,0,7,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[0,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,4,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"26 Jun":{"AP1":[1,0,6,1,2,1,3],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,1],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,1,2,1],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,6,1,2,2,3],"MT4":[1,0,4,1,2,1,2],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,0,0],"GA1":[1,0,4,1,2,1,2],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,4,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,3,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,7,2,2,1,2],"CV1":[1,0,8,2,2,1,4],"CV2":[1,0,6,1,1,1,1]},"02 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[1,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,0,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,5,2,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"09 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,1,1],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[2,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,6,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"16 Jul":{"AP1":[1,0,6,1,2,1,1],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,1,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,0,3,1,3],"ESC":[1,0,7,1,2,2,1],"SN1":[2,0,4,1,1,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,2],"ZU1":[1,0,5,1,2,2,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,3],"STA":[1,0,4,1,2,1,0],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,0,4,1,1,1,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,2,0,1,1,1],"ALL":[1,0,4,1,1,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,8,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"31 Jul":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,1,0,2],"MOD":[1,1,8,0,2,1,2],"ESC":[1,0,7,0,1,2,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,0,2,1,1],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,1,1,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,2,1,2,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,2],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,4,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,0,1,1,2],"MT3":[1,0,3,0,0,1,1],"ALL":[1,0,3,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"06 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,1],"HSM":[1,0,5,1,2,0,2],"MOD":[1,1,8,0,2,0,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,1,3],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,3,1,0,1,1],"ALL":[1,0,4,1,2,1,1],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"12 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,5,1,2,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,1,8,1,2,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,1,1,2],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,2],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,5,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,2,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,5,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,4,1,0,1,1],"ALL":[1,0,4,1,2,1,0],"LI1":[1,0,6,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"20 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,1],"AP3":[1,0,6,1,2,2,3],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,0,3,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,0,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,5,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,0,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,1,1,2],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,0,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,3,1,0,1,1],"ALL":[1,0,5,1,1,1,0],"LI1":[1,0,5,2,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"27 Ago":{"AP1":[1,0,6,1,2,1,2],"AP2":[1,0,5,1,2,1,2],"AP3":[1,0,6,1,2,2,2],"AP4":[1,0,4,1,2,1,2],"HSM":[1,0,5,1,2,1,2],"MOD":[1,0,8,1,3,1,2],"ESC":[1,0,7,1,2,1,2],"SN1":[1,0,4,1,0,1,1],"SN2":[1,0,4,1,1,1,2],"SN3":[1,0,4,1,2,1,1],"ZU1":[1,0,6,1,2,1,3],"MT4":[1,0,4,1,2,1,1],"PEN":[1,1,8,1,2,2,4],"STA":[1,0,4,1,2,1,1],"GA1":[1,1,4,1,1,1,1],"ES2":[1,0,4,1,2,1,2],"MT5":[1,0,3,1,1,0,1],"COL":[1,0,6,1,2,2,3],"GP1":[1,0,6,1,2,2,3],"GP2":[1,0,4,1,1,1,3],"GP3":[1,0,4,1,1,1,1],"JU1":[1,0,7,1,2,1,3],"CY1":[1,0,6,1,2,1,1],"MT1":[1,1,4,1,1,1,2],"MT2":[1,0,3,1,1,1,2],"MT3":[1,0,4,1,1,1,1],"ALL":[1,0,4,1,2,1,0],"LI1":[1,0,5,1,2,1,2],"CV1":[1,0,7,2,2,1,3],"CV2":[1,0,5,1,1,1,1]},"03 Sep":{"AP1":[1, 0, 6, 1, 2, 1, 2],"AP2":[1, 0, 5, 0, 2, 1, 2],"AP3":[1, 0, 5, 1, 1, 2, 3],"AP4":[1, 0, 4, 0, 2, 1, 2],"HSM":[1, 0, 5, 1, 2, 1, 3],"MOD":[1, 0, 8, 1, 3, 1, 2],"ESC":[1, 0, 7, 1, 2, 1, 2],"SN1":[1, 0, 4, 1, 1, 1, 1],"SN2":[1, 0, 4, 1, 1, 1, 2],"SN3":[1, 0, 4, 1, 2, 1, 1],"ZU1":[1, 0, 6, 1, 2, 1, 3],"MT4":[1, 0, 4, 1, 2, 1, 1],"PEN":[1, 1, 8, 1, 2, 1, 3],"STA":[1, 0, 4, 1, 2, 1, 1],"GA1":[1, 1, 4, 1, 1, 1, 1],"ES2":[1, 0, 4, 1, 2, 1, 2],"MT5":[1, 0, 3, 1, 1, 0, 1],"COL":[1, 0, 6, 1, 2, 2, 2],"GP1":[1, 0, 6, 1, 2, 2, 2],"GP2":[1, 0, 3, 1, 1, 1, 4],"GP3":[1, 0, 4, 1, 1, 1, 1],"JU1":[1, 0, 7, 1, 2, 1, 3],"CY1":[1, 0, 6, 1, 2, 1, 1],"MT1":[1, 1, 4, 1, 1, 0, 2],"MT2":[1, 0, 3, 1, 1, 1, 2],"MT3":[1, 0, 4, 1, 1, 1, 1],"ALL":[1, 0, 4, 1, 2, 1, 1],"LI1":[1, 0, 5, 1, 2, 1, 2],"CV1":[1, 0, 6, 2, 2, 1, 3],"CV2":[1, 0, 5, 1, 1, 1, 1],"MN1":[1, 0, 4, 1, 1, 1, 1]},"10 Sep":{"AP1":[1, 0, 6, 1, 2, 1, 2],"AP2":[1, 0, 5, 1, 2, 1, 2],"AP3":[1, 0, 6, 1, 1, 2, 3],"AP4":[1, 0, 4, 0, 2, 1, 2],"HSM":[1, 0, 5, 1, 2, 1, 3],"MOD":[1, 0, 8, 1, 2, 1, 3],"ESC":[1, 0, 7, 1, 2, 1, 2],"SN1":[1, 0, 3, 1, 1, 1, 1],"SN2":[1, 0, 4, 1, 1, 1, 2],"SN3":[1, 0, 4, 1, 2, 1, 1],"ZU1":[1, 0, 6, 1, 2, 1, 3],"MT4":[1, 0, 4, 1, 2, 1, 1],"PEN":[1, 1, 8, 1, 2, 1, 3],"STA":[1, 0, 4, 1, 2, 1, 1],"GA1":[1, 1, 4, 1, 1, 1, 1],"ES2":[1, 0, 4, 1, 2, 1, 2],"MT5":[1, 0, 3, 1, 1, 0, 1],"COL":[1, 0, 6, 1, 2, 2, 2],"GP1":[1, 0, 5, 1, 2, 1, 2],"GP2":[1, 0, 3, 1, 1, 1, 4],"GP3":[1, 0, 4, 1, 1, 1, 1],"JU1":[1, 0, 7, 1, 2, 1, 2],"CY1":[1, 0, 6, 1, 2, 1, 1],"MT1":[1, 1, 4, 1, 1, 0, 1],"MT2":[1, 0, 4, 1, 1, 1, 2],"MT3":[1, 0, 4, 1, 1, 0, 1],"ALL":[1, 0, 4, 1, 2, 1, 1],"LI1":[1, 0, 5, 1, 2, 1, 2],"CV1":[1, 0, 6, 1, 2, 1, 3],"CV2":[1, 0, 3, 1, 1, 1, 1],"MN1":[1, 0, 4, 1, 1, 1, 1]}}};
 </script>
 <script>
 
@@ -2669,8 +2677,21 @@ function matchActualIngressToPlans(actualRows){
 // para evitar interpretar un ingreso como una vacante adicional. Corte actual: 03 Sep → 10 Sep.
 const WEEKLY_INGRESS_LABEL = '03 → 10 Sep';
 // MOD (Moderna, Zona 2): la nota "ingresa 11/09" se cerró en el corte 10 Sep — repartidor confirmado.
+// Corrección v44: el objetivo de esa posición en el corte 03 Sep bajó de 3 a 2 — es decir, no había
+// vacante ahí; fue una plaza nueva (objetivo y real subieron juntos de 2 a 3) agregada y cubierta en
+// la misma semana, no el cierre de una vacante previa. La alta se mantiene, cambia sólo el porqué.
+// AP2 (Pueblo Nuevo, Zona 1) y MT2 (Venustiano Carranza, Zona 5): vacante de Vendedores/Desarrollador
+// cubierta esta semana.
+// AP3 (Apodaca Centro, Zona 1): Vendedores cubierto (vacante 5→6, 03 Sep→10 Sep).
+// HSM (Hacienda San Miguel, Zona 1) y GP2 (Ruiz Cortines, Zona 4): confirmadas como baja y ya
+// cubiertas en el mismo corte (Repartidor en ambos casos).
 const WEEKLY_INGRESS = [
-  {zona:'Zona 2', code:'MOD', puesto:'Repartidor', n:1}
+  {zona:'Zona 2', code:'MOD', puesto:'Repartidor', n:1},
+  {zona:'Zona 1', code:'AP2', puesto:'Desarrollador', n:1},
+  {zona:'Zona 1', code:'HSM', puesto:'Repartidor', n:1},
+  {zona:'Zona 4', code:'GP2', puesto:'Repartidor', n:1},
+  {zona:'Zona 1', code:'AP3', puesto:'Vendedores', n:1},
+  {zona:'Zona 5', code:'MT2', puesto:'Vendedores', n:1}
 ];
 function allWeeklyIngressRows(){ return WEEKLY_INGRESS.concat(movementLogAltaRows()); }
 function weeklyIngressRowsForCodes(codes){
@@ -2834,72 +2855,65 @@ function requestedEditorHtml(code){
 }
 // Histórico oficial recuperado de los cortes previos del dashboard de vacantes.
 // Serie comparable exclusivamente para Zonas 1–6; no incluye Coahuila ni Occidente.
+// Vacantes oficiales por semana, validadas puesto por puesto y sucursal por sucursal contra las 7
+// hojas del archivo fuente (v41) — no sólo el corte vigente; se re-verificó toda la serie histórica.
 const OFFICIAL_HISTORY = [
   {label:"31 Jul", total:29},
   {label:"06 Ago", total:19},
-  {label:"12 Ago", total:12},
-  {label:"20 Ago", total:13},
-  {label:"27 Ago", total:8},
+  {label:"12 Ago", total:16},
+  {label:"20 Ago", total:15},
+  {label:"27 Ago", total:10},
   {label:"03 Sep", total:10},
-  {label:"10 Sep", total:10}
+  {label:"10 Sep", total:7}
 ];
-// OFFICIAL_PREV_ZONE = corte anterior al vigente (ahora 03 Sep, para comparar contra 10 Sep). El corte 03 Sep
-// queda cerrado tal cual con 10 en OFFICIAL_HISTORY / OFFICIAL_HISTORY_BY_ZONE — no se retocó su cifra histórica.
-const OFFICIAL_PREV_ZONE = {"Zona 1":4,"Zona 2":2,"Zona 3":1,"Zona 4":1,"Zona 5":2,"Zona 6":0};
-const OFFICIAL_HISTORY_BY_ZONE = {"31 Jul":{"Zona 1":5,"Zona 2":7,"Zona 3":3,"Zona 4":6,"Zona 5":6,"Zona 6":2},"06 Ago":{"Zona 1":5,"Zona 2":4,"Zona 3":1,"Zona 4":4,"Zona 5":4,"Zona 6":1},"12 Ago":{"Zona 1":2,"Zona 2":2,"Zona 3":0,"Zona 4":3,"Zona 5":3,"Zona 6":2},"20 Ago":{"Zona 1":1,"Zona 2":5,"Zona 3":0,"Zona 4":1,"Zona 5":4,"Zona 6":2},"27 Ago":{"Zona 1":1,"Zona 2":3,"Zona 3":0,"Zona 4":2,"Zona 5":1,"Zona 6":1},"03 Sep":{"Zona 1":4,"Zona 2":2,"Zona 3":1,"Zona 4":1,"Zona 5":2,"Zona 6":0},"10 Sep":{"Zona 1":4,"Zona 2":1,"Zona 3":2,"Zona 4":1,"Zona 5":2,"Zona 6":0}};
+// OFFICIAL_PREV_ZONE = corte anterior al vigente (ahora 03 Sep, para comparar contra 10 Sep).
+const OFFICIAL_PREV_ZONE = {"Zona 1":4,"Zona 2":1,"Zona 3":1,"Zona 4":2,"Zona 5":2,"Zona 6":0};
+const OFFICIAL_HISTORY_BY_ZONE = {"31 Jul":{"Zona 1":5,"Zona 2":7,"Zona 3":3,"Zona 4":6,"Zona 5":6,"Zona 6":2},"06 Ago":{"Zona 1":5,"Zona 2":4,"Zona 3":1,"Zona 4":4,"Zona 5":4,"Zona 6":1},"12 Ago":{"Zona 1":3,"Zona 2":3,"Zona 3":0,"Zona 4":3,"Zona 5":6,"Zona 6":1},"20 Ago":{"Zona 1":1,"Zona 2":5,"Zona 3":0,"Zona 4":3,"Zona 5":4,"Zona 6":2},"27 Ago":{"Zona 1":1,"Zona 2":3,"Zona 3":0,"Zona 4":2,"Zona 5":2,"Zona 6":2},"03 Sep":{"Zona 1":4,"Zona 2":1,"Zona 3":1,"Zona 4":2,"Zona 5":2,"Zona 6":0},"10 Sep":{"Zona 1":2,"Zona 2":1,"Zona 3":2,"Zona 4":1,"Zona 5":1,"Zona 6":0}};
 
 // Excedentes por semana: plazas por encima del objetivo aprobado, calculadas con el objetivo VIGENTE en cada
-// corte del Excel (no con el objetivo de hoy aplicado hacia atrás). Fuente: hojas 31 JUL–10 Sep, v34.
+// corte del Excel (no con el objetivo de hoy aplicado hacia atrás). Validado puesto por puesto y sucursal
+// por sucursal contra las 7 hojas del archivo fuente (v44) — se re-verificó toda la serie histórica, no
+// sólo el corte vigente.
 const EXCESS_HISTORY = [
   {label:"31 Jul", total:39},
   {label:"06 Ago", total:37},
-  {label:"12 Ago", total:35},
+  {label:"12 Ago", total:36},
   {label:"20 Ago", total:35},
   {label:"27 Ago", total:26},
-  {label:"03 Sep", total:15},
-  {label:"10 Sep", total:2}
+  {label:"03 Sep", total:25},
+  {label:"10 Sep", total:14}
 ];
-const EXCESS_HISTORY_BY_ZONE = {"31 Jul":{"Zona 1":3,"Zona 2":6,"Zona 3":5,"Zona 4":7,"Zona 5":3,"Zona 6":15},"06 Ago":{"Zona 1":3,"Zona 2":5,"Zona 3":4,"Zona 4":8,"Zona 5":3,"Zona 6":14},"12 Ago":{"Zona 1":3,"Zona 2":5,"Zona 3":4,"Zona 4":7,"Zona 5":3,"Zona 6":13},"20 Ago":{"Zona 1":3,"Zona 2":4,"Zona 3":4,"Zona 4":7,"Zona 5":3,"Zona 6":14},"27 Ago":{"Zona 1":3,"Zona 2":4,"Zona 3":5,"Zona 4":7,"Zona 5":3,"Zona 6":4},"03 Sep":{"Zona 1":1,"Zona 2":2,"Zona 3":2,"Zona 4":4,"Zona 5":3,"Zona 6":3},"10 Sep":{"Zona 1":0,"Zona 2":0,"Zona 3":1,"Zona 4":0,"Zona 5":1,"Zona 6":0}};
+const EXCESS_HISTORY_BY_ZONE = {"31 Jul":{"Zona 1":3,"Zona 2":6,"Zona 3":5,"Zona 4":7,"Zona 5":3,"Zona 6":15},"06 Ago":{"Zona 1":3,"Zona 2":5,"Zona 3":4,"Zona 4":8,"Zona 5":3,"Zona 6":14},"12 Ago":{"Zona 1":4,"Zona 2":5,"Zona 3":4,"Zona 4":7,"Zona 5":3,"Zona 6":13},"20 Ago":{"Zona 1":3,"Zona 2":4,"Zona 3":4,"Zona 4":7,"Zona 5":3,"Zona 6":14},"27 Ago":{"Zona 1":3,"Zona 2":4,"Zona 3":5,"Zona 4":7,"Zona 5":3,"Zona 6":4},"03 Sep":{"Zona 1":4,"Zona 2":5,"Zona 3":4,"Zona 4":5,"Zona 5":3,"Zona 6":4},"10 Sep":{"Zona 1":4,"Zona 2":2,"Zona 3":4,"Zona 4":3,"Zona 5":1,"Zona 6":0}};
 
-// Ajustes incrementales de objetivo de plantilla aplicados en los últimos cortes (Zona Interior 1–6).
-// Cada registro: sucursal, puesto, objetivo anterior → nuevo, y el corte en que se detectó el cambio.
 // Plantilla total de la Zona Interior 1–6 por corte, desde el 31 de julio. "aut" = HC aprobado (objetivo
 // vigente en ese corte), "real" = HC realmente en nómina. Las series "cmp" excluyen MN1 (Montemorelos), que
 // abrió durante el periodo y suma 9 plazas nuevas, para poder comparar tiendas iguales contra iguales.
-// Fuente: suma de todas las posiciones de las 31 sucursales en cada hoja semanal del Excel v27.
-// HC_HISTORY: aut/real = las 31 sucursales de Zona Interior 1-6 (incluye MN1, apertura nueva).
-// autCmp/realCmp = comparable tienda-tienda, EXCLUYE MN1 porque no tiene historial previo y su
-// HC aprobado sólo se dio de alta hasta el 27 Ago (aunque su HC real ya operaba desde antes),
-// lo cual distorsiona cualquier lectura de tendencia si se deja mezclado. Fuente: hojas 31 JUL–10 Sep, v38.
+// Recalculado completo con v44: MOD Repartidor corrigió su objetivo del corte 03 Sep (3→2) — resulta que
+// nunca hubo vacante ahí; el 2→3 real de MOD entre 03 y 10 Sep fue una plaza nueva agregada y cubierta
+// en la misma semana, no el cierre de una vacante previa.
 const HC_HISTORY = [
   {label:"31 Jul", aut:337, real:347, autCmp:337, realCmp:338},
   {label:"06 Ago", aut:337, real:355, autCmp:337, realCmp:347},
-  {label:"12 Ago", aut:336, real:355, autCmp:336, realCmp:347},
+  {label:"12 Ago", aut:335, real:355, autCmp:335, realCmp:347},
   {label:"20 Ago", aut:337, real:357, autCmp:337, realCmp:348},
   {label:"27 Ago", aut:345, real:361, autCmp:336, realCmp:352},
-  {label:"03 Sep", aut:353, real:357, autCmp:344, realCmp:348},
-  {label:"10 Sep", aut:356, real:348, autCmp:347, realCmp:339}
+  {label:"03 Sep", aut:342, real:357, autCmp:333, realCmp:348},
+  {label:"10 Sep", aut:344, real:351, autCmp:335, realCmp:342}
 ];
 // Detalle de los movimientos de HC aprobado entre 31 Jul y 10 Sep (solo sucursales comparables que
 // cambiaron; MN1 se reporta aparte por ser apertura nueva, no ajuste de techo en tienda existente).
+// Corrección v43: SN2 Repartidor se formalizó (excedente absorbido, objetivo 8→9).
 const HC_AUT_CHANGES = [
-  {code:"AP4", from:9,  to:11, delta:2},
-  {code:"SN2", from:8,  to:10, delta:2},
-  {code:"AP3", from:14, to:15, delta:1},
-  {code:"HSM", from:12, to:13, delta:1},
-  {code:"MT4", from:9,  to:10, delta:1},
-  {code:"STA", from:9,  to:10, delta:1},
-  {code:"ES2", from:10, to:11, delta:1},
+  {code:"SN2", from:8,  to:9,  delta:1},
   {code:"MT5", from:7,  to:8,  delta:1},
-  {code:"CY1", from:11, to:12, delta:1},
-  {code:"MT3", from:8,  to:9,  delta:1},
   {code:"CV2", from:7,  to:8,  delta:1},
+  {code:"ZU1", from:14, to:13, delta:-1},
+  {code:"GP1", from:12, to:11, delta:-1},
   {code:"GP2", from:13, to:12, delta:-1},
   {code:"LI1", from:13, to:12, delta:-1},
   {code:"CV1", from:15, to:14, delta:-1},
   {code:"MN1", from:0,  to:9,  delta:9, nueva:true}
 ];
-// Regla de conversión provista por el negocio: cada unidad de HC adicional debe reflejarse en venta.
 const HC_SALES_PER_HEAD = 200000;
 
 // ================= VISTA GENERAL DE LA RED (TODAS LAS ZONAS) =================
@@ -2911,22 +2925,22 @@ const HC_SALES_PER_HEAD = 200000;
 // al agregar. No incluye Mayoreo, CEDIS, Corporativo ni Centros de Servicio.
 const NETWORK_HISTORY = [
   {label:"31 Jul", real:921, aut:874, vac:50, exc:97},
-  {label:"06 Ago", real:922, aut:874, vac:41, exc:89},
-  {label:"12 Ago", real:928, aut:873, vac:37, exc:92},
+  {label:"06 Ago", real:924, aut:881, vac:41, exc:84},
+  {label:"12 Ago", real:928, aut:872, vac:37, exc:93},
   {label:"20 Ago", real:927, aut:874, vac:39, exc:92},
   {label:"27 Ago", real:933, aut:882, vac:33, exc:84},
-  {label:"03 Sep", real:924, aut:890, vac:39, exc:73},
-  {label:"10 Sep", real:916, aut:893, vac:37, exc:60}
+  {label:"03 Sep", real:924, aut:879, vac:38, exc:83},
+  {label:"10 Sep", real:922, aut:881, vac:32, exc:73}
 ];
 // Corte más reciente (10 Sep), desglosado por zona/región. "n" = sucursales que integran el grupo.
 const NETWORK_BREAKDOWN = [
-  {zona:"Frontera",          n:24, real:390, aut:371, vac:19, exc:38},
-  {zona:"Laredo",            n:6,  real:102, aut:98,  vac:4,  exc:8},
-  {zona:"Zona 1",            n:5,  real:60,  aut:64,  vac:4,  exc:0},
-  {zona:"Zona 2",            n:6,  real:72,  aut:73,  vac:1,  exc:0},
-  {zona:"Zona 3",            n:6,  real:65,  aut:66,  vac:2,  exc:1},
-  {zona:"Zona 4",            n:6,  real:71,  aut:72,  vac:1,  exc:0},
-  {zona:"Zona 5",            n:3,  real:27,  aut:28,  vac:2,  exc:1},
+  {zona:"Frontera",          n:24, real:391, aut:371, vac:18, exc:38},
+  {zona:"Laredo",            n:6,  real:104, aut:98,  vac:3,  exc:9},
+  {zona:"Zona 1",            n:5,  real:62,  aut:60,  vac:2,  exc:4},
+  {zona:"Zona 2",            n:6,  real:72,  aut:71,  vac:1,  exc:2},
+  {zona:"Zona 3",            n:6,  real:65,  aut:63,  vac:2,  exc:4},
+  {zona:"Zona 4",            n:6,  real:72,  aut:70,  vac:1,  exc:3},
+  {zona:"Zona 5",            n:3,  real:27,  aut:27,  vac:1,  exc:1},
   {zona:"Zona 6",            n:5,  real:53,  aut:53,  vac:0,  exc:0},
   {zona:"Saltillo (Coah.)",  n:5,  real:47,  aut:44,  vac:1,  exc:4},
   {zona:"Occidente",         n:1,  real:11,  aut:8,   vac:0,  exc:3},
@@ -2934,7 +2948,7 @@ const NETWORK_BREAKDOWN = [
   {zona:"León",              n:1,  real:10,  aut:8,   vac:1,  exc:3}
 ];
 // Mismo corte (10 Sep), a nivel sucursal individual (69 filas) para el filtro "por sucursal".
-const NETWORK_BRANCHES = [{"zona": "Frontera · Río Bravo", "region": "Frontera", "code": "RIO", "name": "RIO", "real": 31, "aut": 30, "vac": 1, "exc": 2}, {"zona": "Frontera · Río Bravo", "region": "Frontera", "code": "RB2", "name": "RB2", "real": 20, "aut": 19, "vac": 1, "exc": 2}, {"zona": "Frontera · Río Bravo", "region": "Frontera", "code": "RB3", "name": "RB3", "real": 9, "aut": 8, "vac": 0, "exc": 1}, {"zona": "Frontera · Reynosa 1", "region": "Frontera", "code": "JUA", "name": "JUA", "real": 24, "aut": 24, "vac": 1, "exc": 1}, {"zona": "Frontera · Reynosa 1", "region": "Frontera", "code": "LIB", "name": "LIB", "real": 19, "aut": 19, "vac": 1, "exc": 1}, {"zona": "Frontera · Reynosa 1", "region": "Frontera", "code": "RYJ", "name": "RYJ", "real": 19, "aut": 19, "vac": 2, "exc": 2}, {"zona": "Frontera · Reynosa 1", "region": "Frontera", "code": "RYA", "name": "RYA", "real": 17, "aut": 17, "vac": 1, "exc": 1}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "REY", "name": "REY", "real": 18, "aut": 17, "vac": 0, "exc": 1}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYM", "name": "RYM", "real": 8, "aut": 8, "vac": 0, "exc": 0}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYG", "name": "RYG", "real": 21, "aut": 21, "vac": 1, "exc": 1}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYH", "name": "RYH", "real": 15, "aut": 14, "vac": 0, "exc": 1}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYR", "name": "RYR", "real": 12, "aut": 14, "vac": 2, "exc": 0}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "ALE", "name": "ALE", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "REM", "name": "REM", "real": 3, "aut": 3, "vac": 2, "exc": 2}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYP", "name": "RYP", "real": 10, "aut": 3, "vac": 0, "exc": 7}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM1", "name": "MM1", "real": 20, "aut": 20, "vac": 1, "exc": 1}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM2", "name": "MM2", "real": 23, "aut": 23, "vac": 3, "exc": 3}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM3", "name": "MM3", "real": 12, "aut": 11, "vac": 1, "exc": 2}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM4", "name": "MM4", "real": 23, "aut": 23, "vac": 1, "exc": 1}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM5", "name": "MM5", "real": 22, "aut": 22, "vac": 1, "exc": 1}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM6", "name": "MM6", "real": 14, "aut": 13, "vac": 0, "exc": 1}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM7", "name": "MM7", "real": 12, "aut": 9, "vac": 0, "exc": 3}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM8", "name": "MM8", "real": 11, "aut": 9, "vac": 0, "exc": 2}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "VH1", "name": "VH1", "real": 13, "aut": 11, "vac": 0, "exc": 2}, {"zona": "Laredo", "region": "Laredo", "code": "LAR", "name": "LAR", "real": 17, "aut": 16, "vac": 1, "exc": 2}, {"zona": "Laredo", "region": "Laredo", "code": "HIP", "name": "HIP", "real": 22, "aut": 23, "vac": 2, "exc": 1}, {"zona": "Laredo", "region": "Laredo", "code": "NL 1 REFORMA", "name": "NUEVO LAREDO REFORMA", "real": 18, "aut": 18, "vac": 1, "exc": 1}, {"zona": "Laredo", "region": "Laredo", "code": "NL2 REVOLUCION", "name": "NUEVO LAREDO REVOLUCION", "real": 19, "aut": 16, "vac": 0, "exc": 3}, {"zona": "Laredo", "region": "Laredo", "code": "NL 3 CANSECO", "name": "NUEVO LAREDO CANSECO", "real": 17, "aut": 16, "vac": 0, "exc": 1}, {"zona": "Laredo", "region": "Laredo", "code": "NLM", "name": "NLM", "real": 9, "aut": 9, "vac": 0, "exc": 0}, {"zona": "Zona 1", "region": "Zona 1", "code": "AP1", "name": "CONCORDIA", "real": 13, "aut": 13, "vac": 0, "exc": 0}, {"zona": "Zona 1", "region": "Zona 1", "code": "AP2", "name": "PUEBLO NUEVO", "real": 11, "aut": 12, "vac": 1, "exc": 0}, {"zona": "Zona 1", "region": "Zona 1", "code": "AP3", "name": "APODACA CENTRO", "real": 13, "aut": 15, "vac": 2, "exc": 0}, {"zona": "Zona 1", "region": "Zona 1", "code": "AP4", "name": "HUINALA", "real": 10, "aut": 11, "vac": 1, "exc": 0}, {"zona": "Zona 1", "region": "Zona 1", "code": "HSM", "name": "HACIENDA SAN MIGUEL", "real": 13, "aut": 13, "vac": 0, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "MOD", "name": "MODERNA", "real": 16, "aut": 16, "vac": 0, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "ESC", "name": "ESCOBEDO", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "SN1", "name": "SANTO DOMINGO", "real": 8, "aut": 8, "vac": 0, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "SN2", "name": "DIEGO DIAZ DE BERLANGA", "real": 10, "aut": 10, "vac": 0, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "SN3", "name": "UNIVERSIDAD", "real": 10, "aut": 11, "vac": 1, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "ZU1", "name": "ZUAZUA", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Zona 3", "region": "Zona 3", "code": "MT4", "name": "SOLIDARIDAD", "real": 10, "aut": 10, "vac": 0, "exc": 0}, {"zona": "Zona 3", "region": "Zona 3", "code": "PEN", "name": "PENITENCIARIA", "real": 17, "aut": 18, "vac": 1, "exc": 0}, {"zona": "Zona 3", "region": "Zona 3", "code": "STA", "name": "SANTA CATARINA", "real": 10, "aut": 10, "vac": 0, "exc": 0}, {"zona": "Zona 3", "region": "Zona 3", "code": "GA1", "name": "GARCIA", "real": 10, "aut": 9, "vac": 0, "exc": 1}, {"zona": "Zona 3", "region": "Zona 3", "code": "ES2", "name": "ALIANZA", "real": 11, "aut": 11, "vac": 0, "exc": 0}, {"zona": "Zona 3", "region": "Zona 3", "code": "MT5", "name": "LOMA LINDA", "real": 7, "aut": 8, "vac": 1, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "COL", "name": "COLIBRI", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "GP1", "name": "ISRAEL CAVAZOS", "real": 12, "aut": 12, "vac": 0, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "GP2", "name": "RUIZ CORTINES", "real": 11, "aut": 12, "vac": 1, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "GP3", "name": "ELOY CAVAZOS", "real": 8, "aut": 8, "vac": 0, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "JU1", "name": "VILLA JUAREZ", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "CY1", "name": "CADEREYTA", "real": 12, "aut": 12, "vac": 0, "exc": 0}, {"zona": "Zona 5", "region": "Zona 5", "code": "MT1", "name": "NUEVO REPUEBLO", "real": 9, "aut": 9, "vac": 1, "exc": 1}, {"zona": "Zona 5", "region": "Zona 5", "code": "MT2", "name": "VENUSTIANO CARRANZA", "real": 9, "aut": 10, "vac": 1, "exc": 0}, {"zona": "Zona 5", "region": "Zona 5", "code": "MT3", "name": "CHAPULTEPEC", "real": 9, "aut": 9, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "ALL", "name": "ALLENDE", "real": 10, "aut": 10, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "LI1", "name": "LINARES", "real": 12, "aut": 12, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "CV1", "name": "CIUDAD VICTORIA", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "CV2", "name": "H. ILUSTRES", "real": 8, "aut": 8, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "MN1", "name": "MONTEMORELOS", "real": 9, "aut": 9, "vac": 0, "exc": 0}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA1", "name": "SA1", "real": 9, "aut": 8, "vac": 0, "exc": 1}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA2", "name": "SA2", "real": 9, "aut": 8, "vac": 0, "exc": 1}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA3", "name": "SA3", "real": 9, "aut": 8, "vac": 0, "exc": 1}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA4", "name": "SA4", "real": 13, "aut": 12, "vac": 0, "exc": 1}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA5", "name": "SA5", "real": 7, "aut": 8, "vac": 1, "exc": 0}, {"zona": "Occidente", "region": "Occidente", "code": "GLM", "name": "GLM", "real": 11, "aut": 8, "vac": 0, "exc": 3}, {"zona": "Querétaro", "region": "Querétaro", "code": "QT1", "name": "QT1", "real": 8, "aut": 8, "vac": 2, "exc": 2}, {"zona": "León", "region": "León", "code": "LN1", "name": "LN1", "real": 10, "aut": 8, "vac": 1, "exc": 3}];
+const NETWORK_BRANCHES = [{"zona": "Frontera · Río Bravo", "region": "Frontera", "code": "RIO", "name": "RIO", "real": 31, "aut": 30, "vac": 1, "exc": 2}, {"zona": "Frontera · Río Bravo", "region": "Frontera", "code": "RB2", "name": "RB2", "real": 20, "aut": 19, "vac": 1, "exc": 2}, {"zona": "Frontera · Río Bravo", "region": "Frontera", "code": "RB3", "name": "RB3", "real": 10, "aut": 8, "vac": 0, "exc": 2}, {"zona": "Frontera · Reynosa 1", "region": "Frontera", "code": "JUA", "name": "JUA", "real": 24, "aut": 24, "vac": 1, "exc": 1}, {"zona": "Frontera · Reynosa 1", "region": "Frontera", "code": "LIB", "name": "LIB", "real": 19, "aut": 19, "vac": 1, "exc": 1}, {"zona": "Frontera · Reynosa 1", "region": "Frontera", "code": "RYJ", "name": "RYJ", "real": 19, "aut": 19, "vac": 2, "exc": 2}, {"zona": "Frontera · Reynosa 1", "region": "Frontera", "code": "RYA", "name": "RYA", "real": 17, "aut": 17, "vac": 1, "exc": 1}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "REY", "name": "REY", "real": 18, "aut": 17, "vac": 0, "exc": 1}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYM", "name": "RYM", "real": 8, "aut": 8, "vac": 0, "exc": 0}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYG", "name": "RYG", "real": 21, "aut": 21, "vac": 1, "exc": 1}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYH", "name": "RYH", "real": 15, "aut": 14, "vac": 0, "exc": 1}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYR", "name": "RYR", "real": 12, "aut": 14, "vac": 2, "exc": 0}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "ALE", "name": "ALE", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "REM", "name": "REM", "real": 3, "aut": 3, "vac": 2, "exc": 2}, {"zona": "Frontera · Reynosa 2", "region": "Frontera", "code": "RYP", "name": "RYP", "real": 10, "aut": 3, "vac": 0, "exc": 7}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM1", "name": "MM1", "real": 20, "aut": 20, "vac": 1, "exc": 1}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM2", "name": "MM2", "real": 24, "aut": 23, "vac": 2, "exc": 3}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM3", "name": "MM3", "real": 12, "aut": 11, "vac": 1, "exc": 2}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM4", "name": "MM4", "real": 23, "aut": 23, "vac": 1, "exc": 1}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM5", "name": "MM5", "real": 22, "aut": 22, "vac": 1, "exc": 1}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM6", "name": "MM6", "real": 14, "aut": 13, "vac": 0, "exc": 1}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM7", "name": "MM7", "real": 11, "aut": 9, "vac": 0, "exc": 2}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "MM8", "name": "MM8", "real": 11, "aut": 9, "vac": 0, "exc": 2}, {"zona": "Frontera · Matamoros", "region": "Frontera", "code": "VH1", "name": "VH1", "real": 13, "aut": 11, "vac": 0, "exc": 2}, {"zona": "Laredo", "region": "Laredo", "code": "LAR", "name": "LAR", "real": 18, "aut": 16, "vac": 1, "exc": 3}, {"zona": "Laredo", "region": "Laredo", "code": "HIP", "name": "HIP", "real": 23, "aut": 23, "vac": 1, "exc": 1}, {"zona": "Laredo", "region": "Laredo", "code": "NL 1 REFORMA", "name": "NUEVO LAREDO REFORMA", "real": 18, "aut": 18, "vac": 1, "exc": 1}, {"zona": "Laredo", "region": "Laredo", "code": "NL2 REVOLUCION", "name": "NUEVO LAREDO REVOLUCION", "real": 19, "aut": 16, "vac": 0, "exc": 3}, {"zona": "Laredo", "region": "Laredo", "code": "NL 3 CANSECO", "name": "NUEVO LAREDO CANSECO", "real": 17, "aut": 16, "vac": 0, "exc": 1}, {"zona": "Laredo", "region": "Laredo", "code": "NLM", "name": "NLM", "real": 9, "aut": 9, "vac": 0, "exc": 0}, {"zona": "Zona 1", "region": "Zona 1", "code": "AP1", "name": "CONCORDIA", "real": 13, "aut": 13, "vac": 0, "exc": 0}, {"zona": "Zona 1", "region": "Zona 1", "code": "AP2", "name": "PUEBLO NUEVO", "real": 12, "aut": 12, "vac": 0, "exc": 0}, {"zona": "Zona 1", "region": "Zona 1", "code": "AP3", "name": "APODACA CENTRO", "real": 14, "aut": 14, "vac": 1, "exc": 1}, {"zona": "Zona 1", "region": "Zona 1", "code": "AP4", "name": "HUINALA", "real": 10, "aut": 9, "vac": 1, "exc": 2}, {"zona": "Zona 1", "region": "Zona 1", "code": "HSM", "name": "HACIENDA SAN MIGUEL", "real": 13, "aut": 12, "vac": 0, "exc": 1}, {"zona": "Zona 2", "region": "Zona 2", "code": "MOD", "name": "MODERNA", "real": 16, "aut": 16, "vac": 0, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "ESC", "name": "ESCOBEDO", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "SN1", "name": "SANTO DOMINGO", "real": 8, "aut": 8, "vac": 0, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "SN2", "name": "DIEGO DIAZ DE BERLANGA", "real": 10, "aut": 9, "vac": 0, "exc": 1}, {"zona": "Zona 2", "region": "Zona 2", "code": "SN3", "name": "UNIVERSIDAD", "real": 10, "aut": 11, "vac": 1, "exc": 0}, {"zona": "Zona 2", "region": "Zona 2", "code": "ZU1", "name": "ZUAZUA", "real": 14, "aut": 13, "vac": 0, "exc": 1}, {"zona": "Zona 3", "region": "Zona 3", "code": "MT4", "name": "SOLIDARIDAD", "real": 10, "aut": 9, "vac": 0, "exc": 1}, {"zona": "Zona 3", "region": "Zona 3", "code": "PEN", "name": "PENITENCIARIA", "real": 17, "aut": 18, "vac": 1, "exc": 0}, {"zona": "Zona 3", "region": "Zona 3", "code": "STA", "name": "SANTA CATARINA", "real": 10, "aut": 9, "vac": 0, "exc": 1}, {"zona": "Zona 3", "region": "Zona 3", "code": "GA1", "name": "GARCIA", "real": 10, "aut": 9, "vac": 0, "exc": 1}, {"zona": "Zona 3", "region": "Zona 3", "code": "ES2", "name": "ALIANZA", "real": 11, "aut": 10, "vac": 0, "exc": 1}, {"zona": "Zona 3", "region": "Zona 3", "code": "MT5", "name": "LOMA LINDA", "real": 7, "aut": 8, "vac": 1, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "COL", "name": "COLIBRI", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "GP1", "name": "ISRAEL CAVAZOS", "real": 12, "aut": 11, "vac": 0, "exc": 1}, {"zona": "Zona 4", "region": "Zona 4", "code": "GP2", "name": "RUIZ CORTINES", "real": 11, "aut": 12, "vac": 1, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "GP3", "name": "ELOY CAVAZOS", "real": 9, "aut": 8, "vac": 0, "exc": 1}, {"zona": "Zona 4", "region": "Zona 4", "code": "JU1", "name": "VILLA JUAREZ", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Zona 4", "region": "Zona 4", "code": "CY1", "name": "CADEREYTA", "real": 12, "aut": 11, "vac": 0, "exc": 1}, {"zona": "Zona 5", "region": "Zona 5", "code": "MT1", "name": "NUEVO REPUEBLO", "real": 9, "aut": 9, "vac": 1, "exc": 1}, {"zona": "Zona 5", "region": "Zona 5", "code": "MT2", "name": "VENUSTIANO CARRANZA", "real": 10, "aut": 10, "vac": 0, "exc": 0}, {"zona": "Zona 5", "region": "Zona 5", "code": "MT3", "name": "CHAPULTEPEC", "real": 8, "aut": 8, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "ALL", "name": "ALLENDE", "real": 10, "aut": 10, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "LI1", "name": "LINARES", "real": 12, "aut": 12, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "CV1", "name": "CIUDAD VICTORIA", "real": 14, "aut": 14, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "CV2", "name": "H. ILUSTRES", "real": 8, "aut": 8, "vac": 0, "exc": 0}, {"zona": "Zona 6", "region": "Zona 6", "code": "MN1", "name": "MONTEMORELOS", "real": 9, "aut": 9, "vac": 0, "exc": 0}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA1", "name": "SA1", "real": 9, "aut": 8, "vac": 0, "exc": 1}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA2", "name": "SA2", "real": 9, "aut": 8, "vac": 0, "exc": 1}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA3", "name": "SA3", "real": 9, "aut": 8, "vac": 0, "exc": 1}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA4", "name": "SA4", "real": 13, "aut": 12, "vac": 0, "exc": 1}, {"zona": "Saltillo (Coah.)", "region": "Saltillo (Coah.)", "code": "SA5", "name": "SA5", "real": 7, "aut": 8, "vac": 1, "exc": 0}, {"zona": "Occidente", "region": "Occidente", "code": "GLM", "name": "GLM", "real": 11, "aut": 8, "vac": 0, "exc": 3}, {"zona": "Querétaro", "region": "Querétaro", "code": "QT1", "name": "QT1", "real": 8, "aut": 8, "vac": 2, "exc": 2}, {"zona": "León", "region": "León", "code": "LN1", "name": "LN1", "real": 10, "aut": 8, "vac": 1, "exc": 3}];
 let NETWORK_EXPANDED = new Set();
 let NETWORK_SEARCH = '';
 function renderNetworkOverview(){
@@ -3037,6 +3051,7 @@ function renderNetworkOverview(){
 }
 
 
+
 // Compromiso de venta adicional capturado por sucursal (en miles de pesos). Se guarda localmente.
 const SALES_COMMIT_STORE_KEY = 'jomar_transformar_sales_commitments_v1';
 let SALES_COMMITMENTS = portableLoadState(SALES_COMMIT_STORE_KEY,'salesCommitments');
@@ -3058,47 +3073,25 @@ const EXCESS_ACTION_OPTIONS = [
 
 // Ajustes incrementales de objetivo de plantilla aplicados en los últimos cortes (Zona Interior 1–6).
 // Cada registro: sucursal, puesto, objetivo anterior → nuevo, y el corte en que se detectó el cambio.
-// VALIDADO 1-a-1 contra las 7 hojas semanales del archivo fuente (31 Jul-10 Sep, v38). Definición
-// estricta: sólo cuenta aquí una posición que YA tenía excedente (real > objetivo vigente) en el
-// corte anterior, Y cuyo objetivo subió exactamente para alcanzar ese real — sin que el real se
-// moviera en el mismo paso. Es decir: no es una vacante nueva, no es una contratación nueva; es una
-// plaza que ya estaba de más y la zona simplemente la formalizó subiendo el techo aprobado.
-// Se excluyeron del listado anterior 3 renglones que NO cumplían esta definición al validarlos:
-//  · HSM Repartidor 2→3 (27 Ago→03 Sep): el real también subió de 2 a 3 en el mismo corte — fue una
-//    contratación nueva con su aprobación simultánea, no una plaza que ya existiera de más.
-//  · MT5 Almacen 0→1 (03 Sep→10 Sep): el real de esa posición fue 0 en las 7 semanas — nunca hubo
-//    nadie ahí, así que nunca fue excedente. Es una vacante nueva sin cubrir, no una formalización.
-//  · MT3 Cajeras 0→1 (dato incorrecto): el objetivo de Cajeras en MT3 se mantuvo en 1 las 7 semanas,
-//    nunca cambió. El cambio real de MT3 fue en Almacén (0→1, 03 Sep→10 Sep), ya incluido abajo.
-// Se agregaron 5 renglones que sí cumplían la definición y no estaban capturados: AP2 Cajeras,
-// COL Almacen, MT4 Cajeras, GP1 Cajeras y CY1 Cajeras.
-// Nota aparte — MT1 Repartidor (el caso reportado): no aparece aquí porque en el archivo fuente su
-// objetivo se mantuvo en 1 las 7 semanas; lo que bajó fue el real (2→1, 03 Sep→10 Sep), es decir el
-// excedente se resolvió porque la plaza se desocupó, no porque se haya subido el objetivo. Si en tu
-// sistema de RH sí autorizaste esa segunda plaza de Repartidor en MT1, aún no se refleja en este
-// archivo — vale la pena confirmarlo en el próximo corte.
-// Nota aparte — MN1 (Montemorelos): tiene 5 posiciones que técnicamente cumplen la definición (su
-// objetivo pasó de 0 a igualar su real ya operando, el 27 Ago), pero se excluyen de este listado por
-// ser la autorización inicial completa de una apertura nueva, no la formalización de una plaza
-// excedente en una tienda ya existente — mismo criterio que el resto del dashboard aplica a MN1.
-//  · GA1 · Sup. Tda. (03 Sep→10 Sep, auth 0→1): agregado con la actualización v39 — confirmado, misma
-//    prueba (excedente antes, real sin cambio, objetivo sube exactamente para alcanzarlo).
+// VALIDADO 1-a-1 contra las 7 hojas semanales del archivo fuente, re-verificado completo con v41.
+// Definición estricta: sólo cuenta aquí una posición que YA tenía excedente (real > objetivo vigente)
+// en el corte anterior, Y cuyo objetivo subió exactamente para alcanzar ese real — sin que el real se
+// moviera en el mismo paso. No es vacante nueva, no es contratación nueva: es una plaza que ya estaba
+// de más y la zona la formalizó subiendo el techo.
+// CAMBIO v41: SN2 Vendedores, ES2 Repartidor, GP1 Cajeras y CY1 Cajeras se revirtieron por completo
+// (objetivo de vuelta a su valor original tanto en 03 Sep como en 10 Sep) — salen de este listado, y
+// sus excedentes correspondientes volvieron a aparecer. Se agregó ZU1 Repartidor (03 Sep→10 Sep).
+// AP2 Cajeras se mantiene, pero el corte donde se formalizó corrió de 12 Ago a 20 Ago.
+// Nota aparte — MT1 Repartidor: sigue sin aparecer aquí. En el archivo su objetivo se mantuvo en 1 las
+// 7 semanas; lo que bajó fue el real (2→1), es decir el excedente se resolvió porque la plaza se
+// desocupó, no porque se haya subido el objetivo.
+// Nota aparte — MN1 (Montemorelos): se excluye de este listado por ser la autorización inicial
+// completa de una apertura nueva, no la formalización de una plaza excedente en una tienda existente.
 const PLANTILLA_INCREMENTS = [
-  {code:"AP2", pos:"Cajeras", from:1, to:2, week:"12 Ago"},
-  {code:"AP4", pos:"Repartidor", from:1, to:2, week:"03 Sep"},
-  {code:"AP4", pos:"Cajeras", from:1, to:2, week:"03 Sep"},
-  {code:"AP3", pos:"Almacen", from:1, to:2, week:"10 Sep"},
-  {code:"SN2", pos:"Repartidor", from:1, to:2, week:"03 Sep"},
-  {code:"SN2", pos:"Vendedores", from:3, to:4, week:"03 Sep"},
-  {code:"STA", pos:"Cajeras", from:1, to:2, week:"03 Sep"},
-  {code:"GA1", pos:"Sup. Tda.", from:0, to:1, week:"10 Sep"},
-  {code:"ES2", pos:"Repartidor", from:1, to:2, week:"03 Sep"},
-  {code:"MT4", pos:"Cajeras", from:1, to:2, week:"10 Sep"},
+  {code:"AP2", pos:"Cajeras", from:1, to:2, week:"20 Ago"},
   {code:"COL", pos:"Almacen", from:1, to:2, week:"12 Ago"},
-  {code:"GP1", pos:"Cajeras", from:1, to:2, week:"10 Sep"},
-  {code:"CY1", pos:"Cajeras", from:1, to:2, week:"03 Sep"},
-  {code:"MT3", pos:"Almacen", from:0, to:1, week:"10 Sep"},
-  {code:"CV2", pos:"Almacen", from:0, to:1, week:"03 Sep"}
+  {code:"ZU1", pos:"Repartidor", from:2, to:3, week:"10 Sep"},
+  {code:"CV2", pos:"Almacen", from:0, to:1, week:"10 Sep"}
 ];
 // Registros agregados/ocultados manualmente desde la UI (persisten en el navegador).
 const INCREMENTS_MANUAL_KEY='jomar_transformar_increments_manual_v1';
@@ -3131,24 +3124,23 @@ function removeIncrement(row){
   renderPlantillaIncrements();
 }
 
-// Movimiento real de personal de la semana — comparación directa de Plantilla Real 03 Sep vs. 10 Sep (v36).
-// Este archivo trae 8 posiciones con real reducido. Se clasifican según si la plaza YA era excedente antes
-// del cambio (no genera ni cierra vacante, no cuenta aquí) o si afectaba una plaza con objetivo vigente
-// (sí es movimiento real, sí cuenta aquí):
-//  · EXCEDENTE resuelto (no cuenta como alta/baja aquí, solo baja el conteo de excedentes en 07/02C):
-//    GP1 Cajeras, GP1 Almacen, GP3 Almacen, JU1 Repartidor, CV1 Desarrollador, CV2 Vendedores (-2).
-//  · MOVIMIENTO REAL relevante para vacantes (Zona 1, AP2): Desarrollador 0→1 (ALTA, cubre la vacante que
-//    tenía abierta) y Repartidor 2→1 (BAJA, abre una vacante nueva — esa plaza no era excedente). Neto en
-//    Zona 1: 1 alta, 1 baja, sin cambio en headcount de la zona pero cambia QUÉ posición está vacante.
-// Zonas 2, 3, 4 y 6 sin movimiento relevante para vacantes esta semana (sus cambios son solo normalización
-// de excedente, ver nota aparte en el panel).
-// Nota de validación (zona 3): el repartidor de PEN que cubrió la vacante del repartidor de MT4 (corte previo
-// a 03 Sep) sigue correctamente reflejado — PEN Repartidor = 3 = objetivo, MT4 Repartidor = 1 = objetivo, ambos
-// en cero (ni vacante ni excedente). No requiere ajuste adicional.
-// Comparativo de HC: 1 alta, 1 baja relevantes para vacantes, neto 0.
+// Movimiento real de personal de la semana — comparación directa de Plantilla Real 03 Sep vs. 10 Sep.
+// Sólo movimientos CONFIRMADOS (ver corrección del usuario: caídas de HC en el archivo no siempre son
+// baja real de personal, así que ya no se infieren bajas de esas caídas sin evidencia adicional).
+// Criterio v43: un REAL que SUBE y cierra una vacante ya existente se cuenta como alta confirmada
+// (poca ambigüedad: alguien ingresó). Un REAL que BAJA sólo se cuenta si ya fue confirmado
+// explícitamente o tiene nota del archivo — si no, se deja fuera hasta confirmarlo.
+//  · Zona 1 — AP2 Desarrollador 0→1 y AP3 Vendedores 5→6: ALTAS, cubren vacantes que ya existían.
+//    HSM Repartidor: BAJA confirmada y ya CUBIERTA en el mismo corte (real volvió a subir) — se
+//    cuenta como 1 alta + 1 baja (cobertura rápida, HC final sin cambio neto).
+//  · Zona 2 — MOD Repartidor 2→3 (nota "ingresa 11/09" cerrada): ALTA confirmada.
+//  · Zona 3 y 6 — sin movimiento confirmado esta semana.
+//  · Zona 4 — GP2 Repartidor: BAJA confirmada y ya CUBIERTA en el mismo corte — 1 alta + 1 baja.
+//  · Zona 5 — MT2 Vendedores 3→4: ALTA, cubre una vacante que ya existía. (MT3 Almacén bajó de 1 a 0
+//    en el real, pero no está confirmado como baja de personal — no se cuenta aquí.)
+// Total: 6 altas, 2 bajas (ambas ya cubiertas), neto +4.
 const WEEKLY_MOVEMENT_LABEL = "03 Sep → 10 Sep";
-// Movimiento detectable al comparar HC entre cortes. No captura rotaciones que se compensan dentro de la misma semana.
-const WEEKLY_MOVEMENT = {"Zona 1":{altas:1,bajas:1},"Zona 2":{altas:1,bajas:0},"Zona 3":{altas:0,bajas:0},"Zona 4":{altas:0,bajas:0},"Zona 5":{altas:0,bajas:0},"Zona 6":{altas:0,bajas:0}};
+const WEEKLY_MOVEMENT = {"Zona 1":{altas:3,bajas:1},"Zona 2":{altas:1,bajas:0},"Zona 3":{altas:0,bajas:0},"Zona 4":{altas:1,bajas:1},"Zona 5":{altas:1,bajas:0},"Zona 6":{altas:0,bajas:0}};
 // Movilidad interna CONFIRMADA por el negocio (no se pierde al avanzar de corte, a diferencia de WEEKLY_MOVEMENT
 // que solo compara el corte vigente contra el anterior). Se agrega aquí cuando el equipo confirma explícitamente
 // que una plaza excedente se usó para cubrir una vacante en otra sucursal.
@@ -3695,103 +3687,112 @@ function incrementStats(){
   return {addedTotal, committedTotal, captured, referenceK, pct: referenceK? committedTotal/referenceK*100 : 0, totalBranches: branches.length};
 }
 
+// Estado del compromiso de resolución por cada excedente oficial vigente (editable, persiste en el
+// navegador). No representa dinero ni venta — sólo si la sucursal cumplió o no su compromiso de
+// resolver esa plaza excedente (por traslado, baja de la posición, o formalización del objetivo).
+const EXCESS_COMMIT_KEY = 'jomar_transformar_excess_commit_v2';
+let EXCESS_COMMIT = portableLoadState(EXCESS_COMMIT_KEY,'excessCommit');
+if(!EXCESS_COMMIT || typeof EXCESS_COMMIT!=='object') EXCESS_COMMIT={};
+function saveExcessCommit(){try{localStorage.setItem(EXCESS_COMMIT_KEY,JSON.stringify(EXCESS_COMMIT));}catch(e){}}
+const EXCESS_COMMIT_OPTIONS = [
+  {v:'', label:'Sin definir', cls:''},
+  {v:'en_proceso', label:'En proceso', cls:'is-val'},
+  {v:'cumplido', label:'Cumplido', cls:'is-cumplido'},
+  {v:'no_cumplido', label:'No cumplido', cls:'is-no-cumplido'}
+];
+// Excedentes oficiales VIGENTES (calculado en vivo desde DATA — real vs. objetivo del corte actual,
+// Zona Interior 1-6). Ya no requiere validación manual contra el Excel semana a semana: siempre
+// refleja el estado actual, sin importar qué tanto cambien los objetivos entre actualizaciones.
+function currentExcessRows(){
+  const last = weeks[weeks.length-1];
+  const allCodes = zoneNames.flatMap(z=>codesForZone(z));
+  const rows = [];
+  computeCategories(last, allCodes).forEach(b=>{
+    if(!b.diff) return;
+    positions.forEach((p,i)=>{
+      const d = Number(b.diff[i]||0);
+      if(d<0) rows.push({code:b.code, zona:b.zona, pos:p, n:Math.abs(d)});
+    });
+  });
+  return rows;
+}
+function excessCommitKey(code,pos){ return `${code}|${pos}`; }
+
 function renderPlantillaIncrements(){
   const el=document.getElementById('plantillaIncrements');
   if(!el) return;
-  const fmtK = v => '$'+Number(v||0).toLocaleString('es-MX')+' K';
-  const incWeeks = ["31 Jul","06 Ago","12 Ago","20 Ago","27 Ago","03 Sep","10 Sep"];
-  const incBranchCodes = zoneNames.flatMap(z=>codesForZone(z).map(c=>({code:c,zone:z})));
 
-  const branches = incrementsByBranch();
+  const rows = currentExcessRows();
   const byZone = {};
-  branches.forEach(b=>{ (byZone[b.zone]=byZone[b.zone]||[]).push(b); });
+  rows.forEach(r=>{ (byZone[r.zona]=byZone[r.zona]||[]).push(r); });
 
-  const rowAttrs = r => `data-inc-code="${escapeHtml(r.code)}" data-inc-pos="${escapeHtml(r.pos)}" data-inc-from="${r.from}" data-inc-to="${r.to}" data-inc-week="${escapeHtml(r.week)}"${r.manual?` data-inc-manual="1" data-inc-id="${escapeHtml(r.id)}"`:''}`;
+  const selectHtml = (code,pos) => {
+    const cur = EXCESS_COMMIT[excessCommitKey(code,pos)] || '';
+    const opts = EXCESS_COMMIT_OPTIONS.map(o=>`<option value="${o.v}" ${o.v===cur?'selected':''}>${escapeHtml(o.label)}</option>`).join('');
+    const curCls = (EXCESS_COMMIT_OPTIONS.find(o=>o.v===cur)||{}).cls||'';
+    return `<select class="excr-commit-select ${curCls}" data-exc-code="${escapeHtml(code)}" data-exc-pos="${escapeHtml(pos)}">${opts}</select>`;
+  };
 
   const zoneLogGroups = zoneNames.filter(z=>byZone[z]).map(z=>{
-    const rows = [...byZone[z]].sort((a,b)=>(branchName[a.code]||a.code).localeCompare(branchName[b.code]||b.code)).map(b=>{
-      const addedTotal = b.items.reduce((a,r)=>a+Math.max(0,(r.to||0)-(r.from||0)),0);
-      const suggested = Math.round(addedTotal*HC_SALES_PER_HEAD/1000);
-      const val = SALES_COMMITMENTS[commitKeyFor(b.code)];
-      const posTags = b.items.map(r=>`<span class="incr-pos-tag">${escapeHtml(fullPositionName(r.pos))} ${r.from}→${r.to}<small>${escapeHtml(r.week)}</small><button type="button" class="incr-pos-remove" title="Quitar este incremento" ${rowAttrs(r)}>×</button></span>`).join('');
-      return `<div class="incr-row">
-        <div class="incr-branch">${escapeHtml(branchName[b.code]||b.code)}<small>${escapeHtml(b.code)} · ${escapeHtml(z)}</small></div>
-        <div class="incr-poslist">${posTags}</div>
-        <div class="incr-commit"><input type="number" min="0" step="1" inputmode="numeric" placeholder="${suggested}" value="${val==null?'':escapeHtml(String(val))}" data-commit-key="${escapeHtml(b.code)}" title="Meta de venta mensual adicional en miles para toda la tienda. Referencia: ${suggested} K"><span class="incr-commit-unit">K</span></div>
-      </div>`;
-    }).join('');
-    return `<div class="incr-zone-group"><div class="incr-zone-h">${escapeHtml(z)} · ${byZone[z].length} sucursal${byZone[z].length===1?'':'es'}</div>${rows}</div>`;
+    const items = [...byZone[z]].sort((a,b)=>(branchName[a.code]||a.code).localeCompare(branchName[b.code]||b.code));
+    const rowsHtml = items.map(r=>`<div class="excr-row">
+        <div class="excr-branch">${escapeHtml(branchName[r.code]||r.code)}<small>${escapeHtml(r.code)} · ${escapeHtml(z)}</small></div>
+        <div class="excr-pos"><span class="pos-chip excess-chip">${escapeHtml(fullPositionName(r.pos))} +${r.n}</span></div>
+        <div class="excr-commit">${selectHtml(r.code, r.pos)}</div>
+      </div>`).join('');
+    return `<div class="incr-zone-group"><div class="incr-zone-h">${escapeHtml(z)} · ${items.length} plaza${items.length===1?'':'s'}</div>${rowsHtml}</div>`;
   }).join('');
 
-  const addForm = `<div class="incr-add-form">
-    <div class="incr-add-title">+ Agregar incremento</div>
-    <div class="incr-add-fields">
-      <select id="incBranch">${incBranchCodes.map(b=>`<option value="${escapeHtml(b.code)}">${escapeHtml(b.zone)} · ${escapeHtml(branchName[b.code]||b.code)} (${escapeHtml(b.code)})</option>`).join('')}</select>
-      <select id="incPosition">${["Gerente","Sup. Tda.","Vendedores","Desarrollador","Cajeras","Almacen","Repartidor"].map(p=>`<option value="${escapeHtml(p)}">${escapeHtml(fullPositionName(p))}</option>`).join('')}</select>
-      <input id="incFrom" type="number" min="0" step="1" placeholder="Objetivo antes" title="Objetivo antes">
-      <span class="incr-add-arrow">→</span>
-      <input id="incTo" type="number" min="0" step="1" placeholder="Objetivo después" title="Objetivo después">
-      <select id="incWeek">${incWeeks.map(w=>`<option value="${escapeHtml(w)}" ${w===incWeeks[incWeeks.length-1]?'selected':''}>${escapeHtml(w)}</option>`).join('')}</select>
-      <button type="button" id="incAddBtn" class="incr-add-btn">Agregar</button>
-    </div>
-  </div>`;
+  const total = rows.length;
+  const counts = {cumplido:0, no_cumplido:0, en_proceso:0, sin_definir:0};
+  rows.forEach(r=>{
+    const v = EXCESS_COMMIT[excessCommitKey(r.code,r.pos)] || '';
+    if(v==='cumplido') counts.cumplido++;
+    else if(v==='no_cumplido') counts.no_cumplido++;
+    else if(v==='en_proceso') counts.en_proceso++;
+    else counts.sin_definir++;
+  });
+  const pctCumplido = total ? Math.round(counts.cumplido/total*100) : 0;
 
-  const st = incrementStats();
-
-  // Resumen ejecutivo agrupado por zona (una línea por sucursal, puestos combinados)
   const zoneBlocks = zoneNames.filter(z=>byZone[z]).map(z=>{
     const items = [...byZone[z]].sort((a,b)=>(branchName[a.code]||a.code).localeCompare(branchName[b.code]||b.code));
-    const plazas = items.reduce((a,b)=>a+b.items.reduce((s,r)=>s+Math.max(0,(r.to||0)-(r.from||0)),0),0);
-    const lines = items.map(b=>{
-      const added = b.items.reduce((s,r)=>s+Math.max(0,(r.to||0)-(r.from||0)),0);
-      const v = Number(SALES_COMMITMENTS[commitKeyFor(b.code)])||0;
-      const posTxt = b.items.map(r=>`${fullPositionName(r.pos)} ${r.from}→${r.to}`).join(' · ');
-      return `<div class="incr-exec-line"><span>${escapeHtml(branchName[b.code]||b.code)}<em>${escapeHtml(b.code)} · ${escapeHtml(posTxt)}</em></span><b>+${added} HC · ${v>0?fmtK(v):'<span style="color:#ffb3bd">sin meta</span>'}</b></div>`;
+    const lines = items.map(r=>{
+      const v = EXCESS_COMMIT[excessCommitKey(r.code,r.pos)] || '';
+      const opt = EXCESS_COMMIT_OPTIONS.find(o=>o.v===v) || EXCESS_COMMIT_OPTIONS[0];
+      const dotColor = v==='cumplido' ? '#c9f36a' : v==='no_cumplido' ? '#ffb3bd' : v==='en_proceso' ? '#ffe08a' : 'rgba(255,255,255,.4)';
+      return `<div class="incr-exec-line"><span>${escapeHtml(branchName[r.code]||r.code)}<em>${escapeHtml(r.code)} · ${escapeHtml(fullPositionName(r.pos))} +${r.n}</em></span><b style="color:${dotColor}">${escapeHtml(opt.label)}</b></div>`;
     }).join('');
-    return `<div class="incr-exec-zone"><div class="incr-exec-zone-h">${escapeHtml(z)}<b>+${plazas} HC</b></div>${lines}</div>`;
+    return `<div class="incr-exec-zone"><div class="incr-exec-zone-h">${escapeHtml(z)}<b>${items.length}</b></div>${lines}</div>`;
   }).join('');
-
-  const gap = st.referenceK - st.committedTotal;
 
   el.innerHTML = `<div class="incr-grid">
     <div class="incr-log">
-      <div class="incr-log-title">Registro de incrementos de objetivo · Zona Interior 1–6</div>
-      <div class="incr-head"><span>Sucursal · zona</span><span>Puestos incrementados</span><span>Meta venta</span></div>
-      ${zoneLogGroups || '<div class="vac-slide-empty">Sin incrementos registrados.</div>'}
-      <div class="incr-commit-total">${st.addedTotal} plazas aprobadas de más · referencia a $${HC_SALES_PER_HEAD.toLocaleString('es-MX')} por HC: <b>${fmtK(st.referenceK)}</b> de venta mensual adicional · capturado <b>${fmtK(st.committedTotal)}</b> (${st.captured}/${st.totalBranches} tiendas)</div>
-      ${addForm}
+      <div class="incr-log-title">Registro de excedentes oficiales · Zona Interior 1–6</div>
+      <div class="incr-head"><span>Sucursal · zona</span><span>Puesto excedente</span><span>Compromiso</span></div>
+      ${zoneLogGroups || '<div class="vac-slide-empty">Sin excedentes oficiales vigentes.</div>'}
+      <div class="incr-commit-total">${total} excedente${total===1?'':'s'} vigente${total===1?'':'s'} · ${counts.cumplido} cumplido${counts.cumplido===1?'':'s'}, ${counts.en_proceso} en proceso, ${counts.no_cumplido} no cumplido${counts.no_cumplido===1?'':'s'}, ${counts.sin_definir} sin definir.</div>
     </div>
     <div class="incr-exec">
-      <div class="incr-exec-title">Resumen ejecutivo · incremento vs. compromiso</div>
+      <div class="incr-exec-title">Resumen ejecutivo · excedentes vs. compromiso</div>
       <div class="incr-exec-kpis">
-        <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Plazas incrementadas</div><div class="incr-exec-kpi-v">+${st.addedTotal}</div><div class="incr-exec-kpi-s">en ${Object.keys(byZone).length} zonas</div></div>
-        <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Venta exigible</div><div class="incr-exec-kpi-v">${fmtK(st.referenceK)}</div><div class="incr-exec-kpi-s">$${HC_SALES_PER_HEAD.toLocaleString('es-MX')} × HC / mes</div></div>
-        <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Meta capturada</div><div class="incr-exec-kpi-v" style="color:${st.committedTotal>0?'#c9f36a':'#ffb3bd'}">${fmtK(st.committedTotal)}</div><div class="incr-exec-kpi-s">${st.captured} de ${st.totalBranches} tiendas</div></div>
-        <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Cobertura</div><div class="incr-exec-kpi-v" style="color:${st.pct>=100?'#c9f36a':st.pct>0?'#ffe08a':'#ffb3bd'}">${st.pct.toFixed(0)}%</div><div class="incr-exec-kpi-s">de la venta exigible</div></div>
+        <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Excedentes vigentes</div><div class="incr-exec-kpi-v">${total}</div><div class="incr-exec-kpi-s">en ${Object.keys(byZone).length} zonas</div></div>
+        <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">Cumplidos</div><div class="incr-exec-kpi-v" style="color:#c9f36a">${counts.cumplido}</div><div class="incr-exec-kpi-s">${pctCumplido}% del total</div></div>
+        <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">En proceso</div><div class="incr-exec-kpi-v" style="color:#ffe08a">${counts.en_proceso}</div><div class="incr-exec-kpi-s">con compromiso activo</div></div>
+        <div class="incr-exec-kpi"><div class="incr-exec-kpi-l">No cumplidos</div><div class="incr-exec-kpi-v" style="color:${counts.no_cumplido>0?'#ffb3bd':'#c9f36a'}">${counts.no_cumplido}</div><div class="incr-exec-kpi-s">${counts.sin_definir} sin definir</div></div>
       </div>
       ${zoneBlocks}
-      <div class="incr-exec-gap">${gap>0?`Faltan <b style="color:#ffb3bd">${fmtK(gap)}</b> de venta mensual por comprometer para cubrir las ${st.addedTotal} plazas aprobadas de más.`:`Compromiso completo: la venta capturada cubre las ${st.addedTotal} plazas aprobadas de más.`}</div>
+      <div class="incr-exec-gap">${counts.sin_definir>0?`Hay <b style="color:#ffe08a">${counts.sin_definir}</b> excedente${counts.sin_definir===1?'':'s'} sin compromiso definido.`:(counts.no_cumplido>0?`<b style="color:#ffb3bd">${counts.no_cumplido}</b> excedente${counts.no_cumplido===1?'':'s'} con compromiso no cumplido.`:`Todos los excedentes vigentes tienen compromiso definido.`)}</div>
     </div>
   </div>`;
 
-  el.querySelectorAll('.incr-pos-remove').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const d = btn.dataset;
-      removeIncrement({code:d.incCode, pos:d.incPos, from:Number(d.incFrom), to:Number(d.incTo), week:d.incWeek, manual: d.incManual==='1', id:d.incId});
-    });
-  });
-  const incAddBtn = document.getElementById('incAddBtn');
-  if(incAddBtn) incAddBtn.addEventListener('click', addIncrementFromForm);
-
-  el.querySelectorAll('input[data-commit-key]').forEach(inp=>{
-    inp.addEventListener('change', ()=>{
-      const k = inp.getAttribute('data-commit-key');
-      const raw = inp.value.trim();
-      if(raw===''){ delete SALES_COMMITMENTS[k]; }
-      else { SALES_COMMITMENTS[k] = Math.max(0, Math.round(Number(raw)||0)); }
-      saveSalesCommitments();
+  el.querySelectorAll('.excr-commit-select').forEach(sel=>{
+    sel.addEventListener('change', ()=>{
+      const code = sel.dataset.excCode, pos = sel.dataset.excPos;
+      const key = excessCommitKey(code,pos);
+      if(sel.value==='') delete EXCESS_COMMIT[key];
+      else EXCESS_COMMIT[key] = sel.value;
+      saveExcessCommit();
       renderPlantillaIncrements();
-      renderExcessActions();
     });
   });
 }
@@ -3804,7 +3805,14 @@ function renderHcEvolution(){
   const dAutCmp=last.autCmp-first.autCmp, dRealCmp=last.realCmp-first.realCmp;
   const mn1Aprobado = HC_AUT_CHANGES.find(x=>x.nueva);
   const fmtSign = v=> (v>0?'+':'')+v;
-  const realFlat = Math.abs(dRealCmp)<=2;
+  const excFirst = EXCESS_HISTORY[0].total, excLast = EXCESS_HISTORY[EXCESS_HISTORY.length-1].total;
+  const excDrop = excFirst - excLast;
+  // ¿Cuánto de la caída de excedente pudo venir de subir el techo? Como máximo, lo que subió el techo
+  // aprobado (dAutCmp, si es positivo). El resto sólo pudo salir de bajas reales (gente que se fue o
+  // se movió), no de reclasificación de objetivo.
+  const explicadoPorTecho = Math.max(0, Math.min(dAutCmp, excDrop));
+  const porBajasReales = excDrop - explicadoPorTecho;
+  const mayoritarioPorBajas = porBajasReales > excDrop*0.5;
   const bajo = dAutCmp<0;
 
   const W=760,H=210,padL=44,padR=18,padT=26,padB=32;
@@ -3829,23 +3837,23 @@ function renderHcEvolution(){
 
   const headline = bajo
     ? `El techo aprobado sí bajó: ${fmtSign(dAutCmp)} plazas`
-    : (realFlat
-        ? `HC real prácticamente estable (${fmtSign(dRealCmp)}); el techo aprobado subió ${fmtSign(dAutCmp)}`
-        : `El techo aprobado (${fmtSign(dAutCmp)}) subió más que el HC real (${fmtSign(dRealCmp)})`);
+    : (mayoritarioPorBajas
+        ? `El excedente bajó (${fmtSign(-excDrop)}) sobre todo por bajas reales, no por subir el techo (${fmtSign(dAutCmp)})`
+        : `El techo aprobado (${fmtSign(dAutCmp)}) explica la mayor parte de la baja de excedente`);
 
-  el.innerHTML = `<div class="hc-verdict${bajo?' good':''}">
+  el.innerHTML = `<div class="hc-verdict${bajo?' good':(mayoritarioPorBajas?' good':'')}">
     <div class="hc-eyebrow">Plantilla aprobada vs. real · comparativo en el tiempo</div>
     <div class="hc-headline">${headline}</div>
-    <div class="hc-copy">Comparando tienda contra tienda (30 sucursales, <b>excluye MN1</b>) entre <b>${first.label}</b> y <b>${last.label}</b>: el HC aprobado pasó de <b>${first.autCmp}</b> a <b>${last.autCmp}</b> (<b>${fmtSign(dAutCmp)}</b>) y el HC real de <b>${first.realCmp}</b> a <b>${last.realCmp}</b> (<b>${fmtSign(dRealCmp)}</b>). En el mismo periodo el excedente de la red bajó de 39 a 2 plazas — esa caída <b>no vino de reducir personal</b>, vino de <b>subir el techo aprobado</b> hasta acercarlo al HC que ya estaba en nómina.</div>
+    <div class="hc-copy">Comparando tienda contra tienda (30 sucursales, <b>excluye MN1</b>) entre <b>${first.label}</b> y <b>${last.label}</b>: el HC aprobado pasó de <b>${first.autCmp}</b> a <b>${last.autCmp}</b> (<b>${fmtSign(dAutCmp)}</b>) y el HC real de <b>${first.realCmp}</b> a <b>${last.realCmp}</b> (<b>${fmtSign(dRealCmp)}</b>). En el mismo periodo el excedente de la red bajó de <b>${excFirst}</b> a <b>${excLast}</b> plazas (<b>${fmtSign(-excDrop)}</b>) — de esa caída, cuando mucho <b>${explicadoPorTecho}</b> se explica por subir el techo aprobado; las otras <b>${porBajasReales}</b> sólo pudieron salir de <b>bajas reales</b> (gente que se fue o se movió), no de reclasificación de objetivo.</div>
     <div class="hc-stats">
       <div class="hc-stat"><div class="hc-stat-label">HC aprobado (comparable)</div><div class="hc-stat-val">${last.autCmp}</div><div class="hc-stat-sub">${fmtSign(dAutCmp)} vs. ${first.label} · sin MN1</div></div>
       <div class="hc-stat"><div class="hc-stat-label">HC real (comparable)</div><div class="hc-stat-val">${last.realCmp}</div><div class="hc-stat-sub">${fmtSign(dRealCmp)} vs. ${first.label} · sin MN1</div></div>
-      <div class="hc-stat"><div class="hc-stat-label">Excedente de red</div><div class="hc-stat-val">-37</div><div class="hc-stat-sub">39 → 2 plazas, ${first.label}→${last.label}</div></div>
+      <div class="hc-stat"><div class="hc-stat-label">Excedente de red</div><div class="hc-stat-val">${fmtSign(-excDrop)}</div><div class="hc-stat-sub">${excFirst} → ${excLast} plazas, ${first.label}→${last.label}</div></div>
       <div class="hc-stat mn1"><div class="hc-stat-label">MN1 · aparte (apertura nueva)</div><div class="hc-stat-val">${fmtSign(mn1Aprobado?mn1Aprobado.delta:9)}</div><div class="hc-stat-sub">Aprobado y real ya alineados en 9 · no se compara</div></div>
     </div>
     ${chart}
     <div class="hc-legend"><span><i style="background:#fff"></i>HC aprobado (objetivo, sin MN1)</span><span><i style="background:rgba(255,255,255,.6)"></i>HC real (nómina, sin MN1)</span></div>
-    <div class="hc-note"><b>Qué se movió (techo aprobado, sin MN1):</b> subió en ${subieron.length?listTxt(subieron):'—'}; bajó en ${bajaron.length?listTxt(bajaron):'—'}.<br><b>Conclusión:</b> la reducción de excedentes de estas semanas es, en su mayoría, una reclasificación del techo aprobado hacia el HC que ya existía — no una baja real de personal. MN1 (Montemorelos) se excluye de esta comparación por ser apertura nueva: su HC aprobado y real ya coinciden en 9 plazas desde que se dio de alta y no tiene semanas previas con las que comparar.</div>
+    <div class="hc-note"><b>Qué se movió (techo aprobado, sin MN1):</b> subió en ${subieron.length?listTxt(subieron):'—'}; bajó en ${bajaron.length?listTxt(bajaron):'—'}.<br><b>Conclusión:</b> ${mayoritarioPorBajas ? 'a diferencia de cortes anteriores, esta vez la mayor parte de la reducción de excedente vino de que la gente se fue o se movió de posición — el techo aprobado casi no se tocó. El HC real y el aprobado se movieron casi igual en el periodo, lo cual sugiere que hubo tanto contrataciones cubriendo vacantes como bajas resolviendo excedentes, compensándose en el neto.' : 'la reducción de excedentes de este periodo es, en su mayoría, una reclasificación del techo aprobado hacia el HC que ya existía — no una baja real de personal.'} MN1 (Montemorelos) se excluye de esta comparación por ser apertura nueva: su HC aprobado y real ya coinciden en 9 plazas desde que se dio de alta y no tiene semanas previas con las que comparar.</div>
   </div>`;
 }
 
@@ -4865,7 +4873,7 @@ function inlineCaptureComputedOverflow(clone){
 // Primera aparición histórica (racha continua hasta el corte 10 Sep) de cada vacante oficial hoy
 // abierta en Zona Interior 1-6, calculada semana a semana (31 Jul-10 Sep) desde el archivo fuente.
 // Clave: "CODIGO|Puesto". Las solicitudes no tienen histórico semanal (son escenario editable, sin fecha).
-const VAC_FIRST_SEEN = {"AP3|Vendedores": {"first_label": "03 Sep", "first_date": "2026-09-03", "weeks_open": 2, "since_start": false}, "SN3|Repartidor": {"first_label": "20 Ago", "first_date": "2026-08-20", "weeks_open": 4, "since_start": false}, "PEN|Almacen": {"first_label": "03 Sep", "first_date": "2026-09-03", "weeks_open": 2, "since_start": false}, "GP2|Cajeras": {"first_label": "12 Ago", "first_date": "2026-08-12", "weeks_open": 5, "since_start": false}, "MT1|Almacen": {"first_label": "03 Sep", "first_date": "2026-09-03", "weeks_open": 2, "since_start": false}, "MT2|Vendedores": {"first_label": "31 Jul", "first_date": "2026-07-31", "weeks_open": 7, "since_start": true}, "AP2|Repartidor": {"first_label": "10 Sep", "first_date": "2026-09-10", "weeks_open": 1, "since_start": false}, "AP3|Cajeras": {"first_label": "03 Sep", "first_date": "2026-09-03", "weeks_open": 2, "since_start": false}, "AP4|Desarrollador": {"first_label": "03 Sep", "first_date": "2026-09-03", "weeks_open": 2, "since_start": false}, "MT5|Almacen": {"first_label": "10 Sep", "first_date": "2026-09-10", "weeks_open": 1, "since_start": false}};
+const VAC_FIRST_SEEN = {"AP3|Cajeras": {"first_label": "03 Sep", "first_date": "2026-09-03", "weeks_open": 2, "since_start": false}, "AP4|Desarrollador": {"first_label": "03 Sep", "first_date": "2026-09-03", "weeks_open": 2, "since_start": false}, "SN3|Repartidor": {"first_label": "20 Ago", "first_date": "2026-08-20", "weeks_open": 4, "since_start": false}, "PEN|Almacen": {"first_label": "03 Sep", "first_date": "2026-09-03", "weeks_open": 2, "since_start": false}, "MT5|Almacen": {"first_label": "10 Sep", "first_date": "2026-09-10", "weeks_open": 1, "since_start": false}, "GP2|Cajeras": {"first_label": "12 Ago", "first_date": "2026-08-12", "weeks_open": 5, "since_start": false}, "MT1|Almacen": {"first_label": "03 Sep", "first_date": "2026-09-03", "weeks_open": 2, "since_start": false}};
 const XLSX_CDNS=[
   'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js',
   'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js',
