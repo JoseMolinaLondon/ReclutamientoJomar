@@ -3593,7 +3593,11 @@ function renderVacZoneSlide(){
   const el=document.getElementById('vacZoneSlide');
   if(!el) return;
   const series=officialSeries('Todas');
-  const recent=series.filter(x=>['31 Jul','06 Ago','12 Ago','20 Ago','27 Ago','03 Sep','10 Sep'].includes(x.label));
+  // Antes esta lista estaba fija a mano y se quedó desactualizada cuando se agregó 17 Sep (mostraba
+  // "8" del corte 10 Sep como si fuera el actual). Ahora se deriva de OFFICIAL_HISTORY, que sí se
+  // mantiene al día en cada actualización — así esta gráfica nunca se vuelve a desincronizar.
+  const relevantLabels=OFFICIAL_HISTORY.map(x=>x.label);
+  const recent=series.filter(x=>relevantLabels.includes(x.label));
   const chartSeries=recent.length>=4?recent:series.slice(-6);
   const peak=officialPeak('Todas');
   const current=officialMetricsForZone('Todas').current;
